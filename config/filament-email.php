@@ -2,5 +2,12 @@
 
 // config for RickDBCN/FilamentEmail
 return [
-    ' keep_email_for_days' => 60,
+
+    'resource' => [
+        'group' => null,
+        'sort' => null,
+    ],
+
+    'keep_email_for_days' => 60,
+    'label' => null,
 ];
