@@ -45,22 +45,22 @@ class EmailResource extends Resource
                 Fieldset::make('Envelope')
                     ->label('')
                     ->schema([
-                    TextInput::make('created_at')
-                        ->label(__('Created at')),
-                    TextInput::make('from')
-                        ->label(__('From')),
-                    Textinput::make('to')
-                        ->label(__('To')),
-                    TextInput::make('cc')
-                        ->label(__('CC')),
-                    TextInput::make('subject')
-                        ->label(__('Subject'))
-                        ->columnSpan(2),
-                ])->columns(3),
+                        TextInput::make('created_at')
+                            ->label(__('Created at')),
+                        TextInput::make('from')
+                            ->label(__('From')),
+                        Textinput::make('to')
+                            ->label(__('To')),
+                        TextInput::make('cc')
+                            ->label(__('CC')),
+                        TextInput::make('subject')
+                            ->label(__('Subject'))
+                            ->columnSpan(2),
+                    ])->columns(3),
                 Tabs::make('Content')->tabs([
                     Tabs\Tab::make('HTML')
                         ->schema([
-                            Textarea::make('html_body')
+                            Textarea::make('html_body'),
                         ]),
                     Tabs\Tab::make('Text')
                         ->schema([
@@ -68,13 +68,13 @@ class EmailResource extends Resource
                         ]),
                     Tabs\Tab::make('raw')
                         ->schema([
-                            Textarea::make('raw_body')
+                            Textarea::make('raw_body'),
                         ]),
                     Tabs\Tab::make('Debug info')
                         ->schema([
-                            Textarea::make('sent_debug_info')
+                            Textarea::make('sent_debug_info'),
                         ]),
-                ])->columnSpan(2)
+                ])->columnSpan(2),
             ]);
     }
 
@@ -99,7 +99,7 @@ class EmailResource extends Resource
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('Subject'))
-                    ->limit(50)
+                    ->limit(50),
 
             ]);
     }

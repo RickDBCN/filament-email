@@ -9,7 +9,6 @@ use RickDBCN\FilamentEmail\Listeners\FilamentEmailLogger;
 
 class EmailMessageServiceProvider extends EventServiceProvider
 {
-
     public function boot(): void
     {
         Event::listen(
@@ -17,10 +16,10 @@ class EmailMessageServiceProvider extends EventServiceProvider
             [FilamentEmailLogger::class, 'handle']
         );
     }
-//    protected $listen = [
-//        MessageSent::class => [
-//            FilamentEmailLogger::class,
-//        ],
-//    ];
+    //    protected $listen = [
+    //        MessageSent::class => [
+    //            FilamentEmailLogger::class,
+    //        ],
+    //    ];
 
 }

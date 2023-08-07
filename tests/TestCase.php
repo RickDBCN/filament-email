@@ -2,16 +2,10 @@
 
 namespace RickDBCN\FilamentEmail\Tests;
 
-use Illuminate\Foundation\Application;
-use RickDBCN\FilamentEmail\FilamentEmailServiceProvider;
-use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
-use RickDBCN\FilamentEmail\Tests\Models\User;
-use RickDBCN\FilamentEmail\Tests\Panels\TestPanelProvider;
-
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use Filament\FilamentServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
+use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
 use Filament\Support\SupportServiceProvider;
@@ -19,8 +13,14 @@ use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Application;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use RickDBCN\FilamentEmail\FilamentEmailServiceProvider;
+use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
+use RickDBCN\FilamentEmail\Tests\Models\User;
+use RickDBCN\FilamentEmail\Tests\Panels\TestPanelProvider;
+
 class TestCase extends Orchestra
 {
     protected User $adminUser;
