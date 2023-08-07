@@ -1,5 +1,2 @@
 blank_issues_enabled: false
-contact_links:
-  - name: Request a feature
-    url: https://github.com/RickDBCN/filament-email/discussions/new?category=ideas
-    about: Share ideas for new features
+
