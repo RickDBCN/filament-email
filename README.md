@@ -1,20 +1,11 @@
-# Log all outbound emails you send through your Filament application
+![](https://banners.beyondco.de/filament-email.png?theme=light&packageManager=composer+require&packageName=rickdbcn%2Ffilament-email&pattern=architect&style=style_1&description=Log+emails+in+your+Filament+project&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rickdbcn/filament-email.svg?style=flat-square)](https://packagist.org/packages/rickdbcn/filament-email)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/rickdbcn/filament-email/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/rickdbcn/filament-email/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/rickdbcn/filament-email/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/rickdbcn/filament-email/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/rickdbcn/filament-email.svg?style=flat-square)](https://packagist.org/packages/rickdbcn/filament-email)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-email.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-email)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
+Log all outgoing emails in your Laravel project within your Filament panel.
 ## Installation
 
 You can install the package via composer:
@@ -23,7 +14,7 @@ You can install the package via composer:
 composer require rickdbcn/filament-email
 ```
 
-You can publish and run the migrations with:
+Publish and run the migrations with
 
 ```bash
 php artisan vendor:publish --tag="filament-email-migrations"
@@ -36,25 +27,12 @@ You can publish the config file with:
 php artisan vendor:publish --tag="filament-email-config"
 ```
 
-This is the contents of the published config file:
-
+Register the plugin through your panel service provider:
 ```php
-return [
-];
+// add this within return $panel:
+->plugin(new \RickDBCN\FilamentEmail\FilamentEmail())
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-email-views"
-```
-
-## Usage
-
-```php
-$filamentEmail = new RickDBCN\FilamentEmail();
-echo $filamentEmail->echoPhrase('Hello, RickDBCN!');
-```
 
 ## Testing
 
@@ -77,6 +55,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Rick de Boer](https://github.com/RickDBCN)
+- [Ramnzys](https://github.com/ramnzys/filament-email-log)
 - [All Contributors](../../contributors)
 
 ## License
