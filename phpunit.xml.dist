@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="VendorName Test Suite">
+        <testsuite name="RickDBCN Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
@@ -30,6 +30,11 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="MAIL_MAILER" value="log"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+    </php>
     <source>
         <include>
             <directory suffix=".php">./src</directory>

@@ -1,5 +1,3 @@
 <?php
 
-use VendorName\Skeleton\Tests\TestCase;
-
-uses(TestCase::class)->in(__DIR__);
+uses(\RickDBCN\FilamentEmail\Tests\TestCase::class)->in(__DIR__);
