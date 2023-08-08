@@ -12,6 +12,7 @@ use RickDBCN\FilamentEmail\Models\Email;
 class ResendMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public Email $email;
 
     public function __construct(Email $email)
