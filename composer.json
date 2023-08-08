@@ -20,7 +20,6 @@
         "filament/filament": "^3.0",
         "illuminate/contracts": "^10.0",
         "laravel/framework": "^10.17",
-        "livewire/livewire": "^3.0@beta",
         "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {
