@@ -116,14 +116,14 @@ class EmailResource extends Resource
                     ->sortable(),
                 TextColumn::make('from')
                     ->label(__('From'))
-                    ->toggleable()
+                    //->toggleable()
                     ->searchable(),
                 TextColumn::make('to')
                     ->label(__('To'))
                     ->searchable(),
                 TextColumn::make('cc')
                     ->label(__('Cc'))
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    //->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('Subject'))

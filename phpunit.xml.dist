@@ -32,6 +32,7 @@
     </logging>
     <php>
         <env name="CACHE_DRIVER" value="array"/>
+        <env name="APP_KEY" value="base64:TjUDOagJgL6S+vrTYVM5PnIgfMzI6ECTz5GCrspaVSQ="/>
         <env name="MAIL_MAILER" value="log"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
     </php>
