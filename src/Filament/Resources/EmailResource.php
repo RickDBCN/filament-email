@@ -70,7 +70,7 @@ class EmailResource extends Resource
                         ->schema([
                             Textarea::make('text_body'),
                         ]),
-                    Tabs\Tab::make('raw')
+                    Tabs\Tab::make('Raw')
                         ->schema([
                             Textarea::make('raw_body'),
                         ]),
@@ -116,14 +116,12 @@ class EmailResource extends Resource
                     ->sortable(),
                 TextColumn::make('from')
                     ->label(__('From'))
-                    //->toggleable()
                     ->searchable(),
                 TextColumn::make('to')
                     ->label(__('To'))
                     ->searchable(),
                 TextColumn::make('cc')
                     ->label(__('Cc'))
-                    //->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('Subject'))
