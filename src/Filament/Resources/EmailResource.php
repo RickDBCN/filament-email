@@ -7,12 +7,16 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
+use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
@@ -66,7 +70,7 @@ class EmailResource extends Resource
                         ->schema([
                             Textarea::make('text_body'),
                         ]),
-                    Tabs\Tab::make('raw')
+                    Tabs\Tab::make('Raw')
                         ->schema([
                             Textarea::make('raw_body'),
                         ]),
@@ -81,6 +85,30 @@ class EmailResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->actions([
+                Action::make('resend')
+                    ->label(__('Send again'))
+                    ->icon('heroicon-o-envelope')
+                    ->action(function (Email $record) {
+                        try {
+                            Mail::to($record->to)
+                                ->cc($record->cc)
+                                ->bcc($record->bcc)
+                                ->send(new ResendMail($record));
+                            Notification::make()
+                                ->title(__('E-mail has been successfully sent'))
+                                ->success()
+                                ->duration(5000)
+                                ->send();
+                        } catch (\Exception) {
+                            Notification::make()
+                                ->title(__('Something went wrong'))
+                                ->danger()
+                                ->duration(5000)
+                                ->send();
+                        }
+                    }),
+            ])
             ->columns([
                 TextColumn::make('created_at')
                     ->label(__('Date and time sent'))
@@ -88,14 +116,12 @@ class EmailResource extends Resource
                     ->sortable(),
                 TextColumn::make('from')
                     ->label(__('From'))
-                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('to')
                     ->label(__('To'))
                     ->searchable(),
                 TextColumn::make('cc')
                     ->label(__('Cc'))
-                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('Subject'))
