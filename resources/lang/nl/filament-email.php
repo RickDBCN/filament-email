@@ -8,7 +8,7 @@ return [
     'nav.active_icon' => '',
 
     /** Lijst pagina */
-    'list.breadcrumbs' => 'Overzicht',
+    'list.breadcrumb' => 'Overzicht',
     'list.title' => 'E-mails',
     'list.heading' => 'E-mails',
     'list.subheading' => 'Alles-in-1 plek voor Filament e-mails',
@@ -39,6 +39,7 @@ return [
 
     /** Tabel */
     'table.column.created_at' => 'Datum en tijd verzonden',
+    'table.column.status' => 'Status',
     'table.column.from' => 'Van',
     'table.column.to' => 'Aan',
     'table.column.cc' => 'Cc',
@@ -55,6 +56,9 @@ return [
     'form.field.subject' => 'Onderwerp',
 
     /** Tabs */
-    'tabs.logs' => 'Alle logs',
+    'tabs.tab1' => 'Alle logs',
+    'tabs.tab2' => 'Afgeleverd',
+    'tabs.tab3' => 'Verzonden',
+    'tabs.tab4' => 'Gefaald',
 
 ];

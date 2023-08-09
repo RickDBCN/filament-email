@@ -21,7 +21,7 @@ class ListEmails extends ListRecords
     {
         return [
             $this->getResource()::getUrl() => __('filament-email::filament-email.list.heading'),
-            '#' => __('filament-email::filament-email.view.breadcrumb'),
+            '#' => __('filament-email::filament-email.list.breadcrumb'),
         ];
     }
 
@@ -103,11 +103,16 @@ class ListEmails extends ListRecords
     public function getTabs(): array
     {
         return [
-            __('filament-email::filament-email.tabs.logs') => Tab::make()
+            __('filament-email::filament-email.tabs.tab1') => Tab::make()
                 ->icon('heroicon-o-table-cells'),
-            __('filament-email::filament-email.tabs.logs') => Tab::make()
+            __('filament-email::filament-email.tabs.tab2') => Tab::make()
+                ->icon('heroicon-o-envelope-open')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('created_at', '=', '2023-08-08 06:42:13')),
-            'inactive' => Tab::make()
+            __('filament-email::filament-email.tabs.tab3') => Tab::make()
+                ->icon('heroicon-o-envelope')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('active', false)),
+            __('filament-email::filament-email.tabs.tab4') => Tab::make()
+                ->icon('heroicon-o-x-circle')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('active', false)),
         ];
     }

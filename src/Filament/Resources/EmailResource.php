@@ -3,6 +3,7 @@
 namespace RickDBCN\FilamentEmail\Filament\Resources;
 
 use Filament\Forms\Components\ViewField;
+use Filament\Tables\Columns\BadgeColumn;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
@@ -73,6 +74,15 @@ class EmailResource extends Resource
                     ->dateTime()
                     ->icon('heroicon-m-calendar')
                     ->sortable(),
+                TextColumn::make('status')
+                    ->label(__('filament-email::filament-email.table.column.status'))
+                    ->badge()
+                    ->color(fn (string $state):string => match ($state) {
+                        config('filament-email.tabs.tab1.status1') => config('filament-email.tabs.color1'),
+                        config('filament-email.tabs.tab1.status2') => config('filament-email.tabs.color2'),
+                        config('filament-email.tabs.tab1.status3') => config('filament-email.tabs.color3'),
+                    })
+                    ->sortable(),
                 TextColumn::make('from')
                     ->label(__('filament-email::filament-email.table.column.from'))
                     ->icon('heroicon-m-envelope')
@@ -95,7 +105,7 @@ class EmailResource extends Resource
             ->actions([
                 Action::make('resend')
                     ->label(__('filament-email::filament-email.table.action.send-again'))
-                    ->icon('heroicon-o-envelope')
+                    ->icon('heroicon-m-envelope')
                     ->action(function (Email $record) {
                         try {
                             Mail::to($record->to)

@@ -8,7 +8,7 @@ return [
     'nav.active_icon' => '',
 
     /** List page */
-    'list.breadcrumbs' => 'Overview',
+    'list.breadcrumb' => 'Overview',
     'list.title' => 'Emails',
     'list.heading' => 'Emails',
     'list.subheading' => 'All-in-1 place for Filament emails',
@@ -39,6 +39,7 @@ return [
 
     /** Table */
     'table.column.created_at' => 'Date and time sent',
+    'table.column.status' => 'Status',
     'table.column.from' => 'From',
     'table.column.to' => 'To',
     'table.column.cc' => 'Cc',
@@ -55,6 +56,9 @@ return [
     'form.field.subject' => 'Subject',
 
     /** Tabs */
-    'tabs.logs' => 'All logs',
+    'tabs.tab1' => 'All logs',
+    'tabs.tab2' => 'Delivered',
+    'tabs.tab3' => 'Sent',
+    'tabs.tab4' => 'Failed',
 
 ];

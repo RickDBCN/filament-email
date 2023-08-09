@@ -48,6 +48,20 @@ return [
             'visible' => true,
         ],
     ],
+    'tabs' => [
+      'tab1' => [
+          'status' => 'delivered',
+          'color' => 'success',
+          ],
+        'tab2' => [
+            'status' => 'sent',
+            'color' => 'warning',
+        ],
+        'tab3' => [
+            'status' => 'failed',
+            'color' => 'danger',
+        ],
+    ],
 
     'keep_email_for_days' => 60,
 ];
