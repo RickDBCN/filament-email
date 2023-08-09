@@ -77,6 +77,5 @@ return [
     'integrations.nav.icon' => 'heroicon-o-server-stack',
     'integrations.nav.active_icon' => 'heroicon-s-server-stack',
 
-    /** List page */
-
+/** List page */
 ];

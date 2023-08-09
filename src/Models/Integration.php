@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Config;
 
 /**
  * Email
@@ -30,5 +29,4 @@ class Integration extends Model
     protected $table = 'filament_email_integrations';
 
     protected $guarded = [];
-
 }

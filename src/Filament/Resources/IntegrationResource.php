@@ -5,11 +5,9 @@ namespace RickDBCN\FilamentEmail\Filament\Resources;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use RickDBCN\FilamentEmail\Filament\Resources\IntegrationResource\Pages\ListIntegrations;
 use RickDBCN\FilamentEmail\Filament\Resources\IntegrationResource\Pages\ViewIntegration;
-use RickDBCN\FilamentEmail\Models\Email;
 use RickDBCN\FilamentEmail\Models\Integration;
 use RickDBCN\FilamentEmail\Support\Utils;
 
@@ -78,5 +76,4 @@ class IntegrationResource extends Resource
     {
         return __('filament-email::filament-email.integrations.nav.label');
     }
-
 }

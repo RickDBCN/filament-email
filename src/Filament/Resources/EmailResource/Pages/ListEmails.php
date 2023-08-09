@@ -46,61 +46,61 @@ class ListEmails extends ListRecords
                 ->label(__('filament-email::filament-email.emails.list.redirect-button.label'))
                 ->icon(__('filament-email::filament-email.emails.list.redirect-button.icon'))
                 ->url(Utils::getIntegrationResourceSlug())
-                ->visible(fn() => Utils::isIntegrationsButtonEnabled()),
-//            Action::make('button')
-//                ->label(__('filament-email::filament-email.list.button.label'))
-//                ->icon(__('filament-email::filament-email.list.button.icon'))
-//                ->visible(fn () => Utils::isModalButtonEnabled())
-//                ->modalHeading(__('filament-email::filament-email.modal.heading'))
-//                ->modalDescription(__('filament-email::filament-email.modal.subheading'))
-//                ->modalSubmitActionLabel(__('filament-email::filament-email.modal.submit-action-label'))
-//                ->modalCancelActionLabel(__('filament-email::filament-email.modal.cancel-action-label'))
-//                ->fillForm([
-//                    __('filament-email::filament-email.modal.fields.field1.label') => config('filament-email.modal.field1.value'),
-//                    __('filament-email::filament-email.modal.fields.field2.label') => config('filament-email.modal.field2.value'),
-//                    __('filament-email::filament-email.modal.fields.field3.label') => config('filament-email.modal.field3.value'),
-//                    __('filament-email::filament-email.modal.fields.field4.label') => config('filament-email.modal.field4.value'),
-//                    __('filament-email::filament-email.modal.fields.field5.label') => config('filament-email.modal.field5.value'),
-//                    __('filament-email::filament-email.modal.fields.field6.label') => config('filament-email.modal.field6.value'),
-//                    __('filament-email::filament-email.modal.fields.field7.label') => config('filament-email.modal.field7.value'),
-//                    __('filament-email::filament-email.modal.fields.field8.label') => config('filament-email.modal.field8.value'),
-//                    __('filament-email::filament-email.modal.fields.field9.label') => config('filament-email.modal.field9.value'),
-//                ])
-//                ->form([
-//                    Grid::make(config('filament-email.modal.columns'))
-//                        ->schema([
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field1.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field1.label'))
-//                                ->visible(config('filament-email.modal.field1.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field2.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field2.label'))
-//                                ->visible(config('filament-email.modal.field2.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field3.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field3.label'))
-//                                ->visible(config('filament-email.modal.field3.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field4.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field4.label'))
-//                                ->visible(config('filament-email.modal.field4.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field5.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field5.label'))
-//                                ->visible(config('filament-email.modal.field5.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field6.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field6.label'))
-//                                ->visible(config('filament-email.modal.field6.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field7.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field7.label'))
-//                                ->visible(config('filament-email.modal.field7.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field8.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field8.label'))
-//                                ->visible(config('filament-email.modal.field8.visible')),
-//                            TextInput::make(__('filament-email::filament-email.modal.fields.field9.label'))
-//                                ->label(__('filament-email::filament-email.modal.fields.field9.label'))
-//                                ->visible(config('filament-email.modal.field9.visible')),
-//                        ]),
-//                ])
-//                ->action(function (array $data): void {
-//
-//                }),
+                ->visible(fn () => Utils::isIntegrationsButtonEnabled()),
+            //            Action::make('button')
+            //                ->label(__('filament-email::filament-email.list.button.label'))
+            //                ->icon(__('filament-email::filament-email.list.button.icon'))
+            //                ->visible(fn () => Utils::isModalButtonEnabled())
+            //                ->modalHeading(__('filament-email::filament-email.modal.heading'))
+            //                ->modalDescription(__('filament-email::filament-email.modal.subheading'))
+            //                ->modalSubmitActionLabel(__('filament-email::filament-email.modal.submit-action-label'))
+            //                ->modalCancelActionLabel(__('filament-email::filament-email.modal.cancel-action-label'))
+            //                ->fillForm([
+            //                    __('filament-email::filament-email.modal.fields.field1.label') => config('filament-email.modal.field1.value'),
+            //                    __('filament-email::filament-email.modal.fields.field2.label') => config('filament-email.modal.field2.value'),
+            //                    __('filament-email::filament-email.modal.fields.field3.label') => config('filament-email.modal.field3.value'),
+            //                    __('filament-email::filament-email.modal.fields.field4.label') => config('filament-email.modal.field4.value'),
+            //                    __('filament-email::filament-email.modal.fields.field5.label') => config('filament-email.modal.field5.value'),
+            //                    __('filament-email::filament-email.modal.fields.field6.label') => config('filament-email.modal.field6.value'),
+            //                    __('filament-email::filament-email.modal.fields.field7.label') => config('filament-email.modal.field7.value'),
+            //                    __('filament-email::filament-email.modal.fields.field8.label') => config('filament-email.modal.field8.value'),
+            //                    __('filament-email::filament-email.modal.fields.field9.label') => config('filament-email.modal.field9.value'),
+            //                ])
+            //                ->form([
+            //                    Grid::make(config('filament-email.modal.columns'))
+            //                        ->schema([
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field1.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field1.label'))
+            //                                ->visible(config('filament-email.modal.field1.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field2.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field2.label'))
+            //                                ->visible(config('filament-email.modal.field2.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field3.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field3.label'))
+            //                                ->visible(config('filament-email.modal.field3.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field4.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field4.label'))
+            //                                ->visible(config('filament-email.modal.field4.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field5.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field5.label'))
+            //                                ->visible(config('filament-email.modal.field5.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field6.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field6.label'))
+            //                                ->visible(config('filament-email.modal.field6.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field7.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field7.label'))
+            //                                ->visible(config('filament-email.modal.field7.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field8.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field8.label'))
+            //                                ->visible(config('filament-email.modal.field8.visible')),
+            //                            TextInput::make(__('filament-email::filament-email.modal.fields.field9.label'))
+            //                                ->label(__('filament-email::filament-email.modal.fields.field9.label'))
+            //                                ->visible(config('filament-email.modal.field9.visible')),
+            //                        ]),
+            //                ])
+            //                ->action(function (array $data): void {
+            //
+            //                }),
         ];
     }
 
@@ -108,7 +108,7 @@ class ListEmails extends ListRecords
     {
         $array = [];
 
-        if (!is_null(config('filament-email.tabs'))) {
+        if (! is_null(config('filament-email.tabs'))) {
             foreach (config('filament-email.tabs') as $tab => $status) {
                 $array[$tab] = $tab;
             }
@@ -121,6 +121,7 @@ class ListEmails extends ListRecords
             }
 
         }
+
         return $array;
     }
 }

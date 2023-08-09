@@ -60,22 +60,22 @@ return [
         'all' => [
             'icon' => 'heroicon-o-table-cells',
             'color' => 'primary',
-//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
         'delivered' => [
             'icon' => 'heroicon-o-envelope-open',
             'color' => 'success',
-//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
         'sent' => [
             'icon' => 'heroicon-o-envelope',
             'color' => 'warning',
-//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
         'failed' => [
             'icon' => 'heroicon-o-x-circle',
             'color' => 'danger',
-//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
     ],
     'show_integrations_button' => true,
