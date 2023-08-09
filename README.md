@@ -28,9 +28,10 @@ php artisan vendor:publish --tag="filament-email-config"
 ```
 
 Register the plugin through your panel service provider:
+
 ```php
 // add this within return $panel:
-->plugin(new \RickDBCN\FilamentEmail\FilamentEmail())
+->plugin(new \RickDBCN\FilamentEmail\FilamentEmailPlugin())
 ```
 
 
@@ -45,7 +46,7 @@ composer test
 ## Credits
 
 - [Rick de Boer](https://github.com/RickDBCN)
-- [Ramnzys](https://github.com/ramnzys/filament-email-log)
+- [Thijmen Kort](https://github.com/ThijmenKort)
 - [All Contributors](../../contributors)
 
 ## License

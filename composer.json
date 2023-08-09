@@ -1,6 +1,6 @@
 {
     "name": "rickdbcn/filament-email",
-    "description": "Log all outbound emails you send through your Filament application",
+    "description": "Control everything regarding emails in one place.",
     "keywords": [
         "RickDBCN",
         "laravel",

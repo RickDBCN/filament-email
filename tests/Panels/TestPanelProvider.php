@@ -13,7 +13,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use RickDBCN\FilamentEmail\FilamentEmail;
+use RickDBCN\FilamentEmail\FilamentEmailPlugin;
 
 class TestPanelProvider extends PanelProvider
 {
@@ -22,7 +22,7 @@ class TestPanelProvider extends PanelProvider
         return $panel
             ->id('test-panel')
             ->default()
-            ->plugin(new FilamentEmail)
+            ->plugin(new FilamentEmailPlugin)
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

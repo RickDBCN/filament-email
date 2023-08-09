@@ -6,7 +6,7 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
-class FilamentEmail implements Plugin
+class FilamentEmailPlugin implements Plugin
 {
     public function getId(): string
     {

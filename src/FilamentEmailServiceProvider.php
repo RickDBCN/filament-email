@@ -12,16 +12,12 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
 
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('filament-email')
             ->hasConfigFile('filament-email')
-            ->hasViews()
-            ->hasMigration('create_filament_email_table');
+            ->hasTranslations()
+            ->hasMigration('create_filament_email_table')
+            ->hasViews();
 
         $this->app->register(EmailMessageServiceProvider::class);
     }
