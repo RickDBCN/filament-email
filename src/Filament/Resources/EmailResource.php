@@ -2,24 +2,23 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources;
 
-use Filament\Forms\Components\ViewField;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
-use RickDBCN\FilamentEmail\Mail\ResendMail;
-use RickDBCN\FilamentEmail\Models\Email;
-use RickDBCN\FilamentEmail\Support\Utils;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
+use RickDBCN\FilamentEmail\Mail\ResendMail;
+use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Support\Utils;
 
 class EmailResource extends Resource
 {
@@ -165,5 +164,4 @@ class EmailResource extends Resource
     {
         return __('filament-email::filament-email.nav.label');
     }
-
 }
