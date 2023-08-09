@@ -4,24 +4,52 @@ namespace RickDBCN\FilamentEmail\Support;
 
 class Utils
 {
-    public static function getResourceSlug(): string
+    /// Email logs
+    public static function getEmailResourceSlug(): string
     {
-        return (string) config('filament-email.resource.slug');
+        return (string) config('filament-email.resources.emails.slug');
     }
 
-    public static function getResourceNavigationSort(): ?int
+    public static function getEmailResourceNavigationSort(): ?int
     {
-        return config('filament-email.resource.navigation_sort');
+        return config('filament-email.resources.emails.navigation_sort');
     }
 
-    public static function isResourceNavigationRegistered(): bool
+    public static function isEmailResourceNavigationRegistered(): bool
     {
-        return config('filament-email.resource.should_register_navigation', true);
+        return config('filament-email.resources.emails.should_register_navigation', true);
     }
 
-    public static function isResourceNavigationGroupEnabled(): bool
+    public static function isEmailResourceNavigationGroupEnabled(): bool
     {
-        return config('filament-email.resource.navigation_group', true);
+        return config('filament-email.resources.emails.navigation_group', true);
+    }
+
+    /// Integrations
+    public static function getIntegrationResourceSlug(): string
+    {
+        return (string) config('filament-email.resources.integrations.slug');
+    }
+
+    public static function getIntegrationResourceNavigationSort(): ?int
+    {
+        return config('filament-email.resources.integrations.navigation_sort');
+    }
+
+    public static function isIntegrationResourceNavigationRegistered(): bool
+    {
+        return config('filament-email.resources.integrations.should_register_navigation', true);
+    }
+
+    public static function isIntegrationResourceNavigationGroupEnabled(): bool
+    {
+        return config('filament-email.resources.integrations.navigation_group', true);
+    }
+
+    /// Modal
+    public static function isIntegrationsButtonEnabled(): bool
+    {
+        return config('filament-email.show_integrations_button', true);
     }
 
     public static function isModalButtonEnabled(): bool

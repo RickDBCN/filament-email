@@ -13,23 +13,23 @@ class ViewEmail extends ViewRecord
     public function getBreadcrumbs(): array
     {
         return [
-            $this->getResource()::getUrl() => __('filament-email::filament-email.list.heading'),
-            '#' => __('filament-email::filament-email.view.breadcrumb'),
+            $this->getResource()::getUrl() => __('filament-email::filament-email.emails.list.heading'),
+            '#' => __('filament-email::filament-email.emails.view.breadcrumb'),
         ];
     }
 
     public function getTitle(): string
     {
-        return __('filament-email::filament-email.view.title');
+        return __('filament-email::filament-email.emails.view.title');
     }
 
     public function getHeading(): string
     {
-        return __('filament-email::filament-email.view.heading');
+        return __('filament-email::filament-email.emails.view.heading');
     }
 
     public function getSubheading(): string|Htmlable|null
     {
-        return __('filament-email::filament-email.view.subheading');
+        return __('filament-email::filament-email.emails.view.subheading');
     }
 }

@@ -2,11 +2,19 @@
 
 // config for RickDBCN/FilamentEmail
 return [
-    'resource' => [
-        'should_register_navigation' => true,
-        'slug' => 'emails',
-        'navigation_group' => true,
-        'navigation_sort' => 1,
+    'resources' => [
+        'emails' => [
+            'should_register_navigation' => true,
+            'slug' => 'emails',
+            'navigation_group' => true,
+            'navigation_sort' => 1,
+        ],
+        'integrations' => [
+            'should_register_navigation' => true,
+            'slug' => 'integraties',
+            'navigation_group' => true,
+            'navigation_sort' => 2,
+        ],
     ],
     'modal' => [
         'show_modal_button' => true,
@@ -49,19 +57,27 @@ return [
         ],
     ],
     'tabs' => [
-        'tab1' => [
-            'status' => 'delivered',
+        'all' => [
+            'icon' => 'heroicon-o-table-cells',
+            'color' => 'primary',
+//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+        ],
+        'delivered' => [
+            'icon' => 'heroicon-o-envelope-open',
             'color' => 'success',
+//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
-        'tab2' => [
-            'status' => 'sent',
+        'sent' => [
+            'icon' => 'heroicon-o-envelope',
             'color' => 'warning',
+//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
-        'tab3' => [
-            'status' => 'failed',
+        'failed' => [
+            'icon' => 'heroicon-o-x-circle',
             'color' => 'danger',
+//            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
     ],
-
+    'show_integrations_button' => true,
     'keep_email_for_days' => 60,
 ];

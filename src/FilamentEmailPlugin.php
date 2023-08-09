@@ -5,6 +5,7 @@ namespace RickDBCN\FilamentEmail;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Resources\IntegrationResource;
 
 class FilamentEmailPlugin implements Plugin
 {
@@ -17,6 +18,7 @@ class FilamentEmailPlugin implements Plugin
     {
         $panel->resources([
             EmailResource::class,
+            IntegrationResource::class,
         ]);
     }
 

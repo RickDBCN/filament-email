@@ -1,25 +1,30 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Logs Resource
+    |--------------------------------------------------------------------------
+    */
     /** Navigation */
-    'nav.group' => 'Emails',
-    'nav.label' => 'Emails',
-    'nav.icon' => 'heroicon-o-envelope',
-    'nav.active_icon' => '',
+    'emails.nav.group' => 'Emails',
+    'emails.nav.label' => 'Logs',
+    'emails.nav.icon' => 'heroicon-o-envelope',
+    'emails.nav.active_icon' => 'heroicon-s-envelope',
 
     /** List page */
-    'list.breadcrumb' => 'Overview',
-    'list.title' => 'Emails',
-    'list.heading' => 'Emails',
-    'list.subheading' => 'All-in-1 place for Filament emails',
-    'list.button.label' => 'Settings',
-    'list.button.icon' => 'heroicon-s-arrows-pointing-out',
+    'emails.list.breadcrumb' => 'Overview',
+    'emails.list.title' => 'Logs',
+    'emails.list.heading' => 'Logs',
+    'emails.list.subheading' => 'View all emails sent from your application',
+    'emails.list.redirect-button.label' => 'Integrations',
+    'emails.list.redirect-button.icon' => 'heroicon-s-server-stack',
 
     /** View page */
-    'view.breadcrumb' => 'View',
-    'view.title' => 'View email',
-    'view.heading' => 'View email',
-    'view.subheading' => '',
+    'emails.view.breadcrumb' => 'View log',
+    'emails.view.title' => 'View log',
+    'emails.view.heading' => 'View log',
+    'emails.view.subheading' => '',
 
     /** Modal */
     'modal.heading' => 'Settings',
@@ -60,5 +65,18 @@ return [
     'tabs.tab2' => 'Delivered',
     'tabs.tab3' => 'Sent',
     'tabs.tab4' => 'Failed',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Integrations Resource
+    |--------------------------------------------------------------------------
+    */
+    /** Navigation */
+    'integrations.nav.group' => 'Emails',
+    'integrations.nav.label' => 'Integrations',
+    'integrations.nav.icon' => 'heroicon-o-server-stack',
+    'integrations.nav.active_icon' => 'heroicon-s-server-stack',
+
+    /** List page */
 
 ];

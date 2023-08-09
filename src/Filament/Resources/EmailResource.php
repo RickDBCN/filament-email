@@ -139,38 +139,38 @@ class EmailResource extends Resource
 
     public static function shouldRegisterNavigation(): bool
     {
-        return Utils::isResourceNavigationRegistered();
+        return Utils::isEmailResourceNavigationRegistered();
     }
 
     public static function getSlug(): string
     {
-        return Utils::getResourceSlug();
+        return Utils::getEmailResourceSlug();
     }
 
     public static function getNavigationSort(): ?int
     {
-        return Utils::getResourceNavigationSort();
+        return Utils::getEmailResourceNavigationSort();
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Utils::isResourceNavigationGroupEnabled()
-            ? __('filament-email::filament-email.nav.group')
+        return Utils::isEmailResourceNavigationGroupEnabled()
+            ? __('filament-email::filament-email.emails.nav.group')
             : '';
     }
 
     public static function getNavigationIcon(): ?string
     {
-        return __('filament-email::filament-email.nav.icon');
+        return __('filament-email::filament-email.emails.nav.icon');
     }
 
     public static function getActiveNavigationIcon(): ?string
     {
-        return __('filament-email::filament-email.nav.active_icon');
+        return __('filament-email::filament-email.emails.nav.active_icon');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-email::filament-email.nav.label');
+        return __('filament-email::filament-email.emails.nav.label');
     }
 }

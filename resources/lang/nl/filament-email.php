@@ -1,25 +1,30 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | E-mails Resource
+    |--------------------------------------------------------------------------
+    */
     /** Navigatie */
-    'nav.group' => 'E-mails',
-    'nav.label' => 'E-mails',
-    'nav.icon' => 'heroicon-o-envelope',
-    'nav.active_icon' => '',
+    'emails.nav.group' => 'E-mails',
+    'emails.nav.label' => 'E-mails',
+    'emails.nav.icon' => 'heroicon-o-envelope',
+    'emails.nav.active_icon' => '',
 
     /** Lijst pagina */
-    'list.breadcrumb' => 'Overzicht',
-    'list.title' => 'E-mails',
-    'list.heading' => 'E-mails',
-    'list.subheading' => 'Alles-in-1 plek voor Filament e-mails',
-    'list.button.label' => 'Instellingen',
-    'list.button.icon' => 'heroicon-s-arrows-pointing-out',
+    'emails.list.breadcrumb' => 'Overzicht',
+    'emails.list.title' => 'E-mails',
+    'emails.list.heading' => 'E-mails',
+    'emails.list.subheading' => 'Alles-in-1 plek voor Filament e-mails',
+    'emails.list.redirect-button.label' => 'Integraties',
+    'emails.list.redirect-button.icon' => 'heroicon-s-server-stack',
 
     /** Bekijken pagina */
-    'view.breadcrumb' => 'Bekijken',
-    'view.title' => 'Bekijk e-mail',
-    'view.heading' => 'Bekijk e-mail',
-    'view.subheading' => '',
+    'emails.view.breadcrumb' => 'Bekijken',
+    'emails.view.title' => 'Bekijk e-mail',
+    'emails.view.heading' => 'Bekijk e-mail',
+    'emails.view.subheading' => '',
 
     /** Modal */
     'modal.heading' => 'Instellingen',
@@ -60,5 +65,16 @@ return [
     'tabs.tab2' => 'Afgeleverd',
     'tabs.tab3' => 'Verzonden',
     'tabs.tab4' => 'Gefaald',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Integraties Resource
+    |--------------------------------------------------------------------------
+    */
+    /** Navigatie */
+    'integrations.nav.group' => 'E-mails',
+    'integrations.nav.label' => 'Integraties',
+    'integrations.nav.icon' => 'heroicon-o-server-stack',
+    'integrations.nav.active_icon' => '',
 
 ];
