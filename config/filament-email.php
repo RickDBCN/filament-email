@@ -49,10 +49,10 @@ return [
         ],
     ],
     'tabs' => [
-      'tab1' => [
-          'status' => 'delivered',
-          'color' => 'success',
-          ],
+        'tab1' => [
+            'status' => 'delivered',
+            'color' => 'success',
+        ],
         'tab2' => [
             'status' => 'sent',
             'color' => 'warning',
