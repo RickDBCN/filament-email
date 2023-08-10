@@ -46,7 +46,7 @@ class Utils
         return config('filament-email.resources.integrations.in_navigation_group', true);
     }
 
-    /// Modal
+    /// Buttons
     public static function isIntegrationsButtonEnabled(): bool
     {
         return config('filament-email.resources.emails.show_integrations_button', true);

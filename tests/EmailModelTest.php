@@ -29,7 +29,6 @@ it('can capture a sent email', function () {
 });
 
 it('can render table page', function () {
-    Email::factory()->create();
     livewire(ListEmails::class)->assertSuccessful();
 });
 

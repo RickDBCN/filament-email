@@ -10,8 +10,6 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentEmailServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-email';
-
     public function configurePackage(Package $package): void
     {
         $package
@@ -22,11 +20,12 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
             ->hasViews();
     }
 
-    public function packageBooted(): void
+    public function packageRegistered()
     {
         $this->app->register(EmailMessageServiceProvider::class);
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('PostmarkMiddleware', PostmarkMiddleware::class);
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
+
 }
