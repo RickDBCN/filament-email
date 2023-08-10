@@ -6,13 +6,14 @@ return [
         'emails' => [
             'should_register_navigation' => true,
             'slug' => 'emails',
-            'navigation_group' => true,
+            'in_navigation_group' => true,
             'navigation_sort' => 1,
+            'show_integrations_button' => true,
         ],
         'integrations' => [
             'should_register_navigation' => true,
-            'slug' => 'integraties',
-            'navigation_group' => true,
+            'slug' => 'integrations',
+            'in_navigation_group' => true,
             'navigation_sort' => 2,
         ],
     ],
@@ -56,28 +57,25 @@ return [
             'visible' => true,
         ],
     ],
-    'tabs' => [
+    'status' => [
         'all' => [
             'icon' => 'heroicon-o-table-cells',
-            'color' => 'primary',
-            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
         ],
         'delivered' => [
             'icon' => 'heroicon-o-envelope-open',
             'color' => 'success',
-            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', 'delivered'),
         ],
         'sent' => [
             'icon' => 'heroicon-o-envelope',
             'color' => 'warning',
-            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', 'sent'),
         ],
         'failed' => [
             'icon' => 'heroicon-o-x-circle',
             'color' => 'danger',
-            //            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', ''),
+            'query' => fn (Illuminate\Database\Eloquent\Builder $query) => $query->where('status', 'failed'),
         ],
     ],
-    'show_integrations_button' => true,
     'keep_email_for_days' => 60,
 ];

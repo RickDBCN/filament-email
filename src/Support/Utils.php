@@ -22,7 +22,7 @@ class Utils
 
     public static function isEmailResourceNavigationGroupEnabled(): bool
     {
-        return config('filament-email.resources.emails.navigation_group', true);
+        return config('filament-email.resources.emails.in_navigation_group', true);
     }
 
     /// Integrations
@@ -43,13 +43,13 @@ class Utils
 
     public static function isIntegrationResourceNavigationGroupEnabled(): bool
     {
-        return config('filament-email.resources.integrations.navigation_group', true);
+        return config('filament-email.resources.integrations.in_navigation_group', true);
     }
 
     /// Modal
     public static function isIntegrationsButtonEnabled(): bool
     {
-        return config('filament-email.show_integrations_button', true);
+        return config('filament-email.resources.emails.show_integrations_button', true);
     }
 
     public static function isModalButtonEnabled(): bool

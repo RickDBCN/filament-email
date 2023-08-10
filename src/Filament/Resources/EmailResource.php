@@ -9,10 +9,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\ListRecords\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
@@ -75,12 +77,26 @@ class EmailResource extends Resource
                 TextColumn::make('status')
                     ->label(__('filament-email::filament-email.table.column.status'))
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        config('filament-email.tabs.tab1.status1') => config('filament-email.tabs.color1'),
-                        config('filament-email.tabs.tab1.status2') => config('filament-email.tabs.color2'),
-                        config('filament-email.tabs.tab1.status3') => config('filament-email.tabs.color3'),
+                    ->toggleable()
+                    ->formatStateUsing(fn (string $state): string => strtoupper($state))
+                    ->colors(function () {
+                        $array = [];
+                        if (! is_null(config('filament-email.status'))) {
+                            foreach (config('filament-email.status') as $tab => $status) {
+                                $array[$status['color'] ?? 'gray'] = $tab;
+                            }
+
+                            foreach (config('filament-email.status') as $tab => $status) {
+                                $array[$status['color'] ?? 'gray'] = $tab;
+                            }
+                        }
+                        return $array;
                     })
                     ->sortable(),
+                TextColumn::make('subject')
+                    ->label(__('filament-email::filament-email.table.column.subject'))
+                    ->icon('heroicon-m-chat-bubble-bottom-center')
+                    ->limit(50),
                 TextColumn::make('from')
                     ->label(__('filament-email::filament-email.table.column.from'))
                     ->icon('heroicon-m-envelope')
@@ -92,15 +108,32 @@ class EmailResource extends Resource
                 TextColumn::make('cc')
                     ->label(__('filament-email::filament-email.table.column.cc'))
                     ->icon('heroicon-m-envelope')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                TextColumn::make('subject')
-                    ->label(__('filament-email::filament-email.table.column.subject'))
-                    ->icon('heroicon-m-chat-bubble-bottom-center')
-                    ->limit(50),
 
             ])
             ->defaultSort('created_at', 'desc')
             ->actions([
+                Action::make('preview')
+                    ->label('Preview')
+                    ->icon('heroicon-m-eye')
+                    ->extraAttributes(['style' => 'h-41'])
+                    ->modalFooterActions(
+                        fn ($action): array =>
+                        [
+                        $action->getModalCancelAction(),
+                    ])
+                    ->fillForm(function (Email $record) {
+                        $body = $record->html_body;
+
+                        return [
+                            'html_body' => $body,
+                        ];
+                    })
+                    ->form([
+                        ViewField::make('html_body')->hiddenLabel()
+                            ->view('filament-email::filament-email.emails.html')->view('filament-email::HtmlEmailView'),
+                    ]),
                 Action::make('resend')
                     ->label(__('filament-email::filament-email.table.action.send-again'))
                     ->icon('heroicon-m-envelope')

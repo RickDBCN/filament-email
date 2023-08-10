@@ -16,14 +16,6 @@ class ListEmails extends ListRecords
 {
     protected static string $resource = EmailResource::class;
 
-    public function getBreadcrumbs(): array
-    {
-        return [
-            $this->getResource()::getUrl() => __('filament-email::filament-email.emails.list.heading'),
-            '#' => __('filament-email::filament-email.emails.list.breadcrumb'),
-        ];
-    }
-
     public function getTitle(): string
     {
         return __('filament-email::filament-email.emails.list.title');
@@ -108,12 +100,12 @@ class ListEmails extends ListRecords
     {
         $array = [];
 
-        if (! is_null(config('filament-email.tabs'))) {
-            foreach (config('filament-email.tabs') as $tab => $status) {
+        if (! is_null(config('filament-email.status'))) {
+            foreach (config('filament-email.status') as $tab => $status) {
                 $array[$tab] = $tab;
             }
 
-            foreach (config('filament-email.tabs') as $tab => $status) {
+            foreach (config('filament-email.status') as $tab => $status) {
                 $array[$tab] = Tab::make($tab)
                     ->label(ucfirst($tab))
                     ->icon($status['icon'] ?? null)

@@ -13,7 +13,6 @@ return [
     'emails.nav.active_icon' => 'heroicon-s-envelope',
 
     /** List page */
-    'emails.list.breadcrumb' => 'Overview',
     'emails.list.title' => 'Logs',
     'emails.list.heading' => 'Logs',
     'emails.list.subheading' => 'View all emails sent from your application',
@@ -21,9 +20,9 @@ return [
     'emails.list.redirect-button.icon' => 'heroicon-s-server-stack',
 
     /** View page */
-    'emails.view.breadcrumb' => 'View log',
-    'emails.view.title' => 'View log',
-    'emails.view.heading' => 'View log',
+    'emails.view.breadcrumb' => 'View email log',
+    'emails.view.title' => 'View email log',
+    'emails.view.heading' => 'View email log',
     'emails.view.subheading' => '',
 
     /** Modal */
