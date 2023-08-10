@@ -20,7 +20,10 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasMigration('create_filament_email_table')
             ->hasViews();
+    }
 
+    public function packageBooted(): void
+    {
         $this->app->register(EmailMessageServiceProvider::class);
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('PostmarkMiddleware', PostmarkMiddleware::class);
