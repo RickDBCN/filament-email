@@ -24,5 +24,4 @@ class ViewEmail extends ViewRecord
     {
         return __('filament-email::filament-email.emails.view.subheading');
     }
-
 }

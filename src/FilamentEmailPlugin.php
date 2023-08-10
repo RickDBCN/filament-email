@@ -40,7 +40,4 @@ class FilamentEmailPlugin implements Plugin
     {
         return filament(app(static::class)->getId());
     }
-
-
-
 }

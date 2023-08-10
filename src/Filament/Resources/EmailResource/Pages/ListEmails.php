@@ -114,5 +114,4 @@ class ListEmails extends ListRecords
 
         return $array;
     }
-
 }
