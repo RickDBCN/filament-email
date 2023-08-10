@@ -3,8 +3,6 @@
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
 use Filament\Actions\Action;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Tab;
 use Illuminate\Contracts\Support\Htmlable;
@@ -116,4 +114,5 @@ class ListEmails extends ListRecords
 
         return $array;
     }
+
 }
