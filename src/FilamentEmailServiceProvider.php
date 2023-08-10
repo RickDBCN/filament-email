@@ -2,7 +2,6 @@
 
 namespace RickDBCN\FilamentEmail;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Routing\Router;
 use RickDBCN\FilamentEmail\Http\Middleware\PostmarkMiddleware;
 use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
@@ -27,6 +26,4 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
         $router->aliasMiddleware('PostmarkMiddleware', PostmarkMiddleware::class);
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
-
-
 }
