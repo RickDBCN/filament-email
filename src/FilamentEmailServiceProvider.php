@@ -27,5 +27,4 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
         $router->aliasMiddleware('PostmarkMiddleware', PostmarkMiddleware::class);
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
-
 }
