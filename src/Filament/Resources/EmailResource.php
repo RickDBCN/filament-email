@@ -9,12 +9,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Filament\Resources\Pages\ListRecords\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
@@ -90,6 +88,7 @@ class EmailResource extends Resource
                                 $array[$status['color'] ?? 'gray'] = $tab;
                             }
                         }
+
                         return $array;
                     })
                     ->sortable(),
@@ -119,10 +118,9 @@ class EmailResource extends Resource
                     ->icon('heroicon-m-eye')
                     ->extraAttributes(['style' => 'h-41'])
                     ->modalFooterActions(
-                        fn ($action): array =>
-                        [
-                        $action->getModalCancelAction(),
-                    ])
+                        fn ($action): array => [
+                            $action->getModalCancelAction(),
+                        ])
                     ->fillForm(function (Email $record) {
                         $body = $record->html_body;
 

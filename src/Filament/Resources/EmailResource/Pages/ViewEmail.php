@@ -9,6 +9,7 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 class ViewEmail extends ViewRecord
 {
     protected static string $resource = EmailResource::class;
+
     public function getTitle(): string
     {
         return __('filament-email::filament-email.emails.view.title');
