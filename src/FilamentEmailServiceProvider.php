@@ -3,11 +3,11 @@
 namespace RickDBCN\FilamentEmail;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Routing\Router;
 use RickDBCN\FilamentEmail\Http\Middleware\PostmarkMiddleware;
 use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Illuminate\Routing\Router;
 
 class FilamentEmailServiceProvider extends PackageServiceProvider
 {
