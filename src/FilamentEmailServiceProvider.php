@@ -23,15 +23,10 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
             ->hasViews();
 
         $this->app->register(EmailMessageServiceProvider::class);
-    }
-
-    /**
-     * @throws BindingResolutionException
-     */
-    public function boot(): void
-    {
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('PostmarkMiddleware', PostmarkMiddleware::class);
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
+
+
 }
