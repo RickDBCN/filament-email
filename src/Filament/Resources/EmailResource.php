@@ -100,6 +100,7 @@ class EmailResource extends Resource
                         ])
                     ->fillForm(function (Email $record) {
                         $body = $record->html_body;
+
                         return [
                             'html_body' => $body,
                         ];
@@ -149,7 +150,6 @@ class EmailResource extends Resource
                     ->label(__('Subject'))
                     ->icon('heroicon-m-chat-bubble-bottom-center')
                     ->limit(50),
-
 
             ]);
     }
