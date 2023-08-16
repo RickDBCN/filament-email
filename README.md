@@ -42,7 +42,7 @@ Register the plugin through your panel service provider:
 composer test
 ```
 ## Screenshots
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/tableview.jpg)
+![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/tableview.png)
 
 ## Credits
 
