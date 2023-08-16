@@ -85,6 +85,7 @@ class EmailResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
             ->actions([
                 Action::make('resend')
                     ->label(__('Send again'))
