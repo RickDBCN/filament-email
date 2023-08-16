@@ -6,6 +6,7 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
@@ -64,7 +65,9 @@ class EmailResource extends Resource
                 Tabs::make('Content')->tabs([
                     Tabs\Tab::make('HTML')
                         ->schema([
-                            Textarea::make('html_body'),
+                            ViewField::make('html_body')
+                                ->view('filament-email::filament-email.emails.html')
+                                ->view('filament-email::HtmlEmailView'),
                         ]),
                     Tabs\Tab::make('Text')
                         ->schema([
@@ -87,6 +90,24 @@ class EmailResource extends Resource
         return $table
             ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
             ->actions([
+                Action::make('preview')
+                    ->label('Preview')
+                    ->icon('heroicon-m-eye')
+                    ->extraAttributes(['style' => 'h-41'])
+                    ->modalFooterActions(
+                        fn ($action): array => [
+                            $action->getModalCancelAction(),
+                        ])
+                    ->fillForm(function (Email $record) {
+                        $body = $record->html_body;
+                        return [
+                            'html_body' => $body,
+                        ];
+                    })
+                    ->form([
+                        ViewField::make('html_body')->hiddenLabel()
+                            ->view('filament-email::filament-email.emails.html')->view('filament-email::HtmlEmailView'),
+                    ]),
                 Action::make('resend')
                     ->label(__('Send again'))
                     ->icon('heroicon-o-envelope')
@@ -114,19 +135,21 @@ class EmailResource extends Resource
                 TextColumn::make('created_at')
                     ->label(__('Date and time sent'))
                     ->dateTime()
+                    ->icon('heroicon-m-calendar')
                     ->sortable(),
                 TextColumn::make('from')
                     ->label(__('From'))
+                    ->icon('heroicon-m-envelope')
                     ->searchable(),
                 TextColumn::make('to')
                     ->label(__('To'))
-                    ->searchable(),
-                TextColumn::make('cc')
-                    ->label(__('Cc'))
+                    ->icon('heroicon-m-envelope')
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('Subject'))
+                    ->icon('heroicon-m-chat-bubble-bottom-center')
                     ->limit(50),
+
 
             ]);
     }
