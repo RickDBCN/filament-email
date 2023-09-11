@@ -10,10 +10,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class User extends Model implements AuthorizableContract, AuthenticatableContract, FilamentUser
+class User extends Model implements AuthenticatableContract, AuthorizableContract, FilamentUser
 {
-    use Authorizable;
     use Authenticatable;
+    use Authorizable;
 
     //protected $fillable = ['email', 'name'];
     protected $guarded = [];
