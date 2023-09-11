@@ -11,8 +11,11 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
@@ -151,6 +154,16 @@ class EmailResource extends Resource
                     ->icon('heroicon-m-chat-bubble-bottom-center')
                     ->limit(50),
 
+            ])
+            ->groupedBulkActions([
+                DeleteBulkAction::make()
+                    ->requiresConfirmation()
+                    ->action(function () {
+                        Notification::make()
+                            ->title('Emails succesfully deleted')
+                            ->success()
+                            ->send();
+                    })
             ]);
     }
 
