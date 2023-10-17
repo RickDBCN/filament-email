@@ -92,7 +92,7 @@ class EmailResource extends Resource
             ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
             ->actions([
                 Action::make('preview')
-                    ->label('Preview')
+                    ->label(__('Preview'))
                     ->icon('heroicon-m-eye')
                     ->extraAttributes(['style' => 'h-41'])
                     ->modalFooterActions(
