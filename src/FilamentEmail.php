@@ -16,7 +16,7 @@ class FilamentEmail implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            config('filament-email.resource.class', EmailResource::class)
+            config('filament-email.resource.class', EmailResource::class),
         ]);
     }
 
