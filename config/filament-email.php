@@ -1,9 +1,12 @@
 <?php
 
 // config for RickDBCN/FilamentEmail
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+
 return [
 
     'resource' => [
+        'class' => EmailResource::class,
         'group' => null,
         'sort' => null,
         'default_sort_column' => 'created_at',
