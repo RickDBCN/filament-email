@@ -4,6 +4,7 @@
 return [
 
     'resource' => [
+        'class' => null,
         'group' => null,
         'sort' => null,
         'default_sort_column' => 'created_at',
