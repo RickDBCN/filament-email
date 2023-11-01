@@ -36,7 +36,7 @@ class EmailResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group' ?? parent::getNavigationGroup());
+        return __(Config::get('filament-email.resource.group' ?? parent::getNavigationGroup()));
     }
 
     public static function getNavigationSort(): ?int
