@@ -1,3 +1,4 @@
+
 <?php
 
 namespace RickDBCN\FilamentEmail\Filament\Resources;
@@ -28,15 +29,33 @@ class EmailResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
     protected static ?string $slug = 'emails';
-
+    
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('Email log');
+        try{
+            $str =Config::get('filament-email.label');
+            if($str == null){
+             return  __('Email log');
+            }else{
+             return  __($str);
+            }
+        }catch($ex){
+            return  __('Email log');
+        }
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group' ?? parent::getNavigationGroup());
+        try{
+            $str =Config::get('filament-email.resource.group');
+            if($str == null){
+             return parent::getNavigationGroup();
+            }else{
+             return  __($str);
+            }
+        }catch($ex){
+            return  parent::getNavigationGroup();
+        }
     }
 
     public static function getNavigationSort(): ?int
