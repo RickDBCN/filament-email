@@ -1,4 +1,3 @@
-
 <?php
 
 namespace RickDBCN\FilamentEmail\Filament\Resources;
@@ -21,6 +20,8 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
+use Exception;
+
 
 class EmailResource extends Resource
 {
@@ -39,7 +40,7 @@ class EmailResource extends Resource
             }else{
              return  __($str);
             }
-        }catch(\Exception  $ex){
+        }catch(Exception  $ex){
             return  __('Email log');
         }
     }
@@ -53,7 +54,7 @@ class EmailResource extends Resource
             }else{
              return  __($str);
             }
-        }catch(\Exception  $ex){
+        }catch(Exception  $ex){
             return  parent::getNavigationGroup();
         }
     }
