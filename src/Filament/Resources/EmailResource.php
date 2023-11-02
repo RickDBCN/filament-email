@@ -39,7 +39,7 @@ class EmailResource extends Resource
             }else{
              return  __($str);
             }
-        }catch($ex){
+        }catch(\Exception  $ex){
             return  __('Email log');
         }
     }
@@ -53,7 +53,7 @@ class EmailResource extends Resource
             }else{
              return  __($str);
             }
-        }catch($ex){
+        }catch(\Exception  $ex){
             return  parent::getNavigationGroup();
         }
     }
