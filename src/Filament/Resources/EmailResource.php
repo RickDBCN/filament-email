@@ -155,13 +155,7 @@ class EmailResource extends Resource
             ])
             ->groupedBulkActions([
                 DeleteBulkAction::make()
-                    ->requiresConfirmation()
-                    ->action(function () {
-                        Notification::make()
-                            ->title('Emails succesfully deleted')
-                            ->success()
-                            ->send();
-                    }),
+                    ->requiresConfirmation(),
             ]);
     }
 
