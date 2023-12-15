@@ -52,15 +52,15 @@ class EmailResource extends Resource
                     ->label('')
                     ->schema([
                         TextInput::make('created_at')
-                            ->label(__('Created at')),
+                            ->label(__('email-log.created_at')),
                         TextInput::make('from')
-                            ->label(__('From')),
+                            ->label(__('email-log.from')),
                         Textinput::make('to')
-                            ->label(__('To')),
+                            ->label(__('email-log.to')),
                         TextInput::make('cc')
-                            ->label(__('CC')),
+                            ->label(__('email-log.cc')),
                         TextInput::make('subject')
-                            ->label(__('Subject'))
+                            ->label(__('email-log.subject'))
                             ->columnSpan(2),
                     ])->columns(3),
                 Tabs::make('Content')->tabs([
@@ -92,7 +92,7 @@ class EmailResource extends Resource
             ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
             ->actions([
                 Action::make('preview')
-                    ->label(__('Preview'))
+                    ->label(__('email-log.preview'))
                     ->icon('heroicon-m-eye')
                     ->extraAttributes(['style' => 'h-41'])
                     ->modalFooterActions(
@@ -111,17 +111,20 @@ class EmailResource extends Resource
                             ->view('filament-email::filament-email.emails.html')->view('filament-email::HtmlEmailView'),
                     ]),
                 Action::make('resend')
-                    ->label(__('Send again'))
+                    ->label(__('email-log.send_again'))
                     ->icon('heroicon-o-envelope')
                     ->form([
                         TextInput::make('to')
+                            ->label(__('email-log.to'))
                             ->default(fn($record):string => $record->to)
                             ->email()
                             ->required(),
                         TextInput::make('cc')
+                           ->label(__('email-log.cc'))
                             ->default(fn($record):string => $record->cc)
                             ->email(),
                         TextInput::make('bcc')
+                           ->label(__('email-log.bcc'))
                             ->default(fn($record):string => $record->bcc)
                             ->email(),
                     ])
@@ -132,13 +135,13 @@ class EmailResource extends Resource
                                 ->bcc($data['bcc'])
                                 ->send(new ResendMail($record));
                             Notification::make()
-                                ->title(__('E-mail has been successfully sent'))
+                                ->title(__('email-log.e-mail-has-been-successfully-sent'))
                                 ->success()
                                 ->duration(5000)
                                 ->send();
                         } catch (\Exception) {
                             Notification::make()
-                                ->title(__('Something went wrong'))
+                                ->title(__('email-log.something-went-wrong'))
                                 ->danger()
                                 ->duration(5000)
                                 ->send();
@@ -147,20 +150,20 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('created_at')
-                    ->label(__('Date and time sent'))
+                    ->label(__('email_log.created_at'))
                     ->dateTime()
                     ->icon('heroicon-m-calendar')
                     ->sortable(),
                 TextColumn::make('from')
-                    ->label(__('From'))
+                    ->label(__('email_log.from'))
                     ->icon('heroicon-m-envelope')
                     ->searchable(),
                 TextColumn::make('to')
-                    ->label(__('To'))
+                    ->label(__('email_log.to'))
                     ->icon('heroicon-m-envelope')
                     ->searchable(),
                 TextColumn::make('subject')
-                    ->label(__('Subject'))
+                    ->label(__('email_log.subject'))
                     ->icon('heroicon-m-chat-bubble-bottom-center')
                     ->limit(50),
 
