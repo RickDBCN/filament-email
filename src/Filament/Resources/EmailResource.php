@@ -31,12 +31,12 @@ class EmailResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('Email log');
+        return __('email-log.label') == null ? 'Email log' : __('email-log.label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group' ?? parent::getNavigationGroup());
+        return __('email-log.group') == null ? null : __('email-log.group');
     }
 
     public static function getNavigationSort(): ?int
