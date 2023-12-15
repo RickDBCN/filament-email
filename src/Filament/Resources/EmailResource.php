@@ -113,11 +113,23 @@ class EmailResource extends Resource
                 Action::make('resend')
                     ->label(__('Send again'))
                     ->icon('heroicon-o-envelope')
-                    ->action(function (Email $record) {
+                    ->form([
+                        TextInput::make('to')
+                            ->default(fn($record):string => $record->to)
+                            ->email()
+                            ->required(),
+                        TextInput::make('cc')
+                            ->default(fn($record):string => $record->cc)
+                            ->email(),
+                        TextInput::make('bcc')
+                            ->default(fn($record):string => $record->bcc)
+                            ->email(),
+                    ])
+                    ->action(function (Email $record,array $data) {
                         try {
-                            Mail::to($record->to)
-                                ->cc($record->cc)
-                                ->bcc($record->bcc)
+                            Mail::to($data['to'])
+                                ->cc($data['cc'])
+                                ->bcc($data['bcc'])
                                 ->send(new ResendMail($record));
                             Notification::make()
                                 ->title(__('E-mail has been successfully sent'))
