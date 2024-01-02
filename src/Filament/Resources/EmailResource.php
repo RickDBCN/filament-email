@@ -41,7 +41,7 @@ class EmailResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return Config::set('filament-email.resource.sort') ?? parent::getNavigationSort();
+        return Config::get('filament-email.resource.sort') ?? parent::getNavigationSort();
     }
 
     public static function form(Form $form): Form
