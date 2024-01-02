@@ -20,6 +20,8 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
+use Exception;
+
 
 class EmailResource extends Resource
 {
@@ -28,15 +30,33 @@ class EmailResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
     protected static ?string $slug = 'emails';
-
+    
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('Email log');
+        try{
+            $str =Config::get('filament-email.label');
+            if($str == null){
+             return  __('Email log');
+            }else{
+             return  __($str);
+            }
+        }catch(Exception  $ex){
+            return  __('Email log');
+        }
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group' ?? parent::getNavigationGroup());
+        try{
+            $str =Config::get('filament-email.resource.group');
+            if($str == null){
+             return parent::getNavigationGroup();
+            }else{
+             return  __($str);
+            }
+        }catch(Exception  $ex){
+            return  parent::getNavigationGroup();
+        }
     }
 
     public static function getNavigationSort(): ?int
