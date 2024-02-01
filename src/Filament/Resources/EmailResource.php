@@ -23,8 +23,6 @@ use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
 {
-    protected static ?string $model = Email::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
     protected static ?string $slug = 'emails';
@@ -42,6 +40,11 @@ class EmailResource extends Resource
     public static function getNavigationSort(): ?int
     {
         return Config::get('filament-email.resource.sort') ?? parent::getNavigationSort();
+    }
+
+    public static function getModel(): string
+    {
+        return Config::get('filament-email.resource.model') ?? Email::class;
     }
 
     public static function form(Form $form): Form
@@ -99,7 +102,7 @@ class EmailResource extends Resource
                         fn ($action): array => [
                             $action->getModalCancelAction(),
                         ])
-                    ->fillForm(function (Email $record) {
+                    ->fillForm(function ($record) {
                         $body = $record->html_body;
 
                         return [
@@ -113,7 +116,7 @@ class EmailResource extends Resource
                 Action::make('resend')
                     ->label(__('Send again'))
                     ->icon('heroicon-o-envelope')
-                    ->action(function (Email $record) {
+                    ->action(function ($record) {
                         try {
                             Mail::to($record->to)
                                 ->cc($record->cc)

@@ -2,6 +2,7 @@
 
 namespace RickDBCN\FilamentEmail\Listeners;
 
+use Illuminate\Support\Facades\Config;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class FilamentEmailLogger
@@ -24,7 +25,9 @@ class FilamentEmailLogger
         $rawMessage = $event->sent->getSymfonySentMessage();
         $email = $event->message;
 
-        Email::create([
+        $model = Config::get('filament-email.resource.model') ?? Email::class;
+
+        $model::create([
             'from' => $this->recipientsToString($email->getFrom()),
             'to' => $this->recipientsToString($email->getTo()),
             'cc' => $this->recipientsToString($email->getCc()),

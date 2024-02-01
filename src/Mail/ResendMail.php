@@ -7,15 +7,14 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use RickDBCN\FilamentEmail\Models\Email;
 
 class ResendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Email $email;
+    public $email;
 
-    public function __construct(Email $email)
+    public function __construct($email)
     {
         $this->email = $email;
     }
