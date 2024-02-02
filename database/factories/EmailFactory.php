@@ -3,13 +3,17 @@
 namespace RickDBCN\FilamentEmail\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Config;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailFactory extends Factory
 {
-    protected $model = Email::class;
+    public function modelName(): string
+    {
+        return Config::get('filament-email.resource.model') ?? Email::class;
+    }
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'from' => $this->faker->email(),
