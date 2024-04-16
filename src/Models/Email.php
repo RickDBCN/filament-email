@@ -35,4 +35,14 @@ class Email extends Model
     {
         return static::where('created_at', '<=', now()->subDays(Config::get('filament-email-log.keep_email_for_days')));
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where('to', 'like', "%$search%")
+                ->orWhere('from', 'like', "%$search%")
+                ->orWhere('subject', 'like', "%$search%");
+
+        });
+    }
 }

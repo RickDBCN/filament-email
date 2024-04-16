@@ -17,4 +17,6 @@ return [
     'resend_email_error' => "Unable to send e-mail, internal error",
     'email_log' => "E-mail Log",
     'subject' => "Subject",
+    'from_filter' => "From",
+    'to_filter' => "To",
 ];

@@ -13,6 +13,7 @@ return [
         'default_sort_column' => 'created_at',
         'default_sort_direction' => 'desc',
         'datetime_format' => 'Y-m-d H:i:s',
+        'filter_date_format' => 'Y-m-d',
     ],
 
     'keep_email_for_days' => 60,

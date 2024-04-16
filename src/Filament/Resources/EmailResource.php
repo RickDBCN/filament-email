@@ -16,7 +16,11 @@ use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\QueryBuilder;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
@@ -112,7 +116,7 @@ class EmailResource extends Resource
                     ->icon('heroicon-o-eye')
                     ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
-                        fn ($action): array => [
+                        fn($action): array => [
                             $action->getModalCancelAction(),
                         ])
                     ->fillForm(function ($record) {
@@ -159,19 +163,70 @@ class EmailResource extends Resource
                     ->prefix(__('filament-email::filament-email.from') . ": ")
                     ->label(__('filament-email::filament-email.header'))
                     ->description(fn(Email $record): string => __('filament-email::filament-email.to') . ": " . $record->to)
-                    ->searchable(),
+                ,
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
-                    ->limit(50),
+                    ->limit(50)
+                ,
                 TextColumn::make('created_at')
                     ->label(__('filament-email::filament-email.sent_at'))
                     ->dateTime(config('filament-email.resource.datetime_format'))
                     ->sortable(),
 
             ])
+            ->searchable()
             ->groupedBulkActions([
                 DeleteBulkAction::make()
                     ->requiresConfirmation(),
+            ])
+            ->persistFiltersInSession()
+            ->filters([
+                Filter::make('created_at')
+                    ->form(function () {
+                        return [
+                            DateTimePicker::make('created_from')
+                                ->label(__('filament-email::filament-email.from_filter'))
+                                ->native(false)
+                                ->firstDayOfWeek(1)
+                                ->displayFormat(config('filament-email.resource.filter_date_format'))
+                                ->seconds(false)
+                                ->time(false),
+                            DateTimePicker::make('created_until')
+                                ->label(__('filament-email::filament-email.to_filter'))
+                                ->native(false)
+                                ->firstDayOfWeek(1)
+                                ->displayFormat(config('filament-email.resource.filter_date_format'))
+                                ->time(false),
+                        ];
+                    })
+                    ->indicateUsing(function (array $data): ?string {
+                        if (!$data['created_from'] && !$data['created_until']) {
+                            return null;
+                        }
+                        $filter = "";
+                        $format = config('filament-email.resource.filter_date_format');
+                        if (!empty($data['created_from'])) {
+                            $from = Carbon::parse($data['created_from'])->format($format);
+                            $filter = __('filament-email::filament-email.from_filter') . " $from";
+                        }
+                        if (!empty($data['created_until'])) {
+                            $to = Carbon::parse($data['created_until'])->format($format);
+                            $toText = __('filament-email::filament-email.to_filter');
+                            $filter .= (!empty($filter) ? " " . strtolower($toText) . " " : $toText) . "$to";
+                        }
+                        return $filter;
+                    })
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn(Builder $query, $date): Builder => $query->where('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn(Builder $query, $date): Builder => $query->where('created_at', '<=', $date),
+                            );
+                    })
             ]);
     }
 
