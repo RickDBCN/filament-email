@@ -1,7 +1,7 @@
 <?php
 
-use MG87\FilamentEmail\Models\Email;
 use MG87\FilamentEmail\Filament\Resources\EmailResource;
+use MG87\FilamentEmail\Models\Email;
 
 return [
 
