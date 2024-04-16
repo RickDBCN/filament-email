@@ -1,6 +1,6 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Mail;
+namespace MG87\FilamentEmail\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

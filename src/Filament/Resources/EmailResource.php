@@ -1,6 +1,6 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources;
+namespace MG87\FilamentEmail\Filament\Resources;
 
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Tabs;
@@ -10,16 +10,17 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
-use RickDBCN\FilamentEmail\Mail\ResendMail;
-use RickDBCN\FilamentEmail\Models\Email;
+use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
+use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
+use MG87\FilamentEmail\Mail\ResendMail;
+use MG87\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
 {
@@ -27,9 +28,14 @@ class EmailResource extends Resource
 
     protected static ?string $slug = 'emails';
 
+    public static function getBreadcrumb(): string
+    {
+        return __('messages.email_log');
+    }
+
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('Email log');
+        return Config::get('filament-email.label') ?? __('filament-email::filament-email.email_log');
     }
 
     public static function getNavigationGroup(): ?string
@@ -95,9 +101,9 @@ class EmailResource extends Resource
             ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
             ->actions([
                 Action::make('preview')
-                    ->label(__('Preview'))
-                    ->icon('heroicon-m-eye')
-                    ->extraAttributes(['style' => 'h-41'])
+                    ->label(false)
+                    ->icon('heroicon-o-eye')
+                    ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
                         fn ($action): array => [
                             $action->getModalCancelAction(),
@@ -114,8 +120,13 @@ class EmailResource extends Resource
                             ->view('filament-email::filament-email.emails.html')->view('filament-email::HtmlEmailView'),
                     ]),
                 Action::make('resend')
-                    ->label(__('Send again'))
-                    ->icon('heroicon-o-envelope')
+                    ->label(false)
+                    ->icon('heroicon-o-paper-airplane')
+                    ->iconSize(IconSize::Medium)
+                    ->requiresConfirmation()
+                    ->modalHeading(__('filament-email::filament-email.resend_email_heading'))
+                    ->modalDescription(__('filament-email::filament-email.resend_email_description'))
+                    ->modalIconColor('warning')
                     ->action(function ($record) {
                         try {
                             Mail::to($record->to)
@@ -123,13 +134,13 @@ class EmailResource extends Resource
                                 ->bcc($record->bcc)
                                 ->send(new ResendMail($record));
                             Notification::make()
-                                ->title(__('E-mail has been successfully sent'))
+                                ->title(__('filament-email::filament-email.resend_email_success'))
                                 ->success()
                                 ->duration(5000)
                                 ->send();
                         } catch (\Exception) {
                             Notification::make()
-                                ->title(__('Something went wrong'))
+                                ->title(__('filament-email::filament-email.resend_email_error'))
                                 ->danger()
                                 ->duration(5000)
                                 ->send();
@@ -137,23 +148,18 @@ class EmailResource extends Resource
                     }),
             ])
             ->columns([
-                TextColumn::make('created_at')
-                    ->label(__('Date and time sent'))
-                    ->dateTime()
-                    ->icon('heroicon-m-calendar')
-                    ->sortable(),
                 TextColumn::make('from')
-                    ->label(__('From'))
-                    ->icon('heroicon-m-envelope')
-                    ->searchable(),
-                TextColumn::make('to')
-                    ->label(__('To'))
-                    ->icon('heroicon-m-envelope')
+                    ->prefix(__('filament-email::filament-email.from') . ": ")
+                    ->label(__('filament-email::filament-email.header'))
+                    ->description(fn(Email $record): string => __('filament-email::filament-email.to') . ": " . $record->to)
                     ->searchable(),
                 TextColumn::make('subject')
-                    ->label(__('Subject'))
-                    ->icon('heroicon-m-chat-bubble-bottom-center')
+                    ->label(__('filament-email::filament-email.subject'))
                     ->limit(50),
+                TextColumn::make('created_at')
+                    ->label(__('filament-email::filament-email.sent_at'))
+                    ->dateTime('d/m/Y H:i:s')
+                    ->sortable(),
 
             ])
             ->groupedBulkActions([

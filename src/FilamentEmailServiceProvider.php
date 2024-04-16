@@ -1,8 +1,8 @@
 <?php
 
-namespace RickDBCN\FilamentEmail;
+namespace MG87\FilamentEmail;
 
-use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
+use MG87\FilamentEmail\Providers\EmailMessageServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,6 +20,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-email')
             ->hasConfigFile('filament-email')
+            ->hasTranslations()
             ->hasViews()
             ->hasMigration('create_filament_email_table');
 

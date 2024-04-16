@@ -1,6 +1,6 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Commands;
+namespace MG87\FilamentEmail\Commands;
 
 use Illuminate\Console\Command;
 

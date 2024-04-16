@@ -1,9 +1,9 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Listeners;
+namespace MG87\FilamentEmail\Listeners;
 
 use Illuminate\Support\Facades\Config;
-use RickDBCN\FilamentEmail\Models\Email;
+use MG87\FilamentEmail\Models\Email;
 
 class FilamentEmailLogger
 {
