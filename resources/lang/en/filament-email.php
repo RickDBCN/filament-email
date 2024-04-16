@@ -2,7 +2,7 @@
 
 return [
     'created_at' => "Created at",
-    'sent_at' => "Data di invio",
+    'sent_at' => "Sent at",
     'html' => "HTML",
     'text' => "Text",
     'raw' => "Raw",

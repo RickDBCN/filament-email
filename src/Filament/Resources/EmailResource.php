@@ -2,6 +2,8 @@
 
 namespace MG87\FilamentEmail\Filament\Resources;
 
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
@@ -60,8 +62,6 @@ class EmailResource extends Resource
                 Fieldset::make('Envelope')
                     ->label('')
                     ->schema([
-                        TextInput::make('created_at')
-                            ->label(__('filament-email::filament-email.created_at')),
                         TextInput::make('from')
                             ->label(__('filament-email::filament-email.from')),
                         Textinput::make('to')
@@ -71,25 +71,32 @@ class EmailResource extends Resource
                         TextInput::make('subject')
                             ->label(__('filament-email::filament-email.subject'))
                             ->columnSpan(2),
+                        DateTimePicker::make('created_at')
+                            ->format(config('filament-email.resource.datetime_format'))
+                            ->label(__('filament-email::filament-email.created_at')),
                     ])->columns(3),
                 Tabs::make('Content')->tabs([
                     Tabs\Tab::make(__('filament-email::filament-email.html'))
                         ->schema([
                             ViewField::make('html_body')
+                                ->label('')
                                 ->view('filament-email::filament-email.emails.html')
                                 ->view('filament-email::HtmlEmailView'),
                         ]),
                     Tabs\Tab::make(__('filament-email::filament-email.text'))
                         ->schema([
-                            Textarea::make('text_body'),
+                            Textarea::make('text_body')
+                                ->label(''),
                         ]),
                     Tabs\Tab::make(__('filament-email::filament-email.raw'))
                         ->schema([
-                            Textarea::make('raw_body'),
+                            Textarea::make('raw_body')
+                                ->label(''),
                         ]),
                     Tabs\Tab::make(__('filament-email::filament-email.debug_info'))
                         ->schema([
-                            Textarea::make('sent_debug_info'),
+                            Textarea::make('sent_debug_info')
+                                ->label(''),
                         ]),
                 ])->columnSpan(2),
             ]);
