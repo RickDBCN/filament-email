@@ -13,7 +13,7 @@ class ListEmails extends ListRecords
         return config('filament-email.resource.class', EmailResource::class);
     }
 
-    protected function applyFiltersToTableQuery(Builder $query): Builder
+    protected function applySearchToTableQuery(Builder $query): Builder
     {
         if (filled($searchQuery = $this->getTableSearch())) {
             return $query->filter(['search' => $searchQuery]);

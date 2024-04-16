@@ -28,7 +28,7 @@ php artisan vendor:publish --tag="filament-email-config"
 
 Register the plugin through your panel service provider:
 ```php
-->plugin(new \MG87\FilamentEmail\FilamentEmail())
+->plugin(new \MG87\FilamentEmail\FilamentEmail::make())
 ```
 
 
@@ -41,6 +41,8 @@ composer test
 ## Screenshots
 
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/table.png)
+
+![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/filters.png)
 
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/re-send.png)
 
