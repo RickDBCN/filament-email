@@ -1,8 +1,7 @@
 <?php
 
-// config for RickDBCN/FilamentEmail
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
-use RickDBCN\FilamentEmail\Models\Email;
+use MG87\FilamentEmail\Models\Email;
+use MG87\FilamentEmail\Filament\Resources\EmailResource;
 
 return [
 
