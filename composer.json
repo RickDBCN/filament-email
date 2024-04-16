@@ -1,12 +1,13 @@
 {
-    "name": "rickdbcn/filament-email",
+    "name": "marcogermani87/filament-email",
     "description": "Log all outbound emails you send through your Filament application",
     "keywords": [
         "RickDBCN",
         "laravel",
-        "filament-email"
+        "filament-email",
+        "marcogermani87"
     ],
-    "homepage": "https://github.com/rickdbcn/filament-email",
+    "homepage": "https://github.com/marcogermani87/filament-email",
     "license": "MIT",
     "authors": [
         {
@@ -33,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "RickDBCN\\FilamentEmail\\": "src/",
-            "RickDBCN\\FilamentEmail\\Database\\Factories\\": "database/factories/"
+            "MG87\\FilamentEmail\\": "src/",
+            "MG87\\FilamentEmail\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "RickDBCN\\FilamentEmail\\Tests\\": "tests/"
+            "MG87\\FilamentEmail\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -59,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "RickDBCN\\FilamentEmail\\FilamentEmailServiceProvider"
+                "MG87\\FilamentEmail\\FilamentEmailServiceProvider"
             ],
             "aliases": {
-                "FilamentEmail": "RickDBCN\\FilamentEmail\\Facades\\FilamentEmail"
+                "FilamentEmail": "MG87\\FilamentEmail\\Facades\\FilamentEmail"
             }
         }
     },
