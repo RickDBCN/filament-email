@@ -158,7 +158,7 @@ class EmailResource extends Resource
                     ->limit(50),
                 TextColumn::make('created_at')
                     ->label(__('filament-email::filament-email.sent_at'))
-                    ->dateTime('d/m/Y H:i:s')
+                    ->dateTime(config('filament-email.resource.datetime_format'))
                     ->sortable(),
 
             ])
