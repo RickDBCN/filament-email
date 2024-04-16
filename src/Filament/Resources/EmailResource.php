@@ -160,7 +160,8 @@ class EmailResource extends Resource
                 TextColumn::make('from')
                     ->prefix(__('filament-email::filament-email.from').': ')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn (Email $record): string => __('filament-email::filament-email.to').': '.$record->to),
+                    ->description(fn (Email $record): string => __('filament-email::filament-email.to').': '.$record->to)
+                    ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
                     ->limit(50),
@@ -170,7 +171,7 @@ class EmailResource extends Resource
                     ->sortable(),
 
             ])
-            ->searchable()
+
             ->groupedBulkActions([
                 DeleteBulkAction::make()
                     ->requiresConfirmation(),
