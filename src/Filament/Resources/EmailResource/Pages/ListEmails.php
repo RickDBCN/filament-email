@@ -7,5 +7,8 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class ListEmails extends ListRecords
 {
-    protected static string $resource = EmailResource::class;
+    public static function getResource(): string
+    {
+        return config('filament-email.resource.class', EmailResource::class);
+    }
 }
