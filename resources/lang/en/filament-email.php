@@ -1,7 +1,13 @@
 <?php
 
 return [
-    'sent_at' => "Sent at",
+    'created_at' => "Created at",
+    'sent_at' => "Data di invio",
+    'html' => "HTML",
+    'text' => "Text",
+    'raw' => "Raw",
+    'debug_info' => "Debug info",
+    'cc' => "CC",
     'to' => "To",
     'from' => "From",
     'header' => "Headers",

@@ -1,7 +1,13 @@
 <?php
 
 return [
+    'created_at' => "Creato il",
     'sent_at' => "Data di invio",
+    'html' => "HTML",
+    'text' => "Testo",
+    'raw' => "Raw",
+    'debug_info' => "Info di debug",
+    'cc' => "CC",
     'to' => "A",
     'from' => "Da",
     'header' => "Intestazione",

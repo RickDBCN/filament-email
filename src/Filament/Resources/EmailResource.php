@@ -30,7 +30,7 @@ class EmailResource extends Resource
 
     public static function getBreadcrumb(): string
     {
-        return __('messages.email_log');
+        return __('filament-email::filament-email.email_log');
     }
 
     public static function getNavigationLabel(): string
@@ -61,33 +61,33 @@ class EmailResource extends Resource
                     ->label('')
                     ->schema([
                         TextInput::make('created_at')
-                            ->label(__('Created at')),
+                            ->label(__('filament-email::filament-email.created_at')),
                         TextInput::make('from')
-                            ->label(__('From')),
+                            ->label(__('filament-email::filament-email.from')),
                         Textinput::make('to')
-                            ->label(__('To')),
+                            ->label(__('filament-email::filament-email.to')),
                         TextInput::make('cc')
-                            ->label(__('CC')),
+                            ->label(__('filament-email::filament-email.cc')),
                         TextInput::make('subject')
-                            ->label(__('Subject'))
+                            ->label(__('filament-email::filament-email.subject'))
                             ->columnSpan(2),
                     ])->columns(3),
                 Tabs::make('Content')->tabs([
-                    Tabs\Tab::make('HTML')
+                    Tabs\Tab::make(__('filament-email::filament-email.html'))
                         ->schema([
                             ViewField::make('html_body')
                                 ->view('filament-email::filament-email.emails.html')
                                 ->view('filament-email::HtmlEmailView'),
                         ]),
-                    Tabs\Tab::make('Text')
+                    Tabs\Tab::make(__('filament-email::filament-email.text'))
                         ->schema([
                             Textarea::make('text_body'),
                         ]),
-                    Tabs\Tab::make('Raw')
+                    Tabs\Tab::make(__('filament-email::filament-email.raw'))
                         ->schema([
                             Textarea::make('raw_body'),
                         ]),
-                    Tabs\Tab::make('Debug info')
+                    Tabs\Tab::make(__('filament-email::filament-email.debug_info'))
                         ->schema([
                             Textarea::make('sent_debug_info'),
                         ]),
