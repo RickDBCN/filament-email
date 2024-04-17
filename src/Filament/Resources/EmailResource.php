@@ -39,12 +39,12 @@ class EmailResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('filament-email::filament-email.email_log');
+        return Config::get('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group' ?? parent::getNavigationGroup());
+        return Config::get('filament-email.resource.group') ?? __('filament-email::filament-email.navigation_group');
     }
 
     public static function getNavigationSort(): ?int
@@ -234,5 +234,14 @@ class EmailResource extends Resource
             'index' => ListEmails::route('/'),
             'view' => ViewEmail::route('/{record}'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        if (method_exists(auth()->user(), 'hasRole')) {
+            return auth()->user()->hasRole(config('filament-email.can_access.role') ?? []);
+        }
+
+        return true;
     }
 }

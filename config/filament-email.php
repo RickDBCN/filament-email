@@ -1,7 +1,7 @@
 <?php
 
-use MG87\FilamentEmail\Filament\Resources\EmailResource;
 use MG87\FilamentEmail\Models\Email;
+use MG87\FilamentEmail\Filament\Resources\EmailResource;
 
 return [
 
@@ -18,4 +18,8 @@ return [
 
     'keep_email_for_days' => 60,
     'label' => null,
+
+    'can_access' => [
+        'role' => ['super_admin'],
+    ],
 ];

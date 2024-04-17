@@ -19,4 +19,6 @@ return [
     'subject' => 'Oggetto',
     'from_filter' => 'Dal',
     'to_filter' => 'Al',
+    'navigation_label' => 'E-mail Log',
+    'navigation_group' => 'Admin',
 ];
