@@ -22,7 +22,7 @@ class TestPanelProvider extends PanelProvider
         return $panel
             ->id('test-panel')
             ->default()
-            ->plugin(new FilamentEmail)
+            ->plugin(FilamentEmail::make())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
