@@ -44,7 +44,7 @@ composer test
 
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/filters.png)
 
-![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/re-send.png)
+![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/resend.png)
 
 ## Credits
 
