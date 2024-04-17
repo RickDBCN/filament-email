@@ -114,7 +114,7 @@ class EmailResource extends Resource
                     ->icon('heroicon-o-eye')
                     ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
-                        fn($action): array => [
+                        fn ($action): array => [
                             $action->getModalCancelAction(),
                         ])
                     ->fillForm(function ($record) {
@@ -158,9 +158,9 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('from')
-                    ->prefix(__('filament-email::filament-email.from') . ': ')
+                    ->prefix(__('filament-email::filament-email.from').': ')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn(Email $record): string => __('filament-email::filament-email.to') . ': ' . $record->to)
+                    ->description(fn (Email $record): string => __('filament-email::filament-email.to').': '.$record->to)
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
@@ -196,19 +196,19 @@ class EmailResource extends Resource
                         ];
                     })
                     ->indicateUsing(function (array $data): ?string {
-                        if (!$data['created_from'] && !$data['created_until']) {
+                        if (! $data['created_from'] && ! $data['created_until']) {
                             return null;
                         }
                         $filter = '';
                         $format = config('filament-email.resource.filter_date_format');
-                        if (!empty($data['created_from'])) {
+                        if (! empty($data['created_from'])) {
                             $from = Carbon::parse($data['created_from'])->format($format);
-                            $filter = __('filament-email::filament-email.from_filter') . " $from";
+                            $filter = __('filament-email::filament-email.from_filter')." $from";
                         }
-                        if (!empty($data['created_until'])) {
+                        if (! empty($data['created_until'])) {
                             $to = Carbon::parse($data['created_until'])->format($format);
                             $toText = __('filament-email::filament-email.to_filter');
-                            $filter .= (!empty($filter) ? ' ' . strtolower($toText) . ' ' : $toText) . "$to";
+                            $filter .= (! empty($filter) ? ' '.strtolower($toText).' ' : $toText)."$to";
                         }
 
                         return $filter;
@@ -217,11 +217,11 @@ class EmailResource extends Resource
                         return $query
                             ->when(
                                 $data['created_from'],
-                                fn(Builder $query, $date): Builder => $query->where('created_at', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->where('created_at', '>=', $date),
                             )
                             ->when(
                                 $data['created_until'],
-                                fn(Builder $query, $date): Builder => $query->where('created_at', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->where('created_at', '<=', $date),
                             );
                     }),
             ]);
@@ -239,7 +239,7 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role') ?? [];
 
-        if (method_exists(auth()->user(), 'hasRole') && !empty($roles)) {
+        if (method_exists(auth()->user(), 'hasRole') && ! empty($roles)) {
             return auth()->user()->hasRole($roles);
         }
 
