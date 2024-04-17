@@ -31,6 +31,8 @@ class TestCase extends Orchestra
 
         $this->setUpDatabase($this->app);
 
+        $this->actingAs(User::factory()->create());
+
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'MG87\\FilamentEmail\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );

@@ -185,7 +185,6 @@ class EmailResource extends Resource
                                 ->native(false)
                                 ->firstDayOfWeek(1)
                                 ->displayFormat(config('filament-email.resource.filter_date_format'))
-                                ->seconds(false)
                                 ->time(false),
                             DateTimePicker::make('created_until')
                                 ->label(__('filament-email::filament-email.to_filter'))
@@ -210,7 +209,6 @@ class EmailResource extends Resource
                             $toText = __('filament-email::filament-email.to_filter');
                             $filter .= (!empty($filter) ? ' ' . strtolower($toText) . ' ' : $toText) . "$to";
                         }
-
                         return $filter;
                     })
                     ->query(function (Builder $query, array $data): Builder {
