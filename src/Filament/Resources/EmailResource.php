@@ -5,6 +5,7 @@ namespace MG87\FilamentEmail\Filament\Resources;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
@@ -12,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconSize;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -20,6 +22,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
@@ -65,18 +68,24 @@ class EmailResource extends Resource
                     ->label('')
                     ->schema([
                         TextInput::make('from')
-                            ->label(__('filament-email::filament-email.from')),
+                            ->label(__('filament-email::filament-email.from'))
+                            ->columnSpan(2),
                         Textinput::make('to')
-                            ->label(__('filament-email::filament-email.to')),
+                            ->label(__('filament-email::filament-email.to'))
+                            ->columnSpan(2),
                         TextInput::make('cc')
-                            ->label(__('filament-email::filament-email.cc')),
+                            ->label(__('filament-email::filament-email.cc'))
+                            ->columnSpan(2),
+                        TextInput::make('bcc')
+                            ->label(__('filament-email::filament-email.bcc'))
+                            ->columnSpan(2),
                         TextInput::make('subject')
                             ->label(__('filament-email::filament-email.subject'))
-                            ->columnSpan(2),
+                            ->columnSpan(3),
                         DateTimePicker::make('created_at')
                             ->format(config('filament-email.resource.datetime_format'))
                             ->label(__('filament-email::filament-email.created_at')),
-                    ])->columns(3),
+                    ])->columns(4),
                 Tabs::make('Content')->tabs([
                     Tabs\Tab::make(__('filament-email::filament-email.html'))
                         ->schema([
@@ -114,24 +123,26 @@ class EmailResource extends Resource
                     ->icon('heroicon-o-eye')
                     ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
-                        fn ($action): array => [
+                        fn($action): array => [
                             $action->getModalCancelAction(),
                         ])
                     ->fillForm(function ($record) {
                         $body = $record->html_body;
-
                         return [
                             'html_body' => $body,
                         ];
                     })
                     ->form([
-                        ViewField::make('html_body')->hiddenLabel()
-                            ->view('filament-email::filament-email.emails.html')->view('filament-email::HtmlEmailView'),
+                        ViewField::make('html_body')
+                            ->hiddenLabel()
+                            ->view('filament-email::filament-email.emails.html')
+                            ->view('filament-email::HtmlEmailView'),
                     ]),
                 Action::make('resend')
                     ->label(false)
-                    ->icon('heroicon-o-paper-airplane')
+                    ->icon('heroicon-o-arrow-path')
                     ->iconSize(IconSize::Medium)
+                    ->tooltip(__('filament-email::filament-email.resend_email_heading'))
                     ->requiresConfirmation()
                     ->modalHeading(__('filament-email::filament-email.resend_email_heading'))
                     ->modalDescription(__('filament-email::filament-email.resend_email_description'))
@@ -147,7 +158,56 @@ class EmailResource extends Resource
                                 ->success()
                                 ->duration(5000)
                                 ->send();
-                        } catch (\Exception) {
+                        } catch (\Exception $e) {
+                            Log::error($e->getMessage());
+                            Notification::make()
+                                ->title(__('filament-email::filament-email.resend_email_error'))
+                                ->danger()
+                                ->duration(5000)
+                                ->send();
+                        }
+                    }),
+                Action::make('resend-mod')
+                    ->label(false)
+                    ->icon('heroicon-o-envelope-open')
+                    ->iconSize(IconSize::Medium)
+                    ->tooltip(__('filament-email::filament-email.update_and_resend_email_heading'))
+                    ->modalHeading(__('filament-email::filament-email.update_and_resend_email_heading'))
+                    ->modalWidth(MaxWidth::TwoExtraLarge)
+                    ->form([
+                        TextInput::make('to')
+                            ->label(__('filament-email::filament-email.to'))
+                            ->default(fn($record): string => $record->to)
+                            ->email()
+                            ->required(),
+                        TagsInput::make('cc')
+                            ->label(__('filament-email::filament-email.cc'))
+                            ->placeholder(__('filament-email::filament-email.insert_multiple_email_placelholder'))
+                            ->nestedRecursiveRules([
+                                'email',
+                            ])
+                            ->default(fn($record): array => !empty($record->cc) ? explode(',', $record->cc) : []),
+                        TagsInput::make('bcc')
+                            ->label(__('filament-email::filament-email.bcc'))
+                            ->placeholder(__('filament-email::filament-email.insert_multiple_email_placelholder'))
+                            ->nestedRecursiveRules([
+                                'email',
+                            ])
+                            ->default(fn($record): array => !empty($record->bcc) ? explode(',', $record->bcc) : []),
+                    ])
+                    ->action(function (Email $record, array $data) {
+                        try {
+                            Mail::to($data['to'])
+                                ->cc($data['cc'])
+                                ->bcc($data['bcc'])
+                                ->send(new ResendMail($record));
+                            Notification::make()
+                                ->title(__('filament-email::filament-email.resend_email_success'))
+                                ->success()
+                                ->duration(5000)
+                                ->send();
+                        } catch (\Exception $e) {
+                            Log::error($e->getMessage());
                             Notification::make()
                                 ->title(__('filament-email::filament-email.resend_email_error'))
                                 ->danger()
@@ -158,9 +218,9 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('from')
-                    ->prefix(__('filament-email::filament-email.from').': ')
+                    ->prefix(__('filament-email::filament-email.from') . ': ')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn (Email $record): string => __('filament-email::filament-email.to').': '.$record->to)
+                    ->description(fn(Email $record): string => __('filament-email::filament-email.to') . ': ' . $record->to)
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
@@ -195,19 +255,19 @@ class EmailResource extends Resource
                         ];
                     })
                     ->indicateUsing(function (array $data): ?string {
-                        if (! $data['created_from'] && ! $data['created_until']) {
+                        if (!$data['created_from'] && !$data['created_until']) {
                             return null;
                         }
                         $filter = '';
                         $format = config('filament-email.resource.filter_date_format');
-                        if (! empty($data['created_from'])) {
+                        if (!empty($data['created_from'])) {
                             $from = Carbon::parse($data['created_from'])->format($format);
-                            $filter = __('filament-email::filament-email.from_filter')." $from";
+                            $filter = __('filament-email::filament-email.from_filter') . " $from";
                         }
-                        if (! empty($data['created_until'])) {
+                        if (!empty($data['created_until'])) {
                             $to = Carbon::parse($data['created_until'])->format($format);
                             $toText = __('filament-email::filament-email.to_filter');
-                            $filter .= (! empty($filter) ? ' '.strtolower($toText).' ' : $toText)."$to";
+                            $filter .= (!empty($filter) ? ' ' . strtolower($toText) . ' ' : $toText) . "$to";
                         }
 
                         return $filter;
@@ -216,11 +276,11 @@ class EmailResource extends Resource
                         return $query
                             ->when(
                                 $data['created_from'],
-                                fn (Builder $query, $date): Builder => $query->where('created_at', '>=', $date),
+                                fn(Builder $query, $date): Builder => $query->where('created_at', '>=', $date),
                             )
                             ->when(
                                 $data['created_until'],
-                                fn (Builder $query, $date): Builder => $query->where('created_at', '<=', $date),
+                                fn(Builder $query, $date): Builder => $query->where('created_at', '<=', $date),
                             );
                     }),
             ]);
@@ -238,7 +298,7 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role') ?? [];
 
-        if (method_exists(auth()->user(), 'hasRole') && ! empty($roles)) {
+        if (method_exists(auth()->user(), 'hasRole') && !empty($roles)) {
             return auth()->user()->hasRole($roles);
         }
 

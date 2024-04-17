@@ -21,4 +21,7 @@ return [
     'to_filter' => 'To',
     'navigation_label' => 'E-mail Log',
     'navigation_group' => 'Admin',
+    'bcc' => 'BCC',
+    'insert_multiple_email_placelholder' => 'Insert one or more e-mail',
+    'update_and_resend_email_heading' => 'Update and resend e-mail',
 ];
