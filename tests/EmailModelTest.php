@@ -13,6 +13,7 @@ use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
     $this->model = Config::get('filament-email.resource.model') ?? Email::class;
+    $this->actingAs(User::factory()->create());
 });
 
 it('can create an Email model', function () {
