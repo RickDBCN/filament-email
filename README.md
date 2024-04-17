@@ -63,7 +63,6 @@ composer test
 ## Credits
 
 - [Rick de Boer](https://github.com/RickDBCN)
-- [Ramnzys](https://github.com/ramnzys/filament-email-log)
 - [Marco Germani](https://github.com/marcogermani87)
 - [All Contributors](../../contributors)
 
