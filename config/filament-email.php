@@ -20,6 +20,6 @@ return [
     'label' => null,
 
     'can_access' => [
-        'role' => ['super_admin'],
+        'role' => [],
     ],
 ];
