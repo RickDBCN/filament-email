@@ -13,7 +13,6 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconSize;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -215,7 +214,7 @@ class EmailResource extends Resource
                                 ->send();
                         }
                     })
-                    ->modalWidth(MaxWidth::TwoExtraLarge),
+                    ->modalWidth('2xl'),
             ])
             ->columns([
                 TextColumn::make('from')
