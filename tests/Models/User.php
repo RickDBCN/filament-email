@@ -14,10 +14,17 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, FilamentUser
 {
     use Authenticatable;
+
     use Authorizable;
+
     use HasFactory;
 
-    //protected $fillable = ['email', 'name'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
     protected $guarded = [];
 
     public $timestamps = false;
