@@ -173,7 +173,6 @@ class EmailResource extends Resource
                     ->iconSize(IconSize::Medium)
                     ->tooltip(__('filament-email::filament-email.update_and_resend_email_heading'))
                     ->modalHeading(__('filament-email::filament-email.update_and_resend_email_heading'))
-                    ->modalWidth(MaxWidth::TwoExtraLarge)
                     ->form([
                         TextInput::make('to')
                             ->label(__('filament-email::filament-email.to'))
@@ -214,7 +213,8 @@ class EmailResource extends Resource
                                 ->duration(5000)
                                 ->send();
                         }
-                    }),
+                    })
+                    ->modalWidth(MaxWidth::TwoExtraLarge),
             ])
             ->columns([
                 TextColumn::make('from')
