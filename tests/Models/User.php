@@ -14,9 +14,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, FilamentUser
 {
     use Authenticatable;
-
     use Authorizable;
-
     use HasFactory;
 
     protected $fillable = [
