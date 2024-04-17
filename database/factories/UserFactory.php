@@ -3,7 +3,6 @@
 namespace MG87\FilamentEmail\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Config;
 use MG87\FilamentEmail\Tests\Models\User;
 
 class UserFactory extends Factory
