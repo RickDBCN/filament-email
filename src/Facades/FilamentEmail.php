@@ -1,16 +1,16 @@
 <?php
 
-namespace MG87\FilamentEmail\Facades;
+namespace RickDBCN\FilamentEmail\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \MG87\FilamentEmail\FilamentEmail
+ * @see \RickDBCN\FilamentEmail\FilamentEmail
  */
 class FilamentEmail extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \MG87\FilamentEmail\FilamentEmail::class;
+        return \RickDBCN\FilamentEmail\FilamentEmail::class;
     }
 }

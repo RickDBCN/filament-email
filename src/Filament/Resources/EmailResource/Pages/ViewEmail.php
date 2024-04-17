@@ -1,9 +1,9 @@
 <?php
 
-namespace MG87\FilamentEmail\Filament\Resources\EmailResource\Pages;
+namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
 use Filament\Resources\Pages\ViewRecord;
-use MG87\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class ViewEmail extends ViewRecord
 {

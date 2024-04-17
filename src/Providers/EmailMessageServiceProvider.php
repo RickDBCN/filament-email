@@ -1,11 +1,11 @@
 <?php
 
-namespace MG87\FilamentEmail\Providers;
+namespace RickDBCN\FilamentEmail\Providers;
 
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use MG87\FilamentEmail\Listeners\FilamentEmailLogger;
+use RickDBCN\FilamentEmail\Listeners\FilamentEmailLogger;
 
 class EmailMessageServiceProvider extends ServiceProvider
 {

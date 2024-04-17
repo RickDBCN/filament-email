@@ -1,10 +1,10 @@
 <?php
 
-namespace MG87\FilamentEmail;
+namespace RickDBCN\FilamentEmail;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use MG87\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class FilamentEmail implements Plugin
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace MG87\FilamentEmail;
+namespace RickDBCN\FilamentEmail;
 
-use MG87\FilamentEmail\Providers\EmailMessageServiceProvider;
+use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

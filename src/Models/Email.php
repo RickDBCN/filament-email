@@ -1,6 +1,6 @@
 <?php
 
-namespace MG87\FilamentEmail\Models;
+namespace RickDBCN\FilamentEmail\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

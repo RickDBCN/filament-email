@@ -1,10 +1,10 @@
 <?php
 
-namespace MG87\FilamentEmail\Database\Factories;
+namespace RickDBCN\FilamentEmail\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Config;
-use MG87\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailFactory extends Factory
 {

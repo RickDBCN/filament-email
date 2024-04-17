@@ -1,10 +1,10 @@
 <?php
 
-namespace MG87\FilamentEmail\Filament\Resources\EmailResource\Pages;
+namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
-use MG87\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class ListEmails extends ListRecords
 {

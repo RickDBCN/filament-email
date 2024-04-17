@@ -1,6 +1,6 @@
 <?php
 
-namespace MG87\FilamentEmail\Tests\Models;
+namespace RickDBCN\FilamentEmail\Tests\Models;
 
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;

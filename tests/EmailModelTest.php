@@ -3,9 +3,9 @@
 use Faker\Factory;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
-use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
-use MG87\FilamentEmail\Models\Email;
-use MG87\FilamentEmail\Tests\Models\User;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
+use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Tests\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertModelExists;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MG87\FilamentEmail\Tests;
+namespace RickDBCN\FilamentEmail\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Livewire\LivewireServiceProvider;
-use MG87\FilamentEmail\FilamentEmailServiceProvider;
-use MG87\FilamentEmail\Providers\EmailMessageServiceProvider;
-use MG87\FilamentEmail\Tests\Models\User;
-use MG87\FilamentEmail\Tests\Panels\TestPanelProvider;
+use RickDBCN\FilamentEmail\FilamentEmailServiceProvider;
+use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
+use RickDBCN\FilamentEmail\Tests\Models\User;
+use RickDBCN\FilamentEmail\Tests\Panels\TestPanelProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -32,7 +32,7 @@ class TestCase extends Orchestra
         $this->setUpDatabase($this->app);
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'MG87\\FilamentEmail\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'RickDBCN\\FilamentEmail\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

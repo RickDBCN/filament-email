@@ -1,6 +1,6 @@
 <?php
 
-namespace MG87\FilamentEmail\Filament\Resources;
+namespace RickDBCN\FilamentEmail\Filament\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
@@ -23,10 +23,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
-use MG87\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
-use MG87\FilamentEmail\Mail\ResendMail;
-use MG87\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
+use RickDBCN\FilamentEmail\Mail\ResendMail;
+use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
 {

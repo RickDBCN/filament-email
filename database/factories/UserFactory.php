@@ -1,9 +1,9 @@
 <?php
 
-namespace MG87\FilamentEmail\Database\Factories;
+namespace RickDBCN\FilamentEmail\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use MG87\FilamentEmail\Tests\Models\User;
+use RickDBCN\FilamentEmail\Tests\Models\User;
 
 class UserFactory extends Factory
 {
