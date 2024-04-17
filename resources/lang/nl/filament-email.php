@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'created_at' => 'Aangemaakt op',
+    'sent_at' => 'Verstuurd op',
+    'html' => 'HTML',
+    'text' => 'Text',
+    'raw' => 'Ruwe',
+    'debug_info' => 'Foutopsporingsinformatie',
+    'cc' => 'CC',
+    'to' => 'Aan',
+    'from' => 'Van',
+    'header' => 'Headers',
+    'resend_email_heading' => 'Verstuur e-mail opnieuw',
+    'resend_email_description' => 'Weet je zeker dat je de mail opnieuw wilt versturen?',
+    'resend_email_success' => 'De e-mail is succesvol verzonden',
+    'resend_email_error' => 'Er is iets misgegaan met het versturen van de e-mail',
+    'email_log' => 'E-mail Log',
+    'subject' => 'Onderwerp',
+    'from_filter' => 'Van',
+    'to_filter' => 'Aan',
+    'navigation_label' => 'E-mail Log',
+    'navigation_group' => 'Admin',
+    'bcc' => 'BCC',
+    'insert_multiple_email_placelholder' => 'Type een of meerdere e-mailadressen in',
+    'update_and_resend_email_heading' => 'Bijwerken en e-mail opnieuw versturen',
+];
