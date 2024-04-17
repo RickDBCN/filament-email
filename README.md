@@ -40,11 +40,21 @@ composer test
 
 ## Screenshots
 
+### E-mail list
+
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/table.png)
+
+### Advanced filters
 
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/filters.png)
 
+### Resend e-mail
+
 ![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/resend.png)
+
+### Update addresses and resend e-mail
+
+![](https://raw.githubusercontent.com/marcogermani87/filament-email/main/screenshots/update-and-resend.png)
 
 ## Credits
 
