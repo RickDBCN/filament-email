@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Tests\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertModelExists;
@@ -13,6 +14,7 @@ use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
     $this->model = Config::get('filament-email.resource.model') ?? Email::class;
+    $this->actingAs(User::factory()->create());
 });
 
 it('can create an Email model', function () {

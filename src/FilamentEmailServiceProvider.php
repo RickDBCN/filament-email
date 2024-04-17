@@ -20,6 +20,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-email')
             ->hasConfigFile('filament-email')
+            ->hasTranslations()
             ->hasViews()
             ->hasMigration('create_filament_email_table');
 
