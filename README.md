@@ -9,6 +9,13 @@
 
 Log all outgoing emails in your Laravel project within your Filament panel. You can also resend emails with 1-click in case your recipient hasn't received your email.
 
+## Version Compatibility
+
+| Plugin  | Filament | Laravel | PHP |
+| ------------- | ------------- | ------------- | -------------|
+| 1.x  | 3.x  | 10.x | 8.x |
+| 1.x  | 3.x  | 11.x | 8.2 \| 8.3 |
+
 ## Installation
 
 You can install the package via composer:
