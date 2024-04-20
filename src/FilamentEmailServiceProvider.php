@@ -2,9 +2,11 @@
 
 namespace RickDBCN\FilamentEmail;
 
-use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
+use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
+use Illuminate\Console\Scheduling\Schedule;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
 
 class FilamentEmailServiceProvider extends PackageServiceProvider
 {
@@ -25,5 +27,15 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
             ->hasMigration('create_filament_email_table');
 
         $this->app->register(EmailMessageServiceProvider::class);
+    }
+
+    public function bootingPackage()
+    {
+        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+            $class = get_class(new (Config::get('filament-email.resource.model')));
+            if (class_exists($class)) {
+                $schedule->command('model:prune --model="' . $class . '"')->daily();
+            }
+        });
     }
 }

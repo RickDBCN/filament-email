@@ -4,7 +4,6 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 use RickDBCN\FilamentEmail\Models\Email;
 
 return [
-
     'resource' => [
         'class' => EmailResource::class,
         'model' => Email::class,
@@ -14,6 +13,13 @@ return [
         'default_sort_direction' => 'desc',
         'datetime_format' => 'Y-m-d H:i:s',
         'filter_date_format' => 'Y-m-d',
+        'table_search_fields' => [
+            'subject',
+            'from',
+            'to',
+            'cc',
+            'bcc',
+        ],
     ],
 
     'keep_email_for_days' => 60,

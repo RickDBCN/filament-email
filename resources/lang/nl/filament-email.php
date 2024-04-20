@@ -7,7 +7,7 @@ return [
     'text' => 'Text',
     'raw' => 'Ruwe',
     'debug_info' => 'Foutopsporingsinformatie',
-    'cc' => 'CC',
+    'cc' => 'Cc',
     'to' => 'Aan',
     'from' => 'Van',
     'header' => 'Headers',
@@ -21,7 +21,7 @@ return [
     'to_filter' => 'Aan',
     'navigation_label' => 'E-mail Log',
     'navigation_group' => 'Admin',
-    'bcc' => 'BCC',
+    'bcc' => 'Bcc',
     'insert_multiple_email_placelholder' => 'Type een of meerdere e-mailadressen in',
     'update_and_resend_email_heading' => 'Bijwerken en e-mail opnieuw versturen',
 ];

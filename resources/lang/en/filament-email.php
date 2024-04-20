@@ -7,7 +7,7 @@ return [
     'text' => 'Text',
     'raw' => 'Raw',
     'debug_info' => 'Debug info',
-    'cc' => 'CC',
+    'cc' => 'Cc',
     'to' => 'To',
     'from' => 'From',
     'header' => 'Headers',
@@ -21,7 +21,7 @@ return [
     'to_filter' => 'To',
     'navigation_label' => 'E-mail Log',
     'navigation_group' => 'Admin',
-    'bcc' => 'BCC',
+    'bcc' => 'Bcc',
     'insert_multiple_email_placelholder' => 'Insert one or more e-mail',
     'update_and_resend_email_heading' => 'Update and resend e-mail',
 ];
