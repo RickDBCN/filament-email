@@ -2,12 +2,12 @@
 
 namespace RickDBCN\FilamentEmail\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Prunable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Email
