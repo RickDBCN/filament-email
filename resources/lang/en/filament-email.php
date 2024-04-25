@@ -26,5 +26,5 @@ return [
     'update_and_resend_email_heading' => 'Update and resend e-mail',
     'attachments' => 'Attachments',
     'download' => 'Download',
-    'download_attachment_error' => "Unable to download attachment!" ,
+    'download_attachment_error' => 'Unable to download attachment!',
 ];

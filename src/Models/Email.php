@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * Email
@@ -45,9 +43,9 @@ class Email extends Model
         parent::boot();
 
         self::deleting(function ($record) {
-            if (!empty($record->attachments)) {
+            if (! empty($record->attachments)) {
                 foreach (json_decode($record->attachments) as $attachment) {
-                    $filePath = storage_path('app' . DIRECTORY_SEPARATOR . $attachment->path);
+                    $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$attachment->path);
                     $parts = explode(DIRECTORY_SEPARATOR, $filePath);
                     array_pop($parts);
                     $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
