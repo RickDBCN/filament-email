@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class ResendMail extends Mailable
@@ -14,9 +15,12 @@ class ResendMail extends Mailable
 
     public $email;
 
-    public function __construct($email)
+    public $addAttachments;
+
+    public function __construct($email, bool $attachments = true)
     {
         $this->email = $email;
+        $this->addAttachments = $attachments;
     }
 
     public function envelope(): Envelope
@@ -35,6 +39,18 @@ class ResendMail extends Mailable
 
     public function attachments(): array
     {
-        return [];
+        $attachments = [];
+
+        if ($this->addAttachments) {
+            $modelAttachments = $this->email->attachments;
+            if (!empty($modelAttachments)) {
+                foreach ($modelAttachments as $attachment) {
+                    $attachments[] = Attachment::fromPath(storage_path('app' . DIRECTORY_SEPARATOR . $attachment['path']))
+                        ->as($attachment['name']);
+                }
+            }
+        }
+
+        return $attachments;
     }
 }

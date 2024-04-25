@@ -9,7 +9,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('filament_email_log', function (Blueprint $table) {
-            $table->longText('attachments')->nullable()->default(null);
+            $table->after('sent_debug_info', function (Blueprint $table) {
+                $table->json('attachments')->nullable()->default(null);
+            });
         });
     }
 

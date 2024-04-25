@@ -97,6 +97,10 @@ composer test
 
 ![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/update-and-resend.png)
 
+### E-mail view with attachments
+
+![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/view.png)
+
 ## Credits
 
 - [Rick de Boer](https://github.com/RickDBCN)

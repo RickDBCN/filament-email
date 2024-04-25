@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Email
@@ -38,24 +40,40 @@ class Email extends Model
         'to',
     ];
 
+    protected $casts = [
+        'attachments' => 'json',
+    ];
+
     public static function boot()
     {
         parent::boot();
 
         self::deleting(function ($record) {
-            if (! empty($record->attachments)) {
-                foreach (json_decode($record->attachments) as $attachment) {
-                    $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$attachment->path);
-                    $parts = explode(DIRECTORY_SEPARATOR, $filePath);
-                    array_pop($parts);
-                    $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+            $folderPath = null;
+            if (!empty($record->attachments)) {
+                foreach ($record->attachments as $attachment) {
+                    $filePath = storage_path('app' . DIRECTORY_SEPARATOR . $attachment['path']);
+                    if (empty($folderPath)) {
+                        $parts = explode(DIRECTORY_SEPARATOR, $filePath);
+                        array_pop($parts);
+                        $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+                    }
                     if (file_exists($filePath)) {
                         unlink($filePath);
                     }
-                    if (file_exists($folderPath)) {
-                        rmdir($folderPath);
-                    }
                 }
+            }
+            $savePathRaw = storage_path('app' . DIRECTORY_SEPARATOR . $record->raw_body);
+            if (file_exists($savePathRaw)) {
+                if (empty($folderPath)) {
+                    $parts = explode(DIRECTORY_SEPARATOR, $savePathRaw);
+                    array_pop($parts);
+                    $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+                }
+                unlink($savePathRaw);
+            }
+            if (file_exists($folderPath)) {
+                rmdir($folderPath);
             }
         });
     }
