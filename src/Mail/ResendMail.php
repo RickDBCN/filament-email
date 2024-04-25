@@ -4,9 +4,9 @@ namespace RickDBCN\FilamentEmail\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class ResendMail extends Mailable
@@ -43,9 +43,9 @@ class ResendMail extends Mailable
 
         if ($this->addAttachments) {
             $modelAttachments = $this->email->attachments;
-            if (!empty($modelAttachments)) {
+            if (! empty($modelAttachments)) {
                 foreach ($modelAttachments as $attachment) {
-                    $attachments[] = Attachment::fromPath(storage_path('app' . DIRECTORY_SEPARATOR . $attachment['path']))
+                    $attachments[] = Attachment::fromPath(storage_path('app'.DIRECTORY_SEPARATOR.$attachment['path']))
                         ->as($attachment['name']);
                 }
             }
