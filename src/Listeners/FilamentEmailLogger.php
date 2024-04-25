@@ -3,6 +3,9 @@
 namespace RickDBCN\FilamentEmail\Listeners;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class FilamentEmailLogger
@@ -27,6 +30,20 @@ class FilamentEmailLogger
 
         $model = Config::get('filament-email.resource.model') ?? Email::class;
 
+        $attachments = [];
+        $savePath = 'filament-email-log' . DIRECTORY_SEPARATOR . date('YmdHis') . '_' . Str::random(5) . DIRECTORY_SEPARATOR;
+
+        foreach ($event->message->getAttachments() as $attachment) {
+            $filePath = $savePath . Str::random(5) . '_' . $attachment->getFilename();
+            Storage::disk('local')
+                ->put($filePath, $attachment->getBody());
+            $attachments[] = [
+                'name' => $attachment->getFilename(),
+                'contentType' => $attachment->getContentType(),
+                'path' => $filePath,
+            ];
+        }
+
         $model::create([
             'from' => $this->recipientsToString($email->getFrom()),
             'to' => $this->recipientsToString($email->getTo()),
@@ -37,6 +54,7 @@ class FilamentEmailLogger
             'text_body' => $email->getTextBody(),
             'raw_body' => $rawMessage->getMessage()->toString(),
             'sent_debug_info' => $rawMessage->getDebug(),
+            'attachments' => json_encode($attachments),
         ]);
 
     }
@@ -46,7 +64,7 @@ class FilamentEmailLogger
         return implode(
             ',',
             array_map(function ($email) {
-                return "{$email->getAddress()}".($email->getName() ? " <{$email->getName()}>" : '');
+                return "{$email->getAddress()}" . ($email->getName() ? " <{$email->getName()}>" : '');
             }, $recipients)
         );
     }

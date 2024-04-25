@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Email
@@ -38,6 +40,28 @@ class Email extends Model
         'to',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($record) {
+            if (!empty($record->attachments)) {
+                foreach (json_decode($record->attachments) as $attachment) {
+                    $filePath = storage_path('app' . DIRECTORY_SEPARATOR . $attachment->path);
+                    $parts = explode(DIRECTORY_SEPARATOR, $filePath);
+                    array_pop($parts);
+                    $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                    if (file_exists($folderPath)) {
+                        rmdir($folderPath);
+                    }
+                }
+            }
+        });
+    }
+
     public function prunable()
     {
         return static::where('created_at', '<=', now()->subDays(Config::get('filament-email.keep_email_for_days')));
@@ -50,10 +74,11 @@ class Email extends Model
 
     private function getSearchableFields()
     {
+        $columns = $this->getTableColumns();
         $fields = Config::get('filament-email.resource.table_search_fields', $this->defaultSearchFields);
 
-        return Arr::where($fields, function ($value, $key) {
-            return in_array($value, $this->getTableColumns());
+        return Arr::where($fields, function ($value) use ($columns) {
+            return in_array($value, $columns);
         });
     }
 

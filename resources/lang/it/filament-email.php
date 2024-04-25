@@ -24,4 +24,7 @@ return [
     'bcc' => 'Bcc',
     'insert_multiple_email_placelholder' => 'Inserisci una o più e-mail',
     'update_and_resend_email_heading' => 'Modifica and re-invia e-mail',
+    'attachments' => 'Allegati',
+    'download' => 'Scarica',
+    'download_attachment_error' => "Impossibile scaricare l'allegato!" ,
 ];

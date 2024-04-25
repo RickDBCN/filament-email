@@ -24,4 +24,7 @@ return [
     'bcc' => 'Bcc',
     'insert_multiple_email_placelholder' => 'Type een of meerdere e-mailadressen in',
     'update_and_resend_email_heading' => 'Bijwerken en e-mail opnieuw versturen',
+    'attachments' => 'Bijlagen',
+    'download' => 'Downloaden',
+    'download_attachment_error' => "Kan bijlage niet downloaden!" ,
 ];

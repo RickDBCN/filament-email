@@ -25,7 +25,10 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
             ->hasConfigFile('filament-email')
             ->hasTranslations()
             ->hasViews()
-            ->hasMigration('create_filament_email_table');
+            ->hasMigrations([
+                'create_filament_email_table',
+                'add_attachments_field_to_filament_email_log_table',
+            ]);
 
         $this->app->register(EmailMessageServiceProvider::class);
     }

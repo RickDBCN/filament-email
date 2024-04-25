@@ -24,4 +24,7 @@ return [
     'bcc' => 'Bcc',
     'insert_multiple_email_placelholder' => 'Insert one or more e-mail',
     'update_and_resend_email_heading' => 'Update and resend e-mail',
+    'attachments' => 'Attachments',
+    'download' => 'Download',
+    'download_attachment_error' => "Unable to download attachment!" ,
 ];
