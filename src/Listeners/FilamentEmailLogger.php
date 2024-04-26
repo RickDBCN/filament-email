@@ -2,7 +2,6 @@
 
 namespace RickDBCN\FilamentEmail\Listeners;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RickDBCN\FilamentEmail\Models\Email;
@@ -27,7 +26,7 @@ class FilamentEmailLogger
         $rawMessage = $event->sent->getSymfonySentMessage();
         $email = $event->message;
 
-        $model = Config::get('filament-email.resource.model') ?? Email::class;
+        $model = config('filament-email.resource.model', Email::class);
 
         $attachments = [];
         $savePath = 'filament-email-log'.DIRECTORY_SEPARATOR.date('YmdHis').'_'.Str::random(5).DIRECTORY_SEPARATOR;

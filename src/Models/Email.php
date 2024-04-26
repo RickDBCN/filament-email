@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Config;
 
 /**
  * Email
@@ -78,7 +77,7 @@ class Email extends Model
 
     public function prunable()
     {
-        return static::where('created_at', '<=', now()->subDays(Config::get('filament-email.keep_email_for_days')));
+        return static::where('created_at', '<=', now()->subDays(config('filament-email.keep_email_for_days', 60)));
     }
 
     private function getTableColumns()
@@ -89,7 +88,7 @@ class Email extends Model
     private function getSearchableFields()
     {
         $columns = $this->getTableColumns();
-        $fields = Config::get('filament-email.resource.table_search_fields', $this->defaultSearchFields);
+        $fields = config('filament-email.resource.table_search_fields', $this->defaultSearchFields);
 
         return Arr::where($fields, function ($value) use ($columns) {
             return in_array($value, $columns);

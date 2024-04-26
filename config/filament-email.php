@@ -25,6 +25,8 @@ return [
     'keep_email_for_days' => 60,
     'label' => null,
 
+    'prune_crontab' => '0 0 * * *',
+
     'can_access' => [
         'role' => [],
     ],

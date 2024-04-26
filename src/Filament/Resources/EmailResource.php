@@ -22,7 +22,6 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -44,22 +43,22 @@ class EmailResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return Config::get('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
+        return config('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return Config::get('filament-email.resource.group') ?? __('filament-email::filament-email.navigation_group');
+        return config('filament-email.resource.group') ?? __('filament-email::filament-email.navigation_group');
     }
 
     public static function getNavigationSort(): ?int
     {
-        return Config::get('filament-email.resource.sort') ?? parent::getNavigationSort();
+        return config('filament-email.resource.sort') ?? parent::getNavigationSort();
     }
 
     public static function getModel(): string
     {
-        return Config::get('filament-email.resource.model') ?? Email::class;
+        return config('filament-email.resource.model', Email::class);
     }
 
     public static function form(Form $form): Form
@@ -351,7 +350,7 @@ class EmailResource extends Resource
 
     public static function canAccess(): bool
     {
-        $roles = config('filament-email.can_access.role') ?? [];
+        $roles = config('filament-email.can_access.role', []);
 
         if (method_exists(auth()->user(), 'hasRole') && ! empty($roles)) {
             return auth()->user()->hasRole($roles);
