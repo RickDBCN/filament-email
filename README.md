@@ -45,6 +45,11 @@ Register the plugin through your panel service provider:
 ## Configuration
 
 ```php
+<?php
+
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Models\Email;
+
 return [
     'resource' => [
         'class' => EmailResource::class,
@@ -67,10 +72,13 @@ return [
     'keep_email_for_days' => 60,
     'label' => null,
 
+    'prune_crontab' => '0 0 * * *',
+
     'can_access' => [
         'role' => [],
     ],
 ];
+
 ```
 
 ## Testing
