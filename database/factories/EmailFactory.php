@@ -3,14 +3,13 @@
 namespace RickDBCN\FilamentEmail\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Config;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailFactory extends Factory
 {
     public function modelName(): string
     {
-        return Config::get('filament-email.resource.model') ?? Email::class;
+        return config('filament-email.resource.model', Email::class);
     }
 
     public function definition(): array

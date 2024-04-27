@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Factory;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Models\Email;
@@ -13,7 +12,7 @@ use function Pest\Livewire\livewire;
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->model = Config::get('filament-email.resource.model') ?? Email::class;
+    $this->model = config('filament-email.resource.model') ?? Email::class;
     $this->actingAs(User::factory()->create());
 });
 
