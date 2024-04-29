@@ -41,7 +41,7 @@ php artisan vendor:publish --tag="filament-email-config"
 
 Register the plugin through your panel service provider:
 ```php
-->plugin(new \RickDBCN\FilamentEmail\FilamentEmail::make())
+->plugin(\RickDBCN\FilamentEmail\FilamentEmail::make())
 ```
 
 ## Configuration
