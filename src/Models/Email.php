@@ -41,15 +41,20 @@ class Email extends Model
         'attachments' => 'json',
     ];
 
+    public function team()
+    {
+        return $this->hasOne(config('filament-email')['tenant_model'], 'id', 'tenant_id');
+    }
+
     public static function boot()
     {
         parent::boot();
 
         self::deleting(function ($record) {
             $folderPath = null;
-            if (! empty($record->attachments)) {
+            if (!empty($record->attachments)) {
                 foreach ($record->attachments as $attachment) {
-                    $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$attachment['path']);
+                    $filePath = storage_path('app' . DIRECTORY_SEPARATOR . $attachment['path']);
                     if (empty($folderPath)) {
                         $parts = explode(DIRECTORY_SEPARATOR, $filePath);
                         array_pop($parts);
@@ -60,7 +65,7 @@ class Email extends Model
                     }
                 }
             }
-            $savePathRaw = storage_path('app'.DIRECTORY_SEPARATOR.$record->raw_body);
+            $savePathRaw = storage_path('app' . DIRECTORY_SEPARATOR . $record->raw_body);
             if (file_exists($savePathRaw)) {
                 if (empty($folderPath)) {
                     $parts = explode(DIRECTORY_SEPARATOR, $savePathRaw);

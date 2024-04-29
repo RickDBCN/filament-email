@@ -2,6 +2,7 @@
 
 namespace RickDBCN\FilamentEmail\Listeners;
 
+use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RickDBCN\FilamentEmail\Models\Email;
@@ -58,6 +59,7 @@ class FilamentEmailLogger
             'raw_body' => $savePathRaw,
             'sent_debug_info' => $rawMessage->getDebug(),
             'attachments' => ! empty($attachments) ? $attachments : null,
+            'tenant_id' => Filament::getTenant()?->id ?? auth()->id(),
         ]);
 
     }
