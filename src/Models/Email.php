@@ -55,13 +55,13 @@ class Email extends Model
                         array_pop($parts);
                         $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
                     }
-                    if (file_exists($filePath)) {
+                    if (!is_dir($filePath) && file_exists($filePath)) {
                         unlink($filePath);
                     }
                 }
             }
             $savePathRaw = storage_path('app'.DIRECTORY_SEPARATOR.$record->raw_body);
-            if (file_exists($savePathRaw)) {
+            if (!is_dir($savePathRaw) && file_exists($savePathRaw)) {
                 if (empty($folderPath)) {
                     $parts = explode(DIRECTORY_SEPARATOR, $savePathRaw);
                     array_pop($parts);
@@ -69,7 +69,7 @@ class Email extends Model
                 }
                 unlink($savePathRaw);
             }
-            if (file_exists($folderPath)) {
+            if (is_dir($folderPath) && file_exists($folderPath)) {
                 rmdir($folderPath);
             }
         });
