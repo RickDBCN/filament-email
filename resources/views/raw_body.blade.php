@@ -1,8 +1,10 @@
 @php
     $content = $getRecord()->raw_body;
-    $path = storage_path('app' . DIRECTORY_SEPARATOR . $content);
-    if (file_exists($path)) {
-        $content = file_get_contents($path);
+    if (!empty($content)) {
+        $path = storage_path('app' . DIRECTORY_SEPARATOR . $content);
+        if (file_exists($path)) {
+            $content = file_get_contents($path);
+        }
     }
 @endphp
 
