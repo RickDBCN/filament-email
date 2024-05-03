@@ -30,5 +30,5 @@ return [
     'can_access' => [
         'role' => [],
     ],
-//    'tenant_model' => \App\Models\Team::class, 'pass model of relation to emails like team has many emails'
+    //    'tenant_model' => \App\Models\Team::class, 'pass model of relation to emails like team has many emails'
 ];

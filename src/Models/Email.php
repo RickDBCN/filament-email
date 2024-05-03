@@ -52,9 +52,9 @@ class Email extends Model
 
         self::deleting(function ($record) {
             $folderPath = null;
-            if (!empty($record->attachments)) {
+            if (! empty($record->attachments)) {
                 foreach ($record->attachments as $attachment) {
-                    $filePath = storage_path('app' . DIRECTORY_SEPARATOR . $attachment['path']);
+                    $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$attachment['path']);
                     if (empty($folderPath)) {
                         $parts = explode(DIRECTORY_SEPARATOR, $filePath);
                         array_pop($parts);
