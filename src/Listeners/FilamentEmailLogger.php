@@ -49,6 +49,7 @@ class FilamentEmailLogger
             ->put($savePathRaw, $rawMessage->getMessage()->toString());
 
         $model::create([
+            'team_id' => Filament::getTenant()?->id ?? null,
             'from' => $this->recipientsToString($email->getFrom()),
             'to' => $this->recipientsToString($email->getTo()),
             'cc' => $this->recipientsToString($email->getCc()),
@@ -59,7 +60,6 @@ class FilamentEmailLogger
             'raw_body' => $savePathRaw,
             'sent_debug_info' => $rawMessage->getDebug(),
             'attachments' => ! empty($attachments) ? $attachments : null,
-            'tenant_id' => Filament::getTenant()?->id ?? auth()->id(),
         ]);
 
     }

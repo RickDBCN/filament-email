@@ -210,6 +210,7 @@ class EmailResource extends Resource
                             ->onColor('success')
                             ->offColor('danger')
                             ->inline(false)
+                            ->disabled(fn ($record): bool => empty($record->attachments))
                             ->default(fn ($record): bool => ! empty($record->attachments))
                             ->required(),
                     ])

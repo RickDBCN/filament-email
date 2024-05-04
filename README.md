@@ -47,8 +47,6 @@ Register the plugin through your panel service provider:
 ## Configuration
 
 ```php
-<?php
-
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 use RickDBCN\FilamentEmail\Models\Email;
 
@@ -79,8 +77,10 @@ return [
     'can_access' => [
         'role' => [],
     ],
-];
 
+    //Use this option for customize tenant model class
+    //'tenant_model' => \App\Models\Team::class,
+];
 ```
 
 ## Testing
