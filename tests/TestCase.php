@@ -71,6 +71,9 @@ class TestCase extends Orchestra
 
         $migration = include __DIR__.'/../database/migrations/add_attachments_field_to_filament_email_log_table.php.stub';
         $migration->up();
+
+        $migration = include __DIR__.'/../database/migrations/add_team_id_field_to_filament_email_log_table.php.stub';
+        $migration->up();
     }
 
     /**
