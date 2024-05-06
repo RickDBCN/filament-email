@@ -47,7 +47,7 @@ class EmailResource extends Resource
 
     public static function getNavigationIcon(): string | Htmlable | null
     {
-        return config('filament-email.navigation_icon') ?? 'heroicon-o-envelope';
+        return config('filament-email.resource.icon') ?? 'heroicon-o-envelope';
     }
 
     public static function getNavigationGroup(): ?string
