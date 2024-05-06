@@ -29,6 +29,7 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
+use Illuminate\Contracts\Support\Htmlable;
 
 class EmailResource extends Resource
 {
@@ -46,9 +47,9 @@ class EmailResource extends Resource
 
     public static function getNavigationIcon(): string | Htmlable | null
     {
-        return config('filament-email.navigation_icon') ?? null;
+        return config('filament-email.navigation_icon') ?? 'heroicon-o-envelope';
     }
-    
+
     public static function getNavigationGroup(): ?string
     {
         return config('filament-email.resource.group') ?? __('filament-email::filament-email.navigation_group');

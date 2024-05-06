@@ -20,7 +20,7 @@ return [
             'cc',
             'bcc',
         ],
-        'navigation_icon' => 'heroicon-o-envelope',
+        'navigation_icon' => null,
     ],
 
     'keep_email_for_days' => 60,
