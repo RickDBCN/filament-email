@@ -67,6 +67,7 @@ return [
             'cc',
             'bcc',
         ],
+        'navigation_icon' => 'heroicon-o-envelope',
     ],
 
     'keep_email_for_days' => 60,
