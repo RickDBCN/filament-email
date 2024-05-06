@@ -32,8 +32,6 @@ use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
-
     protected static ?string $slug = 'emails';
 
     public static function getBreadcrumb(): string
@@ -46,6 +44,11 @@ class EmailResource extends Resource
         return config('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
     }
 
+    public static function getNavigationIcon(): string | Htmlable | null
+    {
+        return config('filament-email.navigation_icon') ?? null;
+    }
+    
     public static function getNavigationGroup(): ?string
     {
         return config('filament-email.resource.group') ?? __('filament-email::filament-email.navigation_group');
