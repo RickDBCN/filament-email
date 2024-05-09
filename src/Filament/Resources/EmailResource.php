@@ -20,6 +20,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -29,7 +30,6 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
-use Illuminate\Contracts\Support\Htmlable;
 
 class EmailResource extends Resource
 {
@@ -45,7 +45,7 @@ class EmailResource extends Resource
         return config('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
     }
 
-    public static function getNavigationIcon(): string | Htmlable | null
+    public static function getNavigationIcon(): string|Htmlable|null
     {
         return config('filament-email.resource.icon') ?? 'heroicon-o-envelope';
     }
