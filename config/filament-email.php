@@ -9,6 +9,7 @@ return [
         'model' => Email::class,
         'group' => null,
         'sort' => null,
+        'icon' => null,
         'default_sort_column' => 'created_at',
         'default_sort_direction' => 'desc',
         'datetime_format' => 'Y-m-d H:i:s',

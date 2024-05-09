@@ -29,11 +29,10 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
+use Illuminate\Contracts\Support\Htmlable;
 
 class EmailResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
-
     protected static ?string $slug = 'emails';
 
     public static function getBreadcrumb(): string
@@ -44,6 +43,11 @@ class EmailResource extends Resource
     public static function getNavigationLabel(): string
     {
         return config('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
+    }
+
+    public static function getNavigationIcon(): string | Htmlable | null
+    {
+        return config('filament-email.resource.icon') ?? 'heroicon-o-envelope';
     }
 
     public static function getNavigationGroup(): ?string
