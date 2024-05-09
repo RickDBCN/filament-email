@@ -18,6 +18,14 @@ Log all outgoing emails in your Laravel project within your Filament panel. You 
 | 1.x  | 3.x  | 10.x | 8.x |
 | 1.x  | 3.x  | 11.x | 8.2 \| 8.3 |
 
+> [!CAUTION]
+> After update to v1.3.1 or 1.4.0 you need to re-publish and run migrations
+>
+> ```bash
+> php artisan vendor:publish --tag="filament-email-migrations"
+> php artisan migrate
+> ```
+
 ## Installation
 
 You can install the package via composer:
