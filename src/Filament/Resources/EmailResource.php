@@ -47,7 +47,7 @@ class EmailResource extends Resource
 
     public static function getNavigationIcon(): string|Htmlable|null
     {
-        return config('filament-email.resource.icon', 'heroicon-o-envelope');
+        return config('filament-email.resource.icon') ?? 'heroicon-o-envelope';
     }
 
     public static function getNavigationGroup(): ?string
@@ -62,7 +62,7 @@ class EmailResource extends Resource
 
     public static function getModel(): string
     {
-        return config('filament-email.resource.model', Email::class);
+        return config('filament-email.resource.model') ?? Email::class;
     }
 
     public static function form(Form $form): Form

@@ -27,7 +27,7 @@ class FilamentEmailLogger
         $rawMessage = $event->sent->getSymfonySentMessage();
         $email = $event->message;
 
-        $model = config('filament-email.resource.model', Email::class);
+        $model = config('filament-email.resource.model') ?? Email::class;
 
         $attachments = [];
         $savePath = 'filament-email-log'.DIRECTORY_SEPARATOR.date('YmdHis').'_'.Str::random(5).DIRECTORY_SEPARATOR;

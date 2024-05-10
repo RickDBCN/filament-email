@@ -9,7 +9,7 @@ class EmailFactory extends Factory
 {
     public function modelName(): string
     {
-        return config('filament-email.resource.model', Email::class);
+        return config('filament-email.resource.model') ?? Email::class;
     }
 
     public function definition(): array

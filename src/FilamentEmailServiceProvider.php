@@ -37,7 +37,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
     {
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $runCrontab = config('filament-email.prune_crontab', '0 0 * * *');
-            $modelClass = config('filament-email.resource.model', Email::class);
+            $modelClass = config('filament-email.resource.model') ?? Email::class;
             $class = get_class(new $modelClass);
             if (class_exists($class)) {
                 $schedule->command('model:prune --model="'.$class.'"')
