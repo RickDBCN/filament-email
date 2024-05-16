@@ -342,7 +342,8 @@ class EmailResource extends Resource
                                 fn (Builder $query, $value): Builder => $query->where('created_at', '<=', $value),
                             );
                     }),
-            ]);
+            ])
+            ->paginationPageOptions(config('filament-email.pagination_page_option', $table->getPaginationPageOptions()));
     }
 
     public static function getPages(): array
