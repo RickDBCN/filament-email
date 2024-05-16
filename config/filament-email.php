@@ -32,8 +32,8 @@ return [
         'role' => [],
     ],
     'pagination_page_options' => [
-        10, 50, 100
-    ]
+        10, 50, 100,
+    ],
 
     //Use this option for customize tenant model class
     //'tenant_model' => \App\Models\Team::class,
