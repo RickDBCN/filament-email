@@ -31,7 +31,7 @@ return [
     'can_access' => [
         'role' => [],
     ],
-    'pagination_page_option' => [
+    'pagination_page_options' => [
         10, 50, 100
     ]
 

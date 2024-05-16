@@ -343,7 +343,7 @@ class EmailResource extends Resource
                             );
                     }),
             ])
-            ->paginationPageOptions(config('filament-email.pagination_page_option', $table->getPaginationPageOptions()));
+            ->paginationPageOptions(config('filament-email.pagination_page_options', $table->getPaginationPageOptions()));
     }
 
     public static function getPages(): array
