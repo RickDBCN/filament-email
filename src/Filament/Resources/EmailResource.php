@@ -136,7 +136,7 @@ class EmailResource extends Resource
                     ->icon('heroicon-o-eye')
                     ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
-                        fn($action): array => [
+                        fn ($action): array => [
                             $action->getModalCancelAction(),
                         ])
                     ->fillForm(function ($record) {
@@ -193,7 +193,7 @@ class EmailResource extends Resource
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn($record): array => !empty($record->to) ? explode(',', $record->to) : [])
+                            ->default(fn ($record): array => ! empty($record->to) ? explode(',', $record->to) : [])
                             ->required(),
                         TagsInput::make('cc')
                             ->label(__('filament-email::filament-email.cc'))
@@ -201,21 +201,21 @@ class EmailResource extends Resource
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn($record): array => !empty($record->cc) ? explode(',', $record->cc) : []),
+                            ->default(fn ($record): array => ! empty($record->cc) ? explode(',', $record->cc) : []),
                         TagsInput::make('bcc')
                             ->label(__('filament-email::filament-email.bcc'))
                             ->placeholder(__('filament-email::filament-email.insert_multiple_email_placelholder'))
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn($record): array => !empty($record->bcc) ? explode(',', $record->bcc) : []),
+                            ->default(fn ($record): array => ! empty($record->bcc) ? explode(',', $record->bcc) : []),
                         Toggle::make('attachments')
                             ->label(__('filament-email::filament-email.add_attachments'))
                             ->onColor('success')
                             ->offColor('danger')
                             ->inline(false)
-                            ->disabled(fn($record): bool => empty($record->attachments))
-                            ->default(fn($record): bool => !empty($record->attachments))
+                            ->disabled(fn ($record): bool => empty($record->attachments))
+                            ->default(fn ($record): bool => ! empty($record->attachments))
                             ->required(),
                     ])
                     ->action(function (Email $record, array $data) {
@@ -242,10 +242,10 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('from')
-                    ->prefix(__('filament-email::filament-email.from') . ': ')
-                    ->suffix(fn(Email $record): string => !empty($record->attachments) ? ' (' . trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)) . ')' : '')
+                    ->prefix(__('filament-email::filament-email.from').': ')
+                    ->suffix(fn (Email $record): string => ! empty($record->attachments) ? ' ('.trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)).')' : '')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn(Email $record): string => Str::limit(__('filament-email::filament-email.to') . ': ' . $record->to, 40))
+                    ->description(fn (Email $record): string => Str::limit(__('filament-email::filament-email.to').': '.$record->to, 40))
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
@@ -292,16 +292,16 @@ class EmailResource extends Resource
                         $indicators = [];
                         $format = config('filament-email.resource.filter_date_format');
 
-                        if (!empty($data['created_from'])) {
+                        if (! empty($data['created_from'])) {
                             $from = Carbon::parse($data['created_from'])->format($format);
-                            $indicators['created'] = __('filament-email::filament-email.from_filter') . " $from";
+                            $indicators['created'] = __('filament-email::filament-email.from_filter')." $from";
                         }
 
-                        if (!empty($data['created_until'])) {
+                        if (! empty($data['created_until'])) {
                             $to = Carbon::parse($data['created_until'])->format($format);
                             $toText = __('filament-email::filament-email.to_filter');
-                            if (!empty($indicators['created'])) {
-                                $indicators['created'] .= ' ' . strtolower($toText) . " $to";
+                            if (! empty($indicators['created'])) {
+                                $indicators['created'] .= ' '.strtolower($toText)." $to";
                             } else {
                                 $indicators['created'] = "$toText $to";
                             }
@@ -323,29 +323,30 @@ class EmailResource extends Resource
                         return $query
                             ->when(
                                 $data['to'],
-                                fn(Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
+                                fn (Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
                             )
                             ->when(
                                 $data['cc'],
-                                fn(Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
+                                fn (Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
                             )
                             ->when(
                                 $data['bcc'],
-                                fn(Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
+                                fn (Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
                             )
                             ->when(
                                 $data['created_from'],
-                                fn(Builder $query, $value): Builder => $query->where('created_at', '>=', $value),
+                                fn (Builder $query, $value): Builder => $query->where('created_at', '>=', $value),
                             )
                             ->when(
                                 $data['created_until'],
-                                fn(Builder $query, $value): Builder => $query->where('created_at', '<=', $value),
+                                fn (Builder $query, $value): Builder => $query->where('created_at', '<=', $value),
                             );
                     }),
             ])
             ->paginationPageOptions(function (Table $table) {
                 $options = config('filament-email.pagination_page_options');
-                return !empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
+
+                return ! empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
             });
     }
 
@@ -361,7 +362,7 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role', []);
 
-        if (method_exists(auth()->user(), 'hasRole') && !empty($roles)) {
+        if (method_exists(auth()->user(), 'hasRole') && ! empty($roles)) {
             return auth()->user()->hasRole($roles);
         }
 
