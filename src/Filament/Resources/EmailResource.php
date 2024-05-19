@@ -223,7 +223,7 @@ class EmailResource extends Resource
                             Mail::to($data['to'])
                                 ->cc($data['cc'])
                                 ->bcc($data['bcc'])
-                                ->send(new ResendMail($record, $data['attachments']));
+                                ->send(new ResendMail($record, $data['attachments'] ?? false));
                             Notification::make()
                                 ->title(__('filament-email::filament-email.resend_email_success'))
                                 ->success()
