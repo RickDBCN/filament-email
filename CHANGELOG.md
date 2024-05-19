@@ -6,7 +6,7 @@ All notable changes to `filament-email` will be documented in this file.
 
 ### What's Changed
 
-* Fixed #61 - "Undefined array key attachments" for re-send e-mail action when there's no attachments and toggle button is disabled (thanks to @StaffCollab for reporting)
+* Fixed [#61](https://github.com/RickDBCN/filament-email/issues/61) - "Undefined array key attachments" for re-send e-mail action when there's no attachments and toggle button is disabled (thanks to @StaffCollab for reporting)
 
 **Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.3...v1.4.4
 
