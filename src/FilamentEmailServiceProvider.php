@@ -35,6 +35,10 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
+        if(! config('filament-email.prune_enabled')) {
+            return;
+        }
+
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $runCrontab = config('filament-email.prune_crontab', '0 0 * * *');
             $modelClass = config('filament-email.resource.model') ?? Email::class;
