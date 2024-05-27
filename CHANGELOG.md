@@ -2,6 +2,19 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.4.5 - 2024-05-27
+
+### What's Changed
+
+* Allow disabling of scheduled prune by @ryanldy in https://github.com/RickDBCN/filament-email/pull/62+
+* Reviewed code from pull request #62 with minor changes
+
+### New Contributors
+
+* @ryanldy made their first contribution in https://github.com/RickDBCN/filament-email/pull/62
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.4...v1.4.5
+
 ## v1.4.4 - 2024-05-19
 
 ### What's Changed
