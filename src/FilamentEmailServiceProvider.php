@@ -43,7 +43,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
                 $modelClass = config('filament-email.resource.model') ?? Email::class;
                 $class = get_class(new $modelClass);
                 if (class_exists($class)) {
-                    $schedule->command('model:prune --model="' . $class . '"')
+                    $schedule->command('model:prune --model="'.$class.'"')
                         ->cron($runCrontab);
                 }
             });
