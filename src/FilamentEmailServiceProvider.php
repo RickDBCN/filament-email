@@ -35,7 +35,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        if(! config('filament-email.prune_enabled')) {
+        if (! config('filament-email.prune_enabled')) {
             return;
         }
 
