@@ -79,15 +79,17 @@ return [
     ],
 
     'keep_email_for_days' => 60,
+
     'label' => null,
 
     'prune_enabled' => true,
+
     'prune_crontab' => '0 0 * * *',
 
     'can_access' => [
         'role' => [],
     ],
-    
+
     'pagination_page_options' => [
         10, 25, 50, 'all',
     ],

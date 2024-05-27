@@ -35,18 +35,18 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        if (! config('filament-email.prune_enabled')) {
-            return;
-        }
+        $pruneEnabled = config('filament-email.prune_enabled') ?? false;
 
-        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
-            $runCrontab = config('filament-email.prune_crontab', '0 0 * * *');
-            $modelClass = config('filament-email.resource.model') ?? Email::class;
-            $class = get_class(new $modelClass);
-            if (class_exists($class)) {
-                $schedule->command('model:prune --model="'.$class.'"')
-                    ->cron($runCrontab);
-            }
-        });
+        if ($pruneEnabled) {
+            $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+                $runCrontab = config('filament-email.prune_crontab', '0 0 * * *');
+                $modelClass = config('filament-email.resource.model') ?? Email::class;
+                $class = get_class(new $modelClass);
+                if (class_exists($class)) {
+                    $schedule->command('model:prune --model="' . $class . '"')
+                        ->cron($runCrontab);
+                }
+            });
+        }
     }
 }
