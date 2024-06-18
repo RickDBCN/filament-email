@@ -100,7 +100,7 @@ class Email extends Model
 
     public function prunable()
     {
-        return static::where('created_at', '<=', now())->subDays(config('filament-email.keep_email_for_days', 60));
+        return static::where('created_at', '<=', now()->subDays(config('filament-email.keep_email_for_days', 60)));
     }
 
     private function getTableColumns()
