@@ -2,6 +2,18 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.4.6 - 2024-06-18
+
+### What's Changed
+
+* Allow custom storage disk & config for attachment storage by @cooljet84 in https://github.com/RickDBCN/filament-email/pull/65
+
+### New Contributors
+
+* @cooljet84 made their first contribution in https://github.com/RickDBCN/filament-email/pull/65
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.5...v1.4.6
+
 ## v1.4.5 - 2024-05-27
 
 ### What's Changed
