@@ -30,9 +30,9 @@ class ViewEmail extends ViewRecord
             ->icon('heroicon-c-arrow-down-tray')
             ->size(ActionSize::ExtraSmall)
             ->action(function (array $arguments) {
-                $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$arguments['path']);
-                if (file_exists($filePath)) {
-                    return Storage::download($arguments['path'], $arguments['name']);
+                $fileExists = Storage::disk(config('filament-email.attachments_disk'))->exists($arguments['path']);
+                if ($fileExists) {
+                    return Storage::disk(config('filament-email.attachments_disk'))->download($arguments['path'], $arguments['name']);
                 } else {
                     Notification::make()
                         ->title(__('filament-email::filament-email.download_attachment_error'))
