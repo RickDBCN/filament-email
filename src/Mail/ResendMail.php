@@ -40,12 +40,13 @@ class ResendMail extends Mailable
     public function attachments(): array
     {
         $attachments = [];
+        $storageDisk = config('filament-email.attachments_disk', 'local');
 
         if ($this->addAttachments) {
             $modelAttachments = $this->email->attachments;
-            if (! empty($modelAttachments)) {
+            if (!empty($modelAttachments)) {
                 foreach ($modelAttachments as $attachment) {
-                    $attachments[] = Attachment::fromPath(storage_path('app'.DIRECTORY_SEPARATOR.$attachment['path']))
+                    $attachments[] = Attachment::fromStorageDisk($storageDisk, $attachment['path'])
                         ->as($attachment['name']);
                 }
             }

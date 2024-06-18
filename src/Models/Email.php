@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Email
@@ -65,39 +66,41 @@ class Email extends Model
         parent::boot();
 
         self::deleting(function ($record) {
+            $storageDisk = config('filament-email.attachments_disk', 'local');
             $folderPath = null;
-            if (! empty($record->attachments)) {
+            if (!empty($record->attachments)) {
                 foreach ($record->attachments as $attachment) {
-                    $filePath = storage_path('app'.DIRECTORY_SEPARATOR.$attachment['path']);
+                    $filePath = Storage::disk($storageDisk)->path($attachment['path']);
                     if (empty($folderPath)) {
-                        $parts = explode(DIRECTORY_SEPARATOR, $filePath);
+                        $parts = explode(DIRECTORY_SEPARATOR, $attachment['path']);
                         array_pop($parts);
                         $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
                     }
-                    if (! is_dir($filePath) && file_exists($filePath)) {
-                        unlink($filePath);
+                    if (!Storage::directoryExists($folderPath) && Storage::disk($storageDisk)->exists($attachment['path'])) {
+                        Storage::disk($storageDisk)->delete($attachment['path']);
                     }
                 }
             }
 
-            $savePathRaw = storage_path('app'.DIRECTORY_SEPARATOR.$record->raw_body);
-            if (! is_dir($savePathRaw) && file_exists($savePathRaw)) {
-                if (empty($folderPath)) {
-                    $parts = explode(DIRECTORY_SEPARATOR, $savePathRaw);
-                    array_pop($parts);
-                    $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+            if (!empty($record->raw_body)) {
+                if (!Storage::disk($storageDisk)->directoryExists($record->raw_body) && Storage::disk($storageDisk)->exists($record->raw_body)) {
+                    if (empty($folderPath)) {
+                        $parts = explode(DIRECTORY_SEPARATOR, $record->raw_body);
+                        array_pop($parts);
+                        $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
+                    }
+                    Storage::disk($storageDisk)->delete($record->raw_body);
                 }
-                unlink($savePathRaw);
-            }
-            if (is_dir($folderPath) && file_exists($folderPath)) {
-                rmdir($folderPath);
+                if (Storage::disk($storageDisk)->directoryExists($folderPath)) {
+                    Storage::disk($storageDisk)->deleteDirectory($folderPath);
+                }
             }
         });
     }
 
     public function prunable()
     {
-        return static::where('created_at', '<=', now()->subDays(config('filament-email.keep_email_for_days', 60)));
+        return static::where('created_at', '<=', now())->subDays(config('filament-email.keep_email_for_days', 60));
     }
 
     private function getTableColumns()
