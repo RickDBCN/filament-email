@@ -39,6 +39,9 @@ return [
         10, 25, 50, 'all',
     ],
 
+    'attachments_disk' => 'local',
+    'store_attachments' => true,
+
     //Use this option for customize tenant model class
     //'tenant_model' => \App\Models\Team::class,
 ];
