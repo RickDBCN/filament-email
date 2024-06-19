@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.4.7 - 2024-06-19
+
+### What's Changed
+
+* Fix missing storage option in resend and delete by @cooljet84 in https://github.com/RickDBCN/filament-email/pull/66
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.6...v.1.4.7
+
 ## v1.4.6 - 2024-06-18
 
 ### What's Changed
