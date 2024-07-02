@@ -68,7 +68,7 @@ class Email extends Model
         self::deleting(function ($record) {
             $storageDisk = config('filament-email.attachments_disk', 'local');
             $folderPath = null;
-            if (!empty($record->attachments)) {
+            if (! empty($record->attachments)) {
                 foreach ($record->attachments as $attachment) {
                     $filePath = Storage::disk($storageDisk)->path($attachment['path']);
                     if (empty($folderPath)) {
@@ -76,14 +76,14 @@ class Email extends Model
                         array_pop($parts);
                         $folderPath = implode(DIRECTORY_SEPARATOR, $parts);
                     }
-                    if (!Storage::directoryExists($folderPath) && Storage::disk($storageDisk)->exists($attachment['path'])) {
+                    if (! Storage::directoryExists($folderPath) && Storage::disk($storageDisk)->exists($attachment['path'])) {
                         Storage::disk($storageDisk)->delete($attachment['path']);
                     }
                 }
             }
 
-            if (!empty($record->raw_body)) {
-                if (!Storage::disk($storageDisk)->directoryExists($record->raw_body) && Storage::disk($storageDisk)->exists($record->raw_body)) {
+            if (! empty($record->raw_body)) {
+                if (! Storage::disk($storageDisk)->directoryExists($record->raw_body) && Storage::disk($storageDisk)->exists($record->raw_body)) {
                     if (empty($folderPath)) {
                         $parts = explode(DIRECTORY_SEPARATOR, $record->raw_body);
                         array_pop($parts);

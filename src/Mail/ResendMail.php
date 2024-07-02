@@ -44,7 +44,7 @@ class ResendMail extends Mailable
 
         if ($this->addAttachments) {
             $modelAttachments = $this->email->attachments;
-            if (!empty($modelAttachments)) {
+            if (! empty($modelAttachments)) {
                 foreach ($modelAttachments as $attachment) {
                     $attachments[] = Attachment::fromStorageDisk($storageDisk, $attachment['path'])
                         ->as($attachment['name']);
