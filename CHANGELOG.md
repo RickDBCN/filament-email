@@ -2,6 +2,18 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.4.8 - 2024-07-02
+
+### What's Changed
+
+* feat: add resource lang to pt_BR. by @samuelterra22 in https://github.com/RickDBCN/filament-email/pull/67
+
+### New Contributors
+
+* @samuelterra22 made their first contribution in https://github.com/RickDBCN/filament-email/pull/67
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.7...v1.4.8
+
 ## v1.4.7 - 2024-06-19
 
 ### What's Changed
