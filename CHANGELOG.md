@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.5.0 - 2024-07-26
+
+### What's Changed
+
+* Added previous/next buttons into view page
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.4.9...v1.5.0
+
 ## v1.4.9 - 2024-07-24
 
 ### What's Changed
