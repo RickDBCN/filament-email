@@ -3,16 +3,15 @@
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
 use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Facades\Storage;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
-use RickDBCN\FilamentEmail\Models\Email;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
 use RickDBCN\FilamentEmail\Filament\Resources\Concernes\CanPaginateViewRecord;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Models\Email;
 
 class ViewEmail extends ViewRecord
 {
