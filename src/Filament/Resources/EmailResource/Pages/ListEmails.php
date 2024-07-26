@@ -4,10 +4,13 @@ namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Actions\Concerns\InteractsWithActions;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class ListEmails extends ListRecords
 {
+    use InteractsWithActions;
+
     public static function getResource(): string
     {
         return config('filament-email.resource.class', EmailResource::class);
