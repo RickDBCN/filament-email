@@ -10,10 +10,13 @@ use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Facades\Storage;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
+use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
+use RickDBCN\FilamentEmail\Filament\Resources\Concernes\CanPaginateViewRecord;
 
 class ViewEmail extends ViewRecord
 {
-    use InteractsWithActions;
+    use CanPaginateViewRecord;
 
     public Email $email;
 
@@ -41,5 +44,13 @@ class ViewEmail extends ViewRecord
                         ->send();
                 }
             });
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            PreviousAction::make(),
+            NextAction::make(),
+        ];
     }
 }

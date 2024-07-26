@@ -29,4 +29,6 @@ return [
     'download_attachment_error' => "Impossibile scaricare l'allegato!",
     'add_attachments' => 'Aggiungi allegati',
     'attachments_number' => ':count allegato|:count allegati',
+    'previous' => 'Precedente',
+    'next' => 'Prossimo',
 ];

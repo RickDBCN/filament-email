@@ -29,4 +29,6 @@ return [
     'download_attachment_error' => 'Eki indirme başarısız!',
     'add_attachments' => 'Dosya ekle',
     'attachments_number' => ':count ek|:count ek',
+    'previous' => 'Öncesi',
+    'next' => 'Sonraki',
 ];

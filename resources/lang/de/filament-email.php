@@ -29,4 +29,6 @@ return [
     'download_attachment_error' => 'Anhang konnte nicht heruntergeladen werden!',
     'add_attachments' => 'Anhänge hinzufügen',
     'attachments_number' => ':count Anhang|:count Anhänge',
+    'previous' => 'Vorherige',
+    'next' => 'Nächste',
 ];

@@ -29,4 +29,6 @@ return [
     'download_attachment_error' => 'Kan bijlage niet downloaden!',
     'add_attachments' => 'Bijlagen toevoegen',
     'attachments_number' => ':count bijlage|:count bijlagen',
+    'previous' => 'Vorig',
+    'next' => 'Volgende',
 ];
