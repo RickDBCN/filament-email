@@ -2,9 +2,9 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
+use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Actions\Concerns\InteractsWithActions;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 class ListEmails extends ListRecords
