@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.5.1 - 2024-07-27
+
+### What's Changed
+
+* Restored InteractsWithActions for list view
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.5.0...v1.5.1
+
 ## v1.5.0 - 2024-07-26
 
 ### What's Changed
