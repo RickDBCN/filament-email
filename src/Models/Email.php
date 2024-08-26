@@ -82,7 +82,7 @@ class Email extends Model
                 }
             }
 
-            if (! empty($record->raw_body)) {
+            if (! empty($record->raw_body) && count(explode(DIRECTORY_SEPARATOR, $record->raw_body)) === 3) {
                 if (! Storage::disk($storageDisk)->directoryExists($record->raw_body) && Storage::disk($storageDisk)->exists($record->raw_body)) {
                     if (empty($folderPath)) {
                         $parts = explode(DIRECTORY_SEPARATOR, $record->raw_body);
