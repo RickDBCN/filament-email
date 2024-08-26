@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.5.2 - 2024-08-26
+
+### What's Changed
+
+* Fixed #75 - Corrupted path detected (thanks to @patriktoth67 for reporting)
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.5.1...v1.5.2
+
 ## v1.5.1 - 2024-07-27
 
 ### What's Changed
