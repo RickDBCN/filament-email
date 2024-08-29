@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Livewire\LivewireServiceProvider;
+use Malzariey\FilamentDaterangepickerFilter\Fields\DateRangePicker;
+use Malzariey\FilamentDaterangepickerFilter\FilamentDaterangepickerFilterServiceProvider;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RickDBCN\FilamentEmail\FilamentEmailServiceProvider;
 use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
@@ -48,10 +51,9 @@ class TestCase extends Orchestra
             TablesServiceProvider::class,
             ActionsServiceProvider::class,
             WidgetsServiceProvider::class,
-
             EmailMessageServiceProvider::class,
             FilamentEmailServiceProvider::class,
-
+            FilamentDaterangepickerFilterServiceProvider::class,
             TestPanelProvider::class,
         ];
 

@@ -13,11 +13,13 @@ use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
     $this->model = config('filament-email.resource.model') ?? Email::class;
-    $this->actingAs(User::factory()->create());
+    $this->actingAs(User::factory()
+        ->create());
 });
 
 it('can create an Email model', function () {
-    $emailModel = Email::factory()->create();
+    $emailModel = Email::factory()
+        ->create();
     assertModelExists($emailModel);
 });
 
@@ -36,12 +38,23 @@ it('can capture a sent email', function () {
 });
 
 it('can render table page', function () {
-    $this->model::factory()->create();
-    livewire(ListEmails::class)->assertSuccessful();
+    $this->model::factory()
+        ->create();
+    livewire(ListEmails::class)
+        ->assertSuccessful();
+});
+
+it('can render table records', function () {
+    $records = $this->model::factory()
+        ->count(10)
+        ->create();
+    livewire(ListEmails::class)
+        ->assertCanSeeTableRecords($records);
 });
 
 it('can resend email', function () {
-    $email = $this->model::factory()->create();
+    $email = $this->model::factory()
+        ->create();
     livewire(ListEmails::class)
         ->callTableAction('resend', $email);
     assertDatabaseCount((new $this->model)->getTable(), 2);
