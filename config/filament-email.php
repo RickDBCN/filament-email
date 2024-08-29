@@ -1,9 +1,10 @@
 <?php
 
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 
 return [
+
     'resource' => [
         'class' => EmailResource::class,
         'model' => Email::class,
@@ -13,7 +14,11 @@ return [
         'default_sort_column' => 'created_at',
         'default_sort_direction' => 'desc',
         'datetime_format' => 'Y-m-d H:i:s',
-        'filter_date_format' => 'Y-m-d',
+        'filters' => [
+            'created_at' => [
+                'date_format' => 'Y-m-d',
+            ],
+        ],
         'table_search_fields' => [
             'subject',
             'from',
@@ -44,4 +49,5 @@ return [
 
     //Use this option for customize tenant model class
     //'tenant_model' => \App\Models\Team::class,
+
 ];
