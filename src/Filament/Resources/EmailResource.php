@@ -279,8 +279,8 @@ class EmailResource extends Resource
                         TextInput::make('bcc')
                             ->label(__('filament-email::filament-email.bcc'))
                             ->email(),
-//                        DateRangePicker::make('created_at')
-//                            ->label(__('filament-email::filament-email.sent_at')),
+                        DateRangePicker::make('created_at')
+                            ->label(__('filament-email::filament-email.sent_at')),
                     ])
                     ->columns(2)
                     ->indicateUsing(function (array $data): array {
