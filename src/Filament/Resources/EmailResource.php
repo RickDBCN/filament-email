@@ -279,8 +279,8 @@ class EmailResource extends Resource
                         TextInput::make('bcc')
                             ->label(__('filament-email::filament-email.bcc'))
                             ->email(),
-                        DateRangePicker::make('created_at')
-                            ->label(__('filament-email::filament-email.sent_at')),
+//                        DateRangePicker::make('created_at')
+//                            ->label(__('filament-email::filament-email.sent_at')),
                     ])
                     ->columns(2)
                     ->indicateUsing(function (array $data): array {
@@ -306,20 +306,19 @@ class EmailResource extends Resource
                                 $data['bcc'],
                                 fn(Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
                             )
-//                            ->when(
-//                                $data['created_at'],
-//                                function (Builder $query, $value): Builder {
-//                                    $format = config('filament-email.resource.filters.created_at.date_format');
-//                                    list($start, $end) = explode(' - ', $value);
-//                                    return $query->whereBetween('created_at', [
-//                                        Carbon::createFromFormat($format, $start)
-//                                            ->format('Y-m-d'),
-//                                        Carbon::createFromFormat($format, $end)
-//                                            ->format('Y-m-d')
-//                                    ]);
-//                                }
-//                            )
-                            ;
+                            ->when(
+                                $data['created_at'],
+                                function (Builder $query, $value): Builder {
+                                    $format = config('filament-email.resource.filters.created_at.date_format');
+                                    list($start, $end) = explode(' - ', $value);
+                                    return $query->whereBetween('created_at', [
+                                        Carbon::createFromFormat($format, $start)
+                                            ->format('Y-m-d'),
+                                        Carbon::createFromFormat($format, $end)
+                                            ->format('Y-m-d')
+                                    ]);
+                                }
+                            );
                     }),
             ])
             ->filtersFormWidth(MaxWidth::ExtraLarge)
