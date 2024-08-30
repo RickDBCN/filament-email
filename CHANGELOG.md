@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.6.0 - 2024-08-30
+
+### What's Changed
+
+* Enhanched table filter layout with new DateRangePicker
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.5.2...v1.6.0
+
 ## v1.5.2 - 2024-08-26
 
 ### What's Changed
