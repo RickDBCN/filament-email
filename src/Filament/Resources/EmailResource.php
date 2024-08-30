@@ -310,6 +310,7 @@ class EmailResource extends Resource
                                     [$start, $end] = explode(' - ', $value);
                                     $start = str_replace('/', '-', $start);
                                     $end = str_replace('/', '-', $end);
+
                                     return $query->whereBetween('created_at', [
                                         Carbon::createFromTimestamp(strtotime($start))
                                             ->format('Y-m-d'),
