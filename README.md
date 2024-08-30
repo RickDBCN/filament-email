@@ -69,11 +69,6 @@ return [
         'default_sort_column' => 'created_at',
         'default_sort_direction' => 'desc',
         'datetime_format' => 'Y-m-d H:i:s',
-        'filters' => [
-            'created_at' => [
-                'date_format' => 'Y-m-d',
-            ],
-        ],
         'table_search_fields' => [
             'subject',
             'from',
