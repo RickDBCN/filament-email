@@ -307,13 +307,13 @@ class EmailResource extends Resource
                             ->when(
                                 $data['created_at'],
                                 function (Builder $query, $value): Builder {
-                                    $format = config('filament-email.resource.filters.created_at.date_format');
                                     [$start, $end] = explode(' - ', $value);
-
+                                    $start = str_replace('/', '-', $start);
+                                    $end = str_replace('/', '-', $end);
                                     return $query->whereBetween('created_at', [
-                                        Carbon::createFromFormat($format, $start)
+                                        Carbon::createFromTimestamp(strtotime($start))
                                             ->format('Y-m-d'),
-                                        Carbon::createFromFormat($format, $end)
+                                        Carbon::createFromTimestamp(strtotime($end))
                                             ->format('Y-m-d'),
                                     ]);
                                 }

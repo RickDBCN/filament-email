@@ -118,23 +118,23 @@ composer test
 
 ### E-mail list
 
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/table.png)
+<img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/table.png" style="border-radius:2%"/>
 
 ### Advanced filters
 
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/filters.png)
+<img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/filters.png" style="border-radius:2%"/>
 
 ### Resend e-mail
 
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/resend.png)
+<img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/resend.png" style="border-radius:2%"/>
 
 ### Update addresses and resend e-mail
 
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/update-and-resend.png)
+<img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/update-and-resend.png" style="border-radius:2%"/>
 
 ### E-mail view with attachments
 
-![](https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/view.png)
+<img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/view.png" style="border-radius:2%"/>
 
 ## Credits
 
