@@ -2,6 +2,20 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v.1.6.1 - 2024-09-01
+
+### What's Changed
+
+* filament()->auth()->user() instead of auth()->user() by @user-aquadic in https://github.com/RickDBCN/filament-email/pull/77
+* Feat config cluster by @gaetan-hexadog in https://github.com/RickDBCN/filament-email/pull/78
+
+### New Contributors
+
+* @user-aquadic made their first contribution in https://github.com/RickDBCN/filament-email/pull/77
+* @gaetan-hexadog made their first contribution in https://github.com/RickDBCN/filament-email/pull/78
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.6.0...v1.6.1
+
 ## v1.6.0 - 2024-08-30
 
 ### What's Changed
