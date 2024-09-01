@@ -42,6 +42,14 @@ class EmailResource extends Resource
         return __('filament-email::filament-email.email_log');
     }
 
+    /**
+     * @return class-string<Cluster> | null
+     */
+    public static function getCluster(): ?string
+    {
+        return config('filament-email.resource.cluster');
+    }
+
     public static function getNavigationLabel(): string
     {
         return config('filament-email.label') ?? __('filament-email::filament-email.navigation_label');
