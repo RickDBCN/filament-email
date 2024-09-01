@@ -341,8 +341,8 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role', []);
 
-        if (method_exists(auth()->user(), 'hasRole') && ! empty($roles)) {
-            return auth()->user()->hasRole($roles);
+        if (method_exists(filament()->auth()->user(), 'hasRole') && ! empty($roles)) {
+            return filament()->auth()->user()->hasRole($roles);
         }
 
         return true;
