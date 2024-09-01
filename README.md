@@ -63,6 +63,7 @@ return [
     'resource' => [
         'class' => EmailResource::class,
         'model' => Email::class,
+        'cluster' => null,
         'group' => null,
         'sort' => null,
         'icon' => null,
