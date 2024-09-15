@@ -53,7 +53,7 @@ class Email extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('teams', function (Builder $query) {
-            if (!app()->runningInConsole()) {
+            if (! app()->runningInConsole()) {
                 if (auth()->check() && Filament::getTenant()) {
                     $query->whereBelongsTo(auth()->user()?->teams);
                 } else {
@@ -68,9 +68,9 @@ class Email extends Model
         parent::boot();
 
         self::deleting(function ($record) {
-            $folderPath = "";
+            $folderPath = '';
             $storageDisk = config('filament-email.attachments_disk', 'local');
-            if (!empty($record->attachments)) {
+            if (! empty($record->attachments)) {
                 foreach ($record->attachments as $attachment) {
                     $filePath = Storage::disk($storageDisk)->path($attachment['path']);
                     if (empty($folderPath)) {
@@ -83,7 +83,7 @@ class Email extends Model
                     }
                 }
             }
-            if (!empty($record->raw_body) && count(explode(DIRECTORY_SEPARATOR, $record->raw_body)) === 3) {
+            if (! empty($record->raw_body) && count(explode(DIRECTORY_SEPARATOR, $record->raw_body)) === 3) {
                 if (Storage::disk($storageDisk)->exists($record->raw_body)) {
                     if (empty($folderPath)) {
                         $parts = explode(DIRECTORY_SEPARATOR, $record->raw_body);
@@ -93,7 +93,7 @@ class Email extends Model
                     Storage::disk($storageDisk)->delete($record->raw_body);
                 }
             }
-            if (!empty($folderPath) && Storage::disk($storageDisk)->directoryExists($folderPath)) {
+            if (! empty($folderPath) && Storage::disk($storageDisk)->directoryExists($folderPath)) {
                 Storage::disk($storageDisk)->deleteDirectory($folderPath);
             }
         });
