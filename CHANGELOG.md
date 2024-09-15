@@ -2,6 +2,15 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.6.2 - 2024-09-15
+
+### What's Changed
+
+* Fixed #79 - thanks to @Jacobtims for reporting
+* Fix: Ignore Email global scope if app is running in console
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.6.1...v1.6.2
+
 ## v.1.6.1 - 2024-09-01
 
 ### What's Changed
