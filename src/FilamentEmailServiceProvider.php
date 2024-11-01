@@ -2,7 +2,11 @@
 
 namespace RickDBCN\FilamentEmail;
 
+use Filament\Support\Facades\FilamentView;
+use Filament\Tables\View\TablesRenderHook;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Blade;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Models\Email;
 use RickDBCN\FilamentEmail\Providers\EmailMessageServiceProvider;
 use Spatie\LaravelPackageTools\Package;
@@ -35,6 +39,12 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
+        FilamentView::registerRenderHook(
+            TablesRenderHook::TOOLBAR_SEARCH_BEFORE,
+            fn (): string => Blade::render('<x-filament::loading-indicator wire:loading class="ml-3 h-5 w-5" />'),
+            scopes: ListEmails::class
+        );
+
         $pruneEnabled = config('filament-email.prune_enabled') ?? false;
 
         if ($pruneEnabled) {
