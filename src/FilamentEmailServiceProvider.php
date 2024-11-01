@@ -41,7 +41,7 @@ class FilamentEmailServiceProvider extends PackageServiceProvider
     {
         FilamentView::registerRenderHook(
             TablesRenderHook::TOOLBAR_SEARCH_BEFORE,
-            fn (): string => Blade::render('<x-filament::loading-indicator wire:loading class="ml-3 h-5 w-5" />'),
+            fn (): string => Blade::render('<x-filament::loading-indicator wire:loading wire:target="previousPage,gotoPage,nextPage" class="ml-3 h-5 w-5" />'),
             scopes: ListEmails::class
         );
 
