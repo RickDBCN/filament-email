@@ -2,6 +2,12 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.7.0 - 2024-11-01
+
+### What's Changed
+
+* Added loading indicator to ListEmail for large datasets
+
 ## v1.6.2 - 2024-09-15
 
 ### What's Changed
