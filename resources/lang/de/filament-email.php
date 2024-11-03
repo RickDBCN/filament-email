@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count Anhang|:count Anhänge',
     'previous' => 'Vorherige',
     'next' => 'Nächste',
+    'have_attachments' => 'Anhänge haben?',
+    'yes' => 'ja',
+    'no' => 'nein',
 ];

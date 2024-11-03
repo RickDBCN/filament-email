@@ -4,6 +4,7 @@ namespace RickDBCN\FilamentEmail\Filament\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
@@ -17,13 +18,16 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\IconSize;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -102,7 +106,7 @@ class EmailResource extends Resource
                             ->label(__('filament-email::filament-email.created_at')),
                     ])->columns(4),
                 Fieldset::make('attachments')
-                    ->hidden(fn (): bool => ! config('filament-email.store_attachments'))
+                    ->hidden(fn(): bool => !config('filament-email.store_attachments'))
                     ->label(__('filament-email::filament-email.attachments'))
                     ->schema([
                         View::make('filament-email::attachments')
@@ -147,7 +151,7 @@ class EmailResource extends Resource
                     ->icon('heroicon-o-eye')
                     ->iconSize(IconSize::Medium)
                     ->modalFooterActions(
-                        fn ($action): array => [
+                        fn($action): array => [
                             $action->getModalCancelAction(),
                         ])
                     ->fillForm(function ($record) {
@@ -204,7 +208,7 @@ class EmailResource extends Resource
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn ($record): array => ! empty($record->to) ? explode(',', $record->to) : [])
+                            ->default(fn($record): array => !empty($record->to) ? explode(',', $record->to) : [])
                             ->required(),
                         TagsInput::make('cc')
                             ->label(__('filament-email::filament-email.cc'))
@@ -212,21 +216,21 @@ class EmailResource extends Resource
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn ($record): array => ! empty($record->cc) ? explode(',', $record->cc) : []),
+                            ->default(fn($record): array => !empty($record->cc) ? explode(',', $record->cc) : []),
                         TagsInput::make('bcc')
                             ->label(__('filament-email::filament-email.bcc'))
                             ->placeholder(__('filament-email::filament-email.insert_multiple_email_placelholder'))
                             ->nestedRecursiveRules([
                                 'email',
                             ])
-                            ->default(fn ($record): array => ! empty($record->bcc) ? explode(',', $record->bcc) : []),
+                            ->default(fn($record): array => !empty($record->bcc) ? explode(',', $record->bcc) : []),
                         Toggle::make('attachments')
                             ->label(__('filament-email::filament-email.add_attachments'))
                             ->onColor('success')
                             ->offColor('danger')
                             ->inline(false)
-                            ->disabled(fn ($record): bool => empty($record->attachments))
-                            ->default(fn ($record): bool => ! empty($record->attachments))
+                            ->disabled(fn($record): bool => empty($record->attachments))
+                            ->default(fn($record): bool => !empty($record->attachments))
                             ->required(),
                     ])
                     ->action(function (Email $record, array $data) {
@@ -253,10 +257,10 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('from')
-                    ->prefix(__('filament-email::filament-email.from').': ')
-                    ->suffix(fn (Email $record): string => ! empty($record->attachments) ? ' ('.trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)).')' : '')
+                    ->prefix(__('filament-email::filament-email.from') . ': ')
+                    ->suffix(fn(Email $record): string => !empty($record->attachments) ? ' (' . trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)) . ')' : '')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn (Email $record): string => Str::limit(__('filament-email::filament-email.to').': '.$record->to, 40))
+                    ->description(fn(Email $record): string => Str::limit(__('filament-email::filament-email.to') . ': ' . $record->to, 40))
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
@@ -268,6 +272,39 @@ class EmailResource extends Resource
 
             ])
             ->groupedBulkActions([
+                BulkAction::make('bulk-resend')
+                    ->label(__('filament-email::filament-email.resend_email_heading'))
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('primary')
+                    ->iconSize(IconSize::Medium)
+                    ->tooltip(__('filament-email::filament-email.resend_email_heading'))
+                    ->requiresConfirmation()
+                    ->modalHeading(__('filament-email::filament-email.resend_email_heading'))
+                    ->modalDescription(__('filament-email::filament-email.resend_email_description'))
+                    ->modalIconColor('warning')
+                    ->deselectRecordsAfterCompletion()
+                    ->action(function (Collection $records) {
+                        try {
+                            foreach ($records as $record) {
+                                Mail::to($record->to)
+                                    ->cc($record->cc)
+                                    ->bcc($record->bcc)
+                                    ->send(new ResendMail($record));
+                            }
+                            Notification::make()
+                                ->title(__('filament-email::filament-email.resend_email_success'))
+                                ->success()
+                                ->duration(5000)
+                                ->send();
+                        } catch (\Exception $e) {
+                            Log::error($e->getMessage());
+                            Notification::make()
+                                ->title(__('filament-email::filament-email.resend_email_error'))
+                                ->danger()
+                                ->duration(5000)
+                                ->send();
+                        }
+                    }),
                 DeleteBulkAction::make()
                     ->requiresConfirmation(),
             ])
@@ -275,6 +312,9 @@ class EmailResource extends Resource
             ->filters([
                 Filter::make('headers-filter')
                     ->form([
+                        TextInput::make('from')
+                            ->label(__('filament-email::filament-email.from'))
+                            ->email(),
                         TextInput::make('to')
                             ->label(__('filament-email::filament-email.to'))
                             ->email(),
@@ -286,13 +326,23 @@ class EmailResource extends Resource
                             ->email(),
                         DateRangePicker::make('created_at')
                             ->label(__('filament-email::filament-email.sent_at')),
+                        Select::make('attachments')
+                            ->label(__('filament-email::filament-email.have_attachments'))
+                            ->options([
+                                'no' => ucfirst(__('filament-email::filament-email.no')),
+                                'yes' => ucfirst(__('filament-email::filament-email.yes')),
+                            ]),
                     ])
                     ->columns(2)
                     ->indicateUsing(function (array $data): array {
                         $indicators = [];
                         foreach ($data as $field => $value) {
                             if ($data[$field] ?? null) {
-                                $indicators[$field] = __('filament-email::filament-email.'.$field).": $value";
+                                if ($field === 'attachments') {
+                                    $indicators[$field] = __('filament-email::filament-email.' . $field) . ": " . ($value === 'yes' ? __('filament-email::filament-email.yes') : __('filament-email::filament-email.no'));
+                                } else {
+                                    $indicators[$field] = __('filament-email::filament-email.' . $field) . ": $value";
+                                }
                             }
                         }
 
@@ -301,16 +351,25 @@ class EmailResource extends Resource
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
                             ->when(
+                                $data['from'],
+                                fn(Builder $query, $value): Builder => $query->where('from', 'like', "%$value%"),
+                            )
+                            ->when(
                                 $data['to'],
-                                fn (Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
+                                fn(Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
                             )
                             ->when(
                                 $data['cc'],
-                                fn (Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
+                                fn(Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
                             )
                             ->when(
                                 $data['bcc'],
-                                fn (Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
+                                fn(Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
+                            )
+                            ->when(
+                                $data['attachments'],
+                                //JSON_LENGTH
+                                fn(Builder $query, $value): Builder => $query->where(DB::raw('JSON_LENGTH(attachments)'), $value === 'yes' ? '>' : '=', 0),
                             )
                             ->when(
                                 $data['created_at'],
@@ -333,7 +392,7 @@ class EmailResource extends Resource
             ->paginationPageOptions(function (Table $table) {
                 $options = config('filament-email.pagination_page_options');
 
-                return ! empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
+                return !empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
             });
     }
 
@@ -349,7 +408,7 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role', []);
 
-        if (method_exists(filament()->auth()->user(), 'hasRole') && ! empty($roles)) {
+        if (method_exists(filament()->auth()->user(), 'hasRole') && !empty($roles)) {
             return filament()->auth()->user()->hasRole($roles);
         }
 

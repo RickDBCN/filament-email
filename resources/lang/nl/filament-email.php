@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count bijlage|:count bijlagen',
     'previous' => 'Vorig',
     'next' => 'Volgende',
+    'have_attachments' => 'Heb bijlagen?',
+    'yes' => 'ja',
+    'no' => 'nee',
 ];

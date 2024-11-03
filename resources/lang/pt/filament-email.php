@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count anexo|:count anexos',
     'previous' => 'Próximo',
     'next' => 'Anterior',
+    'have_attachments' => 'Tem anexos?',
+    'yes' => 'sim',
+    'no' => 'não',
 ];

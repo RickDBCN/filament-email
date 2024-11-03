@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count ek|:count ek',
     'previous' => 'Öncesi',
     'next' => 'Sonraki',
+    'have_attachments' => 'Ekleri var?',
+    'yes' => 'evet',
+    'no' => 'hayir',
 ];

@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count attachment|:count attachments',
     'previous' => 'Previous',
     'next' => 'Next',
+    'have_attachments' => 'Have attachments?',
+    'yes' => 'yes',
+    'no' => 'no',
 ];

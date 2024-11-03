@@ -31,4 +31,7 @@ return [
     'attachments_number' => ':count allegato|:count allegati',
     'previous' => 'Precedente',
     'next' => 'Prossimo',
+    'have_attachments' => 'Contiene allegati?',
+    'yes' => 'si',
+    'no' => 'no',
 ];
