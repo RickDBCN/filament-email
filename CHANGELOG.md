@@ -2,6 +2,17 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.7.1 - 2024-11-03
+
+### What's Changed
+
+* New from and attachments table filter
+* New resend e-mail bulk action
+* Enhanched attachments section into view
+* Updated translations
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.7.0...v1.7.1
+
 ## v1.7.0 - 2024-11-01
 
 ### What's Changed
