@@ -2,6 +2,18 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.7.2 - 2024-11-05
+
+### What's Changed
+
+* Add Indonesian translations by @robiokidenis in https://github.com/RickDBCN/filament-email/pull/81
+
+### New Contributors
+
+* @robiokidenis made their first contribution in https://github.com/RickDBCN/filament-email/pull/81
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.7.1...v1.7.2
+
 ## v1.7.1 - 2024-11-03
 
 ### What's Changed
