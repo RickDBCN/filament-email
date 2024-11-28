@@ -31,7 +31,7 @@ class FilamentEmailLogger
         $storeAttachments = config('filament-email.store_attachments', true);
 
         $model = config('filament-email.resource.model') ?? Email::class;
-
+        
         $attachments = [];
         $savePath = 'filament-email-log'.DIRECTORY_SEPARATOR.date('YmdHis').'_'.Str::random(5).DIRECTORY_SEPARATOR;
 
@@ -57,7 +57,7 @@ class FilamentEmailLogger
             $savePathRaw = null;
         }
         $model::create([
-            'team_id' => Filament::getTenant()?->id ?? null,
+            'team_id' => $this->getTeamId(),
             'from' => $this->recipientsToString($email->getFrom()),
             'to' => $this->recipientsToString($email->getTo()),
             'cc' => $this->recipientsToString($email->getCc()),
@@ -80,5 +80,14 @@ class FilamentEmailLogger
                 return "{$email->getAddress()}".($email->getName() ? " <{$email->getName()}>" : '');
             }, $recipients)
         );
+    }
+
+    private function getTeamId(): ?int
+    {
+        if(config('filament-email.persist_team_id')){
+            return Filament::getTenant()?->id ?? null;
+        }
+
+        return null;
     }
 }

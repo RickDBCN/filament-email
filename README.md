@@ -101,6 +101,8 @@ return [
     //Use this option for customize tenant model class
     //'tenant_model' => \App\Models\Team::class,
 
+    'persist_team_id' => true,
+
 ];
 ```
 
