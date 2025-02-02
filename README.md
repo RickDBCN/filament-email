@@ -132,6 +132,17 @@ composer test
 
 <img src="https://raw.githubusercontent.com/RickDBCN/filament-email/main/screenshots/view.png" style="border-radius:2%"/>
 
+## Languages Supported
+
+Filament Email Plugin is translated for :
+
+- English <sup><sub>EN</sub></sup>
+- Dutch <sup><sub>NL</sub></sup>
+- Italian <sup><sub>IT</sub></sup>
+- German <sup><sub>DE</sub></sup>
+- Portuguese <sup><sub>PT</sub></sup>
+- Turkish <sup><sub>TR</sub></sup>
+
 ## Credits
 
 - [Rick de Boer](https://github.com/RickDBCN)
