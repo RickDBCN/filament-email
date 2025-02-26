@@ -368,7 +368,7 @@ class EmailResource extends Resource
                             )
                             ->when(
                                 $data['attachments'],
-                                //JSON_LENGTH
+                                // JSON_LENGTH
                                 fn (Builder $query, $value): Builder => $query->where(DB::raw('JSON_LENGTH(attachments)'), $value === 'yes' ? '>' : '=', 0),
                             )
                             ->when(
