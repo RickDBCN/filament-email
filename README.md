@@ -16,7 +16,7 @@ Log all outgoing emails in your Laravel project within your Filament panel. You 
 | Plugin  | Filament | Laravel | PHP |
 | ------------- | ------------- | ------------- | -------------|
 | 1.x  | 3.x  | 10.x | 8.x |
-| 1.x  | 3.x  | 11.x | 8.2 \| 8.3 \| 8.4 |
+| 1.x  | 3.x  | 11.x \| 12.x | 8.2 \| 8.3 \| 8.4 |
 
 > [!CAUTION]
 > After update to v1.3.1 or 1.4.0 you need to re-publish and run migrations
