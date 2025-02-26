@@ -1,9 +1,9 @@
 @php
     $content = $getRecord()->raw_body;
     if (!empty($content)) {
-        $path = storage_path('app' . DIRECTORY_SEPARATOR . $content);
-        if (file_exists($path)) {
-            $content = file_get_contents($path);
+        $attachmentsDisk = config('filament-email.attachments_disk', 'local');
+        if (\Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->exists($content)) {
+            $content = \Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->get($content);
         }
     }
 @endphp
