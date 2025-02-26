@@ -2,6 +2,21 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.8.0 - 2025-02-26
+
+### What's Changed
+
+* Compatibility with Laravel 12.x
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/RickDBCN/filament-email/pull/85
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/RickDBCN/filament-email/pull/86
+* Hungarian translations and raw body view display fix by @borex in https://github.com/RickDBCN/filament-email/pull/88
+
+### New Contributors
+
+* @borex made their first contribution in https://github.com/RickDBCN/filament-email/pull/88
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.7.2...v1.8.0
+
 ## v1.7.2 - 2024-11-05
 
 ### What's Changed
