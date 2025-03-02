@@ -134,7 +134,7 @@ composer test
 
 ## Languages Supported
 
-Filament Email Plugin is translated for :
+Filament Email Plugin is translated for:
 
 - English <sup><sub>EN</sub></sup>
 - Dutch <sup><sub>NL</sub></sup>
@@ -142,6 +142,7 @@ Filament Email Plugin is translated for :
 - German <sup><sub>DE</sub></sup>
 - Portuguese <sup><sub>PT</sub></sup>
 - Turkish <sup><sub>TR</sub></sup>
+- Hungarian <sup><sub>HU</sub></sup>
 
 ## Credits
 
