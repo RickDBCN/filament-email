@@ -1,10 +1,12 @@
 @php
-    $content = $getRecord()->raw_body;
+    $content = $getRecord()?->raw_body;
     if (!empty($content)) {
         $attachmentsDisk = config('filament-email.attachments_disk', 'local');
-        if (\Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->exists($content)) {
-            $content = \Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->get($content);
-        }
+        try {
+            if (\Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->exists($content)) {
+                $content = \Illuminate\Support\Facades\Storage::disk($attachmentsDisk)->get($content);
+            }
+        } catch (\Exception) {}
     }
 @endphp
 

@@ -3,6 +3,7 @@
 namespace RickDBCN\FilamentEmail\Filament\Resources\Concernes;
 
 use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
@@ -23,7 +24,7 @@ trait CanPaginateViewRecord
     protected function configurePreviousAction(Action $action): void
     {
         if ($this->getPreviousRecord()) {
-            $action->url(fn (): string => static::getResource()::getUrl('view', ['record' => $this->getPreviousRecord()]));
+            $action->url(fn(): string => static::getResource()::getUrl('view', ['record' => $this->getPreviousRecord()]));
         } else {
             $action
                 ->disabled()
@@ -34,7 +35,7 @@ trait CanPaginateViewRecord
     protected function configureNextAction(Action $action): void
     {
         if ($this->getNextRecord()) {
-            $action->url(fn (): string => static::getResource()::getUrl('view', ['record' => $this->getNextRecord()]));
+            $action->url(fn(): string => static::getResource()::getUrl('view', ['record' => $this->getNextRecord()]));
         } else {
             $action
                 ->disabled()
@@ -44,21 +45,36 @@ trait CanPaginateViewRecord
 
     protected function getPreviousRecord(): ?Model
     {
-        return $this
+        $query = $this
             ->getRecord()
             ->where('created_at', '<', $this->getRecord()->created_at)
-            ->where('id', '<>', $this->getRecord()->id)
-            ->orderBy('created_at', 'desc')
+            ->where('id', '<>', $this->getRecord()->id);
+
+        $query = $this->addTenantToQuery($query);
+
+        return $query->orderBy('created_at', 'desc')
             ->first();
     }
 
     protected function getNextRecord(): ?Model
     {
-        return $this
+        $query = $this
             ->getRecord()
             ->where('created_at', '>', $this->getRecord()->created_at)
-            ->where('id', '<>', $this->getRecord()->id)
-            ->orderBy('created_at', 'asc')
+            ->where('id', '<>', $this->getRecord()->id);
+
+        $query = $this->addTenantToQuery($query);
+
+        return $query->orderBy('created_at', 'asc')
             ->first();
+    }
+
+    private function addTenantToQuery($query)
+    {
+        if (auth()->check() && Filament::getTenant()) {
+            return $query->whereTeamId(Filament::getTenant()?->id);
+        }
+
+        return $query->whereTeamId(null);
     }
 }
