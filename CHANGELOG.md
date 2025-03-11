@@ -2,6 +2,16 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.9.0' - 2025-03-11
+
+### What's Changed
+
+* Implemented new tests
+* Encapsulated email resource actions within a dedicated class
+* Resolved League\Flysystem\CorruptedPathDetected exception in the raw_body template implementation
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.8.0...v1.9.0'
+
 ## v1.8.0 - 2025-02-26
 
 ### What's Changed
