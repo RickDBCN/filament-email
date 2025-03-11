@@ -2,17 +2,16 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\TagsInput;
+use Filament\Notifications\Notification;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Log;
-use Filament\Support\Enums\IconSize;
 use Illuminate\Support\Facades\Mail;
-use Filament\Forms\Components\Toggle;
-use Filament\Notifications\Notification;
-use RickDBCN\FilamentEmail\Models\Email;
-use Filament\Forms\Components\TagsInput;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
-use Filament\Actions\Concerns\CanCustomizeProcess;
+use RickDBCN\FilamentEmail\Models\Email;
 
 class AdvancedResendEmailAction extends Action
 {
@@ -63,8 +62,8 @@ class AdvancedResendEmailAction extends Action
                     ->boolean()
                     ->inline()
                     ->inlineLabel(false)
-                    ->disabled(fn($record): bool => empty($record->attachments))
-                    ->default(fn($record): bool => !empty($record->attachments))
+                    ->disabled(fn ($record): bool => empty($record->attachments))
+                    ->default(fn ($record): bool => ! empty($record->attachments))
                     ->required(),
             ])
             ->action(function (Email $record, array $data) {

@@ -2,13 +2,13 @@
 
 use Faker\Factory;
 use Illuminate\Support\Facades\Mail;
-use RickDBCN\FilamentEmail\Models\Email;
-use RickDBCN\FilamentEmail\Tests\Models\User;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\AdvancedResendEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ResendEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ResendEmailBulkAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ViewEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
+use RickDBCN\FilamentEmail\Models\Email;
+use RickDBCN\FilamentEmail\Tests\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertModelExists;
@@ -93,5 +93,3 @@ it('can bulk resend email', function () {
         ->callTableBulkAction(ResendEmailBulkAction::class, [$email]);
     assertDatabaseCount((new $this->model)->getTable(), 2);
 });
-
-

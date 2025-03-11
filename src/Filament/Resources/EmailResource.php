@@ -6,30 +6,21 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\View;
 use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\IconSize;
 use Filament\Support\Enums\MaxWidth;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Malzariey\FilamentDaterangepickerFilter\Fields\DateRangePicker;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\AdvancedResendEmailAction;
@@ -38,7 +29,6 @@ use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ResendEmailB
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ViewEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ListEmails;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages\ViewEmail;
-use RickDBCN\FilamentEmail\Mail\ResendMail;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class EmailResource extends Resource
@@ -110,7 +100,7 @@ class EmailResource extends Resource
                             ->label(__('filament-email::filament-email.created_at')),
                     ])->columns(4),
                 Fieldset::make('attachments')
-                    ->hidden(fn(): bool => !config('filament-email.store_attachments'))
+                    ->hidden(fn (): bool => ! config('filament-email.store_attachments'))
                     ->label(__('filament-email::filament-email.attachments'))
                     ->schema([
                         View::make('filament-email::attachments')
@@ -156,10 +146,10 @@ class EmailResource extends Resource
             ])
             ->columns([
                 TextColumn::make('from')
-                    ->prefix(__('filament-email::filament-email.from') . ': ')
-                    ->suffix(fn(Email $record): string => !empty($record->attachments) ? ' (' . trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)) . ')' : '')
+                    ->prefix(__('filament-email::filament-email.from').': ')
+                    ->suffix(fn (Email $record): string => ! empty($record->attachments) ? ' ('.trans_choice('filament-email::filament-email.attachments_number', count($record->attachments)).')' : '')
                     ->label(__('filament-email::filament-email.header'))
-                    ->description(fn(Email $record): string => Str::limit(__('filament-email::filament-email.to') . ': ' . $record->to, 40))
+                    ->description(fn (Email $record): string => Str::limit(__('filament-email::filament-email.to').': '.$record->to, 40))
                     ->searchable(),
                 TextColumn::make('subject')
                     ->label(__('filament-email::filament-email.subject'))
@@ -180,7 +170,8 @@ class EmailResource extends Resource
             ->filtersFormWidth(MaxWidth::ExtraLarge)
             ->paginationPageOptions(function (Table $table) {
                 $options = config('filament-email.pagination_page_options');
-                return !empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
+
+                return ! empty($options) && is_array($options) ? $options : $table->getPaginationPageOptions();
             });
     }
 
@@ -216,9 +207,9 @@ class EmailResource extends Resource
                     foreach ($data as $field => $value) {
                         if ($data[$field] ?? null) {
                             if ($field === 'attachments') {
-                                $indicators[$field] = __('filament-email::filament-email.' . $field) . ': ' . ($value === 'yes' ? __('filament-email::filament-email.yes') : __('filament-email::filament-email.no'));
+                                $indicators[$field] = __('filament-email::filament-email.'.$field).': '.($value === 'yes' ? __('filament-email::filament-email.yes') : __('filament-email::filament-email.no'));
                             } else {
-                                $indicators[$field] = __('filament-email::filament-email.' . $field) . ": $value";
+                                $indicators[$field] = __('filament-email::filament-email.'.$field).": $value";
                             }
                         }
                     }
@@ -229,24 +220,24 @@ class EmailResource extends Resource
                     return $query
                         ->when(
                             $data['from'],
-                            fn(Builder $query, $value): Builder => $query->where('from', 'like', "%$value%"),
+                            fn (Builder $query, $value): Builder => $query->where('from', 'like', "%$value%"),
                         )
                         ->when(
                             $data['to'],
-                            fn(Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
+                            fn (Builder $query, $value): Builder => $query->where('to', 'like', "%$value%"),
                         )
                         ->when(
                             $data['cc'],
-                            fn(Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
+                            fn (Builder $query, $value): Builder => $query->where('cc', 'like', "%$value%"),
                         )
                         ->when(
                             $data['bcc'],
-                            fn(Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
+                            fn (Builder $query, $value): Builder => $query->where('bcc', 'like', "%$value%"),
                         )
                         ->when(
                             $data['attachments'],
                             // JSON_LENGTH
-                            fn(Builder $query, $value): Builder => $query->where(DB::raw('JSON_LENGTH(attachments)'), $value === 'yes' ? '>' : '=', 0),
+                            fn (Builder $query, $value): Builder => $query->where(DB::raw('JSON_LENGTH(attachments)'), $value === 'yes' ? '>' : '=', 0),
                         )
                         ->when(
                             $data['created_at'],
@@ -279,7 +270,7 @@ class EmailResource extends Resource
     {
         $roles = config('filament-email.can_access.role', []);
 
-        if (method_exists(filament()->auth()->user(), 'hasRole') && !empty($roles)) {
+        if (method_exists(filament()->auth()->user(), 'hasRole') && ! empty($roles)) {
             return filament()->auth()->user()->hasRole($roles);
         }
 

@@ -2,14 +2,14 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
-use Illuminate\Support\Facades\Log;
-use Filament\Support\Enums\IconSize;
-use Illuminate\Support\Facades\Mail;
-use Filament\Tables\Actions\BulkAction;
-use Filament\Notifications\Notification;
-use RickDBCN\FilamentEmail\Mail\ResendMail;
-use Illuminate\Database\Eloquent\Collection;
 use Filament\Actions\Concerns\CanCustomizeProcess;
+use Filament\Notifications\Notification;
+use Filament\Support\Enums\IconSize;
+use Filament\Tables\Actions\BulkAction;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use RickDBCN\FilamentEmail\Mail\ResendMail;
 
 class ResendEmailBulkAction extends BulkAction
 {

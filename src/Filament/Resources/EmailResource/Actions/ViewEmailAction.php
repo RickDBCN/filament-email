@@ -2,14 +2,10 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
-use Filament\Forms\Components\ViewField;
-use Filament\Tables\Actions\Action;
-use Illuminate\Support\Facades\Log;
-use Filament\Support\Enums\IconSize;
-use Illuminate\Support\Facades\Mail;
-use Filament\Notifications\Notification;
-use RickDBCN\FilamentEmail\Mail\ResendMail;
 use Filament\Actions\Concerns\CanCustomizeProcess;
+use Filament\Forms\Components\ViewField;
+use Filament\Support\Enums\IconSize;
+use Filament\Tables\Actions\Action;
 
 class ViewEmailAction extends Action
 {
@@ -30,11 +26,12 @@ class ViewEmailAction extends Action
             ->icon('heroicon-o-eye')
             ->iconSize(IconSize::Medium)
             ->modalFooterActions(
-                fn($action): array => [
+                fn ($action): array => [
                     $action->getModalCancelAction(),
                 ])
             ->fillForm(function ($record) {
                 $body = $record->html_body;
+
                 return [
                     'html_body' => $body,
                 ];

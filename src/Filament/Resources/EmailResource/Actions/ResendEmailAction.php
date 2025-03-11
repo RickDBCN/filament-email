@@ -2,13 +2,13 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Concerns\CanCustomizeProcess;
+use Filament\Notifications\Notification;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Log;
-use Filament\Support\Enums\IconSize;
 use Illuminate\Support\Facades\Mail;
-use Filament\Notifications\Notification;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
-use Filament\Actions\Concerns\CanCustomizeProcess;
 
 class ResendEmailAction extends Action
 {
