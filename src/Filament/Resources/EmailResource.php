@@ -268,10 +268,11 @@ class EmailResource extends Resource
 
     public static function canAccess(): bool
     {
+        $user = auth()->user() ?? null;
         $roles = config('filament-email.can_access.role', []);
 
-        if (method_exists(filament()->auth()->user(), 'hasRole') && ! empty($roles)) {
-            return filament()->auth()->user()->hasRole($roles);
+        if (! is_null($user) && method_exists($user, 'hasRole') && ! empty($roles)) {
+            return $user->hasRole($roles);
         }
 
         return true;
