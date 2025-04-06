@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.9.1 - 2025-04-06
+
+### What's Changed
+
+* Fixed #89 - thanks to @Notobia  for reporting
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.9.0...v1.9.1
+
 ## v1.9.0' - 2025-03-11
 
 ### What's Changed
