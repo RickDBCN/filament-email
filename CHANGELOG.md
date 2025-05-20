@@ -2,6 +2,19 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.9.2 - 2025-05-20
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot in https://github.com/RickDBCN/filament-email/pull/92
+* French Translation by @agencetwogether in https://github.com/RickDBCN/filament-email/pull/93
+
+### New Contributors
+
+* @agencetwogether made their first contribution in https://github.com/RickDBCN/filament-email/pull/93
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.9.1...v1.9.2
+
 ## v1.9.1 - 2025-04-06
 
 ### What's Changed
