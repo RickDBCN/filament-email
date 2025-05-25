@@ -143,6 +143,7 @@ Filament Email Plugin is translated for:
 - Portuguese <sup><sub>PT</sub></sup>
 - Turkish <sup><sub>TR</sub></sup>
 - Hungarian <sup><sub>HU</sub></sup>
+- Spanish <sup><sub>ES</sub></sup>
 
 ## Credits
 
