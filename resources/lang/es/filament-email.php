@@ -34,4 +34,5 @@ return [
     'have_attachments' => '¿Tiene adjuntos?',
     'yes' => 'sí',
     'no' => 'no',
+    'model_label' => 'Registro de correos',
 ];
