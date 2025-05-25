@@ -2,6 +2,20 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.10.0 - 2025-05-25
+
+### What's Changed
+
+* Add Spanish translations by @gboquizosanchez in https://github.com/RickDBCN/filament-email/pull/94
+* Update README.md by @gboquizosanchez in https://github.com/RickDBCN/filament-email/pull/96
+* Localization fixes by @gboquizosanchez in https://github.com/RickDBCN/filament-email/pull/95
+
+### New Contributors
+
+* @gboquizosanchez made their first contribution in https://github.com/RickDBCN/filament-email/pull/94
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.9.2...v1.10.0
+
 ## v1.9.2 - 2025-05-20
 
 ### What's Changed
