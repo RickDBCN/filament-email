@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Contient une pièce jointe ?',
     'yes' => 'oui',
     'no' => 'non',
+    'model_label' => 'E-mail Log',
 ];

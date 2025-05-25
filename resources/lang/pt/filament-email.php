@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Tem anexos?',
     'yes' => 'sim',
     'no' => 'não',
+    'model_label' => 'Registro de E-mail',
 ];

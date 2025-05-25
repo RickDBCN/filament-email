@@ -73,6 +73,16 @@ class EmailResource extends Resource
         return config('filament-email.resource.model') ?? Email::class;
     }
 
+    public static function hasTitleCaseModelLabel(): bool
+    {
+        return config('filament-email.resource.has_title_case_model_label', true);
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-email::filament-email.model_label');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

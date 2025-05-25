@@ -31,4 +31,5 @@ return [
     'attachments_number' => ':count csatolmány|:count csatolmányok',
     'previous' => 'Előző',
     'next' => 'Következő',
+    'model_label' => 'E-mail napló',
 ];

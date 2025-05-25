@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Contiene allegati?',
     'yes' => 'si',
     'no' => 'no',
+    'model_label' => 'E-mail Log',
 ];
