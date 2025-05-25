@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Memiliki lampiran?',
     'yes' => 'ya',
     'no' => 'tidak',
+    'model_label' => 'Log Email',
 ];

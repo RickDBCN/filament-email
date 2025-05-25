@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Anhänge haben?',
     'yes' => 'ja',
     'no' => 'nein',
+    'model_label' => 'E-Mail-Protokoll',
 ];

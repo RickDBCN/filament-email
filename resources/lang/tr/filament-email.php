@@ -34,4 +34,5 @@ return [
     'have_attachments' => 'Ekleri var?',
     'yes' => 'evet',
     'no' => 'hayir',
+    'model_label' => 'Gönderilen E-postalar',
 ];

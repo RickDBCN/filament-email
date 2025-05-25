@@ -22,6 +22,7 @@ return [
             'cc',
             'bcc',
         ],
+        'has_title_case_model_label' => false,
     ],
 
     'keep_email_for_days' => 60,
