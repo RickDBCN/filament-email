@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.10.1 - 2025-06-04
+
+### What's Changed
+
+* Fix typo in EmailResource by @hofmannsven in https://github.com/RickDBCN/filament-email/pull/97
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.10.0...v1.10.1
+
 ## v1.10.0 - 2025-05-25
 
 ### What's Changed
