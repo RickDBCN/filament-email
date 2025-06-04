@@ -93,7 +93,7 @@ class EmailResource extends Resource
                         TextInput::make('from')
                             ->label(__('filament-email::filament-email.from'))
                             ->columnSpan(2),
-                        Textinput::make('to')
+                        TextInput::make('to')
                             ->label(__('filament-email::filament-email.to'))
                             ->columnSpan(2),
                         TextInput::make('cc')
