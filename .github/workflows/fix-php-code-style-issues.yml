@@ -25,7 +25,7 @@ jobs:
         uses: aglipanci/laravel-pint-action@2.5
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Fix styling
           branch: ${{ github.head_ref }} # This specifies the branch to push changes to
