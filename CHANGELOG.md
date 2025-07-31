@@ -2,6 +2,16 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.11.0 - 2025-07-31
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/RickDBCN/filament-email/pull/98
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/RickDBCN/filament-email/pull/100
+* feat: add Portuguese (Brazil) translations for email log by @samuelterra22 in https://github.com/RickDBCN/filament-email/pull/99
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.10.1...v1.11.0
+
 ## v1.10.1 - 2025-06-04
 
 ### What's Changed
