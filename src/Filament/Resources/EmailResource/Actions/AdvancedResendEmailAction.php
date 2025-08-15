@@ -2,12 +2,13 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Action;
+use Exception;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TagsInput;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
-use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
@@ -77,7 +78,7 @@ class AdvancedResendEmailAction extends Action
                         ->success()
                         ->duration(5000)
                         ->send();
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     Log::error($e->getMessage());
                     Notification::make()
                         ->title(__('filament-email::filament-email.resend_email_error'))

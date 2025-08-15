@@ -2,10 +2,11 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\BulkAction;
+use Exception;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
-use Filament\Tables\Actions\BulkAction;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -49,7 +50,7 @@ class ResendEmailBulkAction extends BulkAction
                         ->success()
                         ->duration(5000)
                         ->send();
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     Log::error($e->getMessage());
                     Notification::make()
                         ->title(__('filament-email::filament-email.resend_email_error'))

@@ -2,18 +2,19 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\View;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Support\Enums\Width;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\View;
 use Filament\Forms\Components\ViewField;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\MaxWidth;
-use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -83,10 +84,10 @@ class EmailResource extends Resource
         return __('filament-email::filament-email.model_label');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Fieldset::make('Envelope')
                     ->label('')
                     ->schema([
@@ -117,25 +118,25 @@ class EmailResource extends Resource
                             ->columnSpanFull(),
                     ]),
                 Tabs::make('Content')->tabs([
-                    Tabs\Tab::make(__('filament-email::filament-email.html'))
+                    Tab::make(__('filament-email::filament-email.html'))
                         ->schema([
                             ViewField::make('html_body')
                                 ->label('')
                                 ->view('filament-email::html_view'),
                         ]),
-                    Tabs\Tab::make(__('filament-email::filament-email.text'))
+                    Tab::make(__('filament-email::filament-email.text'))
                         ->schema([
                             Textarea::make('text_body')
                                 ->label('')
                                 ->rows(20),
                         ]),
-                    Tabs\Tab::make(__('filament-email::filament-email.raw'))
+                    Tab::make(__('filament-email::filament-email.raw'))
                         ->schema([
                             ViewField::make('raw_body')
                                 ->label('')
                                 ->view('filament-email::raw_body'),
                         ]),
-                    Tabs\Tab::make(__('filament-email::filament-email.debug_info'))
+                    Tab::make(__('filament-email::filament-email.debug_info'))
                         ->schema([
                             Textarea::make('sent_debug_info')
                                 ->label('')
@@ -149,7 +150,7 @@ class EmailResource extends Resource
     {
         return $table
             ->defaultSort(config('filament-email.resource.default_sort_column'), config('filament-email.resource.default_sort_direction'))
-            ->actions([
+            ->recordActions([
                 ViewEmailAction::make(),
                 ResendEmailAction::make(),
                 AdvancedResendEmailAction::make(),
@@ -177,7 +178,7 @@ class EmailResource extends Resource
             ])
             ->persistFiltersInSession()
             ->filters(self::getFilters())
-            ->filtersFormWidth(MaxWidth::ExtraLarge)
+            ->filtersFormWidth(Width::ExtraLarge)
             ->paginationPageOptions(function (Table $table) {
                 $options = config('filament-email.pagination_page_options');
 
@@ -189,7 +190,7 @@ class EmailResource extends Resource
     {
         return [
             Filter::make('headers-filter')
-                ->form([
+                ->schema([
                     TextInput::make('from')
                         ->label(__('filament-email::filament-email.from'))
                         ->email(),

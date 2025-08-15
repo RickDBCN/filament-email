@@ -2,10 +2,10 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\ViewField;
 use Filament\Support\Enums\IconSize;
-use Filament\Tables\Actions\Action;
 
 class ViewEmailAction extends Action
 {
