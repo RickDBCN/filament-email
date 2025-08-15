@@ -2,10 +2,10 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 
-use Filament\Support\Enums\Size;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Enums\Size;
 use Illuminate\Support\Facades\Storage;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;

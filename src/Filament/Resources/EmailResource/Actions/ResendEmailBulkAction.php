@@ -2,8 +2,8 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
-use Filament\Actions\BulkAction;
 use Exception;
+use Filament\Actions\BulkAction;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
