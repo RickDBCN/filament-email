@@ -1,9 +1,9 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
+namespace RickDBCN\FilamentEmail\Filament\Resources\Emails\Actions;
 
-use Filament\Actions\Action;
 use Exception;
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TagsInput;

@@ -4,7 +4,7 @@ namespace RickDBCN\FilamentEmail;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Resources\Emails\EmailResource;
 
 class FilamentEmail implements Plugin
 {

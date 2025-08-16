@@ -1,14 +1,14 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources\Actions;
+namespace RickDBCN\FilamentEmail\Filament\Actions;
 
 use Filament\Actions\Action;
 
-class PreviousAction extends Action
+class NextAction extends Action
 {
     public static function getDefaultName(): ?string
     {
-        return 'previous';
+        return 'next';
     }
 
     protected function setUp(): void
@@ -16,9 +16,9 @@ class PreviousAction extends Action
         parent::setUp();
 
         $this->hiddenLabel()
-            ->icon('heroicon-o-arrow-left')
+            ->icon('heroicon-o-arrow-right')
             ->outlined()
             ->size('sm')
-            ->tooltip(__('filament-email::filament-email.previous'));
+            ->tooltip(__('filament-email::filament-email.next'));
     }
 }

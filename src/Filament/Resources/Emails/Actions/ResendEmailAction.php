@@ -1,18 +1,17 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
+namespace RickDBCN\FilamentEmail\Filament\Resources\Emails\Actions;
 
-use Filament\Actions\BulkAction;
 use Exception;
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
 
-class ResendEmailBulkAction extends BulkAction
+class ResendEmailAction extends Action
 {
     use CanCustomizeProcess;
 
@@ -20,31 +19,27 @@ class ResendEmailBulkAction extends BulkAction
 
     public static function getDefaultName(): ?string
     {
-        return 'resend_email_bulk_action';
+        return 'resend_email_action';
     }
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->label(__('filament-email::filament-email.resend_email_heading'))
+        $this->label(false)
             ->icon('heroicon-o-arrow-path')
-            ->color('primary')
             ->iconSize(IconSize::Medium)
             ->tooltip(__('filament-email::filament-email.resend_email_heading'))
-            ->requiresConfirmation()
             ->modalHeading(__('filament-email::filament-email.resend_email_heading'))
             ->modalDescription(__('filament-email::filament-email.resend_email_description'))
             ->modalIconColor('warning')
-            ->deselectRecordsAfterCompletion()
-            ->action(function (Collection $records) {
+            ->requiresConfirmation()
+            ->action(function ($record) {
                 try {
-                    foreach ($records as $record) {
-                        Mail::to($record->to)
-                            ->cc($record->cc)
-                            ->bcc($record->bcc)
-                            ->send(new ResendMail($record));
-                    }
+                    Mail::to($record->to)
+                        ->cc($record->cc)
+                        ->bcc($record->bcc)
+                        ->send(new ResendMail($record));
                     Notification::make()
                         ->title(__('filament-email::filament-email.resend_email_success'))
                         ->success()

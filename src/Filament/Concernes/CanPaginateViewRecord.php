@@ -1,12 +1,12 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources\Concernes;
+namespace RickDBCN\FilamentEmail\Filament\Concernes;
 
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
-use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
-use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
+use RickDBCN\FilamentEmail\Filament\Actions\NextAction;
+use RickDBCN\FilamentEmail\Filament\Actions\PreviousAction;
 
 trait CanPaginateViewRecord
 {

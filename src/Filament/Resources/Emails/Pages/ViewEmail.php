@@ -1,16 +1,16 @@
 <?php
 
-namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
+namespace RickDBCN\FilamentEmail\Filament\Resources\Emails\Pages;
 
-use Filament\Support\Enums\Size;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Enums\Size;
 use Illuminate\Support\Facades\Storage;
-use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
-use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
-use RickDBCN\FilamentEmail\Filament\Resources\Concernes\CanPaginateViewRecord;
-use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
+use RickDBCN\FilamentEmail\Filament\Actions\NextAction;
+use RickDBCN\FilamentEmail\Filament\Actions\PreviousAction;
+use RickDBCN\FilamentEmail\Filament\Concernes\CanPaginateViewRecord;
+use RickDBCN\FilamentEmail\Filament\Resources\Emails\EmailResource;
 use RickDBCN\FilamentEmail\Models\Email;
 
 class ViewEmail extends ViewRecord

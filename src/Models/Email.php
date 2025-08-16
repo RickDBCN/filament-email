@@ -28,8 +28,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Email extends Model
 {
-    use HasFactory;
-    use Prunable;
+    use HasFactory, Prunable;
 
     protected $table = 'filament_email_log';
 
@@ -63,7 +62,7 @@ class Email extends Model
         });
     }
 
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -99,12 +98,12 @@ class Email extends Model
         });
     }
 
-    public function prunable()
+    public function prunable(): Email
     {
         return static::where('created_at', '<=', now()->subDays(config('filament-email.keep_email_for_days', 60)));
     }
 
-    private function getTableColumns()
+    private function getTableColumns(): array
     {
         return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
     }
@@ -119,7 +118,7 @@ class Email extends Model
         });
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, array $filters): void
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             foreach ($this->getSearchableFields() as $key => $field) {
