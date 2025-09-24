@@ -2,12 +2,12 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TagsInput;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
-use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;
@@ -34,7 +34,7 @@ class AdvancedResendEmailAction extends Action
             ->tooltip(__('filament-email::filament-email.update_and_resend_email_heading'))
             ->modalHeading(__('filament-email::filament-email.update_and_resend_email_heading'))
             ->modalWidth('2xl')
-            ->form([
+            ->schema([
                 TagsInput::make('to')
                     ->label(__('filament-email::filament-email.to'))
                     ->placeholder(__('filament-email::filament-email.insert_multiple_email_placelholder'))

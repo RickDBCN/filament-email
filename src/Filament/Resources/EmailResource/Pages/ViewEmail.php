@@ -5,7 +5,7 @@ namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Pages;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 use Illuminate\Support\Facades\Storage;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\NextAction;
 use RickDBCN\FilamentEmail\Filament\Resources\Actions\PreviousAction;
@@ -30,7 +30,7 @@ class ViewEmail extends ViewRecord
             ->label(__('filament-email::filament-email.download'))
             ->requiresConfirmation()
             ->icon('heroicon-c-arrow-down-tray')
-            ->size(ActionSize::ExtraSmall)
+            ->size(Size::ExtraSmall)
             ->action(function (array $arguments) {
                 $fileExists = Storage::disk(config('filament-email.attachments_disk'))->exists($arguments['path']);
                 if ($fileExists) {
