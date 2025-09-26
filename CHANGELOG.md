@@ -2,6 +2,14 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.12.0 - 2025-09-26
+
+### What's Changed
+
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/RickDBCN/filament-email/pull/101
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.11.0...v1.12.0
+
 ## v1.11.0 - 2025-07-31
 
 ### What's Changed
