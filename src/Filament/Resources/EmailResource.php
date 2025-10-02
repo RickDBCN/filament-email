@@ -34,6 +34,15 @@ use RickDBCN\FilamentEmail\Models\Email;
 class EmailResource extends Resource
 {
     protected static ?string $slug = 'emails';
+    protected static ?string $tenantOwnershipRelationshipName = 'team';
+
+    /**
+     * Determine whether the resource should be scoped to the current tenant.
+     */
+    public static function isScopedToTenant(): bool
+    {
+        return config('filament-email.scope_to_tenant', true);
+    }
 
     public static function getBreadcrumb(): string
     {

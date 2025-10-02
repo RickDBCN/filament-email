@@ -50,19 +50,6 @@ class Email extends Model
         return $this->belongsTo(config('filament-email.tenant_model'), 'team_id', 'id');
     }
 
-    protected static function booted(): void
-    {
-        static::addGlobalScope('teams', function (Builder $query) {
-            if (! app()->runningInConsole()) {
-                if (auth()->check() && Filament::getTenant()) {
-                    $query->whereBelongsTo(auth()->user()?->teams);
-                } else {
-                    $query->whereTeamId(null);
-                }
-            }
-        });
-    }
-
     public static function boot()
     {
         parent::boot();
