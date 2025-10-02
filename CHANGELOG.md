@@ -2,6 +2,18 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v1.13.0 - 2025-10-02
+
+### What's Changed
+
+* Move scoping to filament resource and add config var. by @stuartcusackie in https://github.com/RickDBCN/filament-email/pull/107
+
+### New Contributors
+
+* @stuartcusackie made their first contribution in https://github.com/RickDBCN/filament-email/pull/107
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.12.0...v1.13.0
+
 ## v1.12.0 - 2025-09-26
 
 ### What's Changed
