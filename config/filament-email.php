@@ -46,5 +46,6 @@ return [
 
     // Use this option for customize tenant model class
     // 'tenant_model' => \App\Models\Team::class,
+    'scope_to_tenant' => true
 
 ];
