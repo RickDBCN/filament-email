@@ -34,6 +34,7 @@ use RickDBCN\FilamentEmail\Models\Email;
 class EmailResource extends Resource
 {
     protected static ?string $slug = 'emails';
+
     protected static ?string $tenantOwnershipRelationshipName = 'team';
 
     /**
