@@ -2,10 +2,10 @@
 
 namespace RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions;
 
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\IconSize;
-use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RickDBCN\FilamentEmail\Mail\ResendMail;

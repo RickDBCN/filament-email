@@ -1,5 +1,12 @@
-<x-filament-forms::field-wrapper :id="$getId()" :label="$getLabel()" :label-sr-only="$isLabelHidden()" :helper-text="$getHelperText()" :hint="$getHint()" :hint-icon="$getHintIcon()" :required="$isRequired()" :state-path="$getStatePath()">
+<x-dynamic-component
+    :component="$getFieldWrapperView()"
+    :field="$field"
+>
     <div>
-        <iframe style="width: 100%; height:75vh;" srcdoc=" {{$getState() }}" seamless frameborder="0"></iframe>
+        <iframe
+            style="width: 100%; height: 75vh;"
+            srcdoc="{{ $getState() }}"
+            frameborder="0"
+        ></iframe>
     </div>
-</x-filament-forms::field-wrapper>
+</x-dynamic-component>

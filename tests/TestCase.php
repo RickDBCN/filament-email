@@ -7,7 +7,9 @@ use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
+use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
+use Filament\Schemas\SchemasServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
@@ -40,24 +42,28 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         $packageProviders = [
+            ActionsServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
             BladeIconsServiceProvider::class,
-            FilamentServiceProvider::class,
-            FormsServiceProvider::class,
-            LivewireServiceProvider::class,
-            SupportServiceProvider::class,
-            TablesServiceProvider::class,
-            ActionsServiceProvider::class,
-            WidgetsServiceProvider::class,
             EmailMessageServiceProvider::class,
+            FilamentServiceProvider::class,
             FilamentEmailServiceProvider::class,
             FilamentDaterangepickerFilterServiceProvider::class,
+            FormsServiceProvider::class,
+            InfolistsServiceProvider::class,
+            LivewireServiceProvider::class,
+            SchemasServiceProvider::class,
+            SupportServiceProvider::class,
+            TablesServiceProvider::class,
             TestPanelProvider::class,
+            WidgetsServiceProvider::class,
         ];
 
         if (class_exists(NotificationsServiceProvider::class)) {
             $packageProviders[] = NotificationsServiceProvider::class;
         }
+
+        sort($packageProviders);
 
         return $packageProviders;
     }
