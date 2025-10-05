@@ -2,6 +2,18 @@
 
 All notable changes to `filament-email` will be documented in this file.
 
+## v2.0.0 - 2025-10-05
+
+### What's Changed
+
+* Upgrade to Filament 4 by @coreymcmahon in https://github.com/RickDBCN/filament-email/pull/105
+
+### New Contributors
+
+* @coreymcmahon made their first contribution in https://github.com/RickDBCN/filament-email/pull/105
+
+**Full Changelog**: https://github.com/RickDBCN/filament-email/compare/v1.12.0...v2.0.0
+
 ## v1.13.0 - 2025-10-02
 
 ### What's Changed
