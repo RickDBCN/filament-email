@@ -78,7 +78,7 @@ class FilamentEmailLogger
         return implode(
             ',',
             array_map(function ($email) {
-                return "{$email->getAddress()}".($email->getName() ? " <{$email->getName()}>" : '');
+                return $email->getName() ? "{$email->getName()} <{$email->getAddress()}>" : $email->getAddress();
             }, $recipients)
         );
     }

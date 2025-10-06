@@ -93,3 +93,42 @@ it('can bulk resend email', function () {
         ->callTableBulkAction(ResendEmailBulkAction::class, [$email]);
     assertDatabaseCount((new $this->model)->getTable(), 2);
 });
+
+it('can capture a sent email with recipient name', function () {
+    $faker = Factory::create();
+    $recipient = $faker->email();
+    $recipientName = $faker->name();
+
+    Mail::raw('Test e-mail text', function ($message) use ($recipient, $recipientName) {
+        $message->to($recipient, $recipientName)
+            ->subject('the email subject');
+    });
+
+    assertDatabaseCount((new $this->model)->getTable(), 1);
+
+    $email = $this->model::first();
+    // Check that the format is correct: "Name <email@example.com>"
+    expect($email->to)->toContain($recipient);
+    expect($email->to)->toContain($recipientName);
+});
+
+it('can resend email with recipient name', function () {
+    $faker = Factory::create();
+    $recipient = $faker->email();
+    $recipientName = $faker->name();
+
+    Mail::raw('Test e-mail text', function ($message) use ($recipient, $recipientName) {
+        $message->to($recipient, $recipientName)
+            ->subject('the email subject');
+    });
+
+    assertDatabaseCount((new $this->model)->getTable(), 1);
+
+    $email = $this->model::first();
+
+    // Should be able to resend without error
+    livewire(ListEmails::class)
+        ->callTableAction(ResendEmailAction::class, $email);
+
+    assertDatabaseCount((new $this->model)->getTable(), 2);
+});
