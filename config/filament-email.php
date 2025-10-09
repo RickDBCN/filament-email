@@ -44,7 +44,8 @@ return [
     'attachments_disk' => 'local',
     'store_attachments' => true,
 
-    // Use this option for customize tenant model class
+    // Custom tenancy options
     // 'tenant_model' => \App\Models\Team::class,
+    // 'scope_to_tenant' => true
 
 ];
