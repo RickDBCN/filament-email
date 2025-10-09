@@ -2,8 +2,6 @@
 
 namespace RickDBCN\FilamentEmail\Models;
 
-use Filament\Facades\Filament;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
@@ -48,19 +46,6 @@ class Email extends Model
     public function team(): BelongsTo
     {
         return $this->belongsTo(config('filament-email.tenant_model'), 'team_id', 'id');
-    }
-
-    protected static function booted(): void
-    {
-        static::addGlobalScope('teams', function (Builder $query) {
-            if (! app()->runningInConsole()) {
-                if (auth()->check() && Filament::getTenant()) {
-                    $query->whereBelongsTo(auth()->user()?->teams);
-                } else {
-                    $query->whereTeamId(null);
-                }
-            }
-        });
     }
 
     public static function boot()
