@@ -48,11 +48,9 @@ class Email extends Model
         return $this->belongsTo(config('filament-email.tenant_model'), 'team_id', 'id');
     }
 
-    public static function boot()
+    protected static function booted(): void
     {
-        parent::boot();
-
-        self::deleting(function ($record) {
+        static::deleting(function ($record) {
             $folderPath = '';
             $storageDisk = config('filament-email.attachments_disk', 'local');
             if (! empty($record->attachments)) {
