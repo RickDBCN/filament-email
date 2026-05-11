@@ -19,15 +19,15 @@
     "require": {
         "php": "^8.3",
         "filament/filament": "^4.0|^5.0",
-        "illuminate/contracts": "^11.0|^12.0",
-        "laravel/framework": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0|^13.0",
+        "laravel/framework": "^11.0|^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.16.0",
         "malzariey/filament-daterangepicker-filter": "^4.0"
     },
     "require-dev": {
         "laravel/pint": "^1.25",
         "nunomaduro/collision": "^8.0",
-        "orchestra/testbench": "^10.0",
+        "orchestra/testbench": "^10.0|^11.0",
         "pestphp/pest": "^4.1",
         "pestphp/pest-plugin-arch": "^4.0",
         "pestphp/pest-plugin-laravel": "^4.0",
