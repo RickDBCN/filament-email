@@ -35,4 +35,5 @@ return [
     'yes' => 'sim',
     'no' => 'não',
     'model_label' => 'Log de E-mails',
+    'model_label_plural' => 'Logs de E-mails',
 ];

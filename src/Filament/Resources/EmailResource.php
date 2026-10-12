@@ -93,6 +93,11 @@ class EmailResource extends Resource
         return __('filament-email::filament-email.model_label');
     }
 
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-email::filament-email.model_label_plural');
+    }
+
     public static function form(Schema $form): Schema
     {
         return $form

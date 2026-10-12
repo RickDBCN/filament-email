@@ -35,4 +35,5 @@ return [
     'yes' => 'ja',
     'no' => 'nein',
     'model_label' => 'E-Mail-Protokoll',
+    'model_label_plural' => 'E-Mail-Protokolle',
 ];

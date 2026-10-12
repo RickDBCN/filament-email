@@ -35,4 +35,5 @@ return [
     'yes' => 'evet',
     'no' => 'hayir',
     'model_label' => 'Gönderilen E-postalar',
+    'model_label_plural' => 'Gönderilen E-postalar',
 ];

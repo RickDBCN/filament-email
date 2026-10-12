@@ -35,4 +35,5 @@ return [
     'yes' => 'tak',
     'no' => 'nie',
     'model_label' => 'Dziennik wiadomości e-mail',
+    'model_label_plural' => 'Dzienniki wiadomości e-mail',
 ];

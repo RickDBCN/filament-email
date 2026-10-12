@@ -32,4 +32,5 @@ return [
     'previous' => 'Előző',
     'next' => 'Következő',
     'model_label' => 'E-mail napló',
+    'model_label_plural' => 'E-mail naplók',
 ];

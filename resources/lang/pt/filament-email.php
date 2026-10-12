@@ -35,4 +35,5 @@ return [
     'yes' => 'sim',
     'no' => 'não',
     'model_label' => 'Registro de E-mail',
+    'model_label_plural' => 'Registros de E-mail',
 ];
