@@ -21,6 +21,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Malzariey\FilamentDaterangepickerFilter\Fields\DateRangePicker;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\AdvancedResendEmailAction;
@@ -91,6 +92,17 @@ class EmailResource extends Resource
     public static function getModelLabel(): string
     {
         return __('filament-email::filament-email.model_label');
+    }
+
+    /**
+     * Filament makes the plural with English rules, so a translation can give its own. Languages without one keep
+     * Filament's plural of the model label.
+     */
+    public static function getPluralModelLabel(): string
+    {
+        $key = 'filament-email::filament-email.plural_model_label';
+
+        return Lang::has($key, fallback: false) ? __($key) : parent::getPluralModelLabel();
     }
 
     public static function form(Schema $form): Schema

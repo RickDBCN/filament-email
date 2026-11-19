@@ -35,4 +35,5 @@ return [
     'yes' => 'ναι',
     'no' => 'όχι',
     'model_label' => 'Ιστορικό email',
+    'plural_model_label' => 'Ιστορικό email',
 ];

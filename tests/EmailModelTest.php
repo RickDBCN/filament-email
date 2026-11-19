@@ -2,6 +2,8 @@
 
 use Faker\Factory;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use RickDBCN\FilamentEmail\Filament\Resources\EmailResource;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\AdvancedResendEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ResendEmailAction;
 use RickDBCN\FilamentEmail\Filament\Resources\EmailResource\Actions\ResendEmailBulkAction;
@@ -54,6 +56,14 @@ it('can render table records', function () {
         ->create();
     livewire(ListEmails::class)
         ->assertCanSeeTableRecords($records);
+});
+
+it('takes the plural label from the translation when the language has one', function () {
+    app()->setLocale('el');
+    expect(EmailResource::getPluralModelLabel())->toBe('Ιστορικό email');
+
+    app()->setLocale('it');
+    expect(EmailResource::getPluralModelLabel())->toBe(Str::plural(EmailResource::getModelLabel()));
 });
 
 it('can view email', function () {

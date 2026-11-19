@@ -35,4 +35,5 @@ return [
     'yes' => 'yes',
     'no' => 'no',
     'model_label' => 'E-mail Log',
+    'plural_model_label' => 'E-mail Logs',
 ];
