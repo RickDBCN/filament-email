@@ -56,6 +56,25 @@ it('can render table records', function () {
         ->assertCanSeeTableRecords($records);
 });
 
+it('can filter emails by the date they were sent', function () {
+    $january = $this->model::factory()
+        ->create(['created_at' => '2026-01-15 10:00:00']);
+    $march = $this->model::factory()
+        ->create(['created_at' => '2026-03-15 10:00:00']);
+
+    livewire(ListEmails::class)
+        ->filterTable('headers-filter', [
+            'from' => null,
+            'to' => null,
+            'cc' => null,
+            'bcc' => null,
+            'created_at' => '01/01/2026 - 31/01/2026',
+            'attachments' => null,
+        ])
+        ->assertCanSeeTableRecords([$january])
+        ->assertCanNotSeeTableRecords([$march]);
+});
+
 it('can view email', function () {
     $email = $this->model::factory()
         ->create();
