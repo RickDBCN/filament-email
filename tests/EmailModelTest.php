@@ -56,6 +56,37 @@ it('can render table records', function () {
         ->assertCanSeeTableRecords($records);
 });
 
+it('includes the whole first and last day of the sent at range', function (string $timezone) {
+    $default = date_default_timezone_get();
+    date_default_timezone_set($timezone);
+    config(['app.timezone' => $timezone]);
+
+    try {
+        $before = $this->model::factory()
+            ->create(['created_at' => '2026-01-31 23:30:00']);
+        $first = $this->model::factory()
+            ->create(['created_at' => '2026-02-01 00:30:00']);
+        $last = $this->model::factory()
+            ->create(['created_at' => '2026-02-28 23:30:00']);
+        $after = $this->model::factory()
+            ->create(['created_at' => '2026-03-01 00:30:00']);
+
+        livewire(ListEmails::class)
+            ->filterTable('headers-filter', [
+                'from' => null,
+                'to' => null,
+                'cc' => null,
+                'bcc' => null,
+                'created_at' => '01/02/2026 - 28/02/2026',
+                'attachments' => null,
+            ])
+            ->assertCanSeeTableRecords([$first, $last])
+            ->assertCanNotSeeTableRecords([$before, $after]);
+    } finally {
+        date_default_timezone_set($default);
+    }
+})->with(['UTC', 'Europe/Athens', 'America/New_York']);
+
 it('can view email', function () {
     $email = $this->model::factory()
         ->create();

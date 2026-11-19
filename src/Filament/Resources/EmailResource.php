@@ -266,11 +266,10 @@ class EmailResource extends Resource
                                 $start = str_replace('/', '-', $start);
                                 $end = str_replace('/', '-', $end);
 
+                                // The whole of both days, in the app's timezone.
                                 return $query->whereBetween('created_at', [
-                                    Carbon::createFromTimestamp(strtotime($start))
-                                        ->format('Y-m-d'),
-                                    Carbon::createFromTimestamp(strtotime($end))
-                                        ->format('Y-m-d'),
+                                    Carbon::parse($start)->startOfDay(),
+                                    Carbon::parse($end)->endOfDay(),
                                 ]);
                             }
                         );
